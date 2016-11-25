@@ -29,7 +29,6 @@
                 </p>
                 <a class="nav-name" href="##">个人中心</a>
             </li>
-            <div class="justify"></div>
         </ul>
     </div>
 </template>
