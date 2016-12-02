@@ -1,83 +1,83 @@
 <style lang="less" scrop>
-  .publish-type-text {
-    font-size: 30px;
+  .publish-type {
+    p {
+      font-size: 30px;
+      line-height: 58px;
+      color: #555;
+      .iconfont {
+        font-size: 30px;
+        color: #4cc6f9;
+      }
+    }
   }
-  .publish-type-list {
-    
+  .publish-type-container {
+    margin-top: 30px;
+    margin-bottom: 24px;
+
   }
 </style>
 <template>
-  <div>
-    <ul class="list-wrap">
-      <li class="list">
-      <a href="##">
-        <p class="left">
-        <span class="publish-type-text">分享</span>
-        </p>
-        <p class="right">
-         <i class="iconfont list-right-icon">&#xe63c;</i>
-        </p>
-      </a>
-      </li>
-    </ul>
-
-    <ul class="list-wrap">
-      <li class="list">
-      <a href="##">
-        <p class="left">
-        <span class="publish-type-text">生活类</span>
-        </p>
-        <p class="right">
-         <i class="iconfont list-right-icon">&#xe63c;</i>
-        </p>
-      </a>
-      </li>
-      <li class="list">
-      <a href="##">
-        <p class="left">
-        <span class="publish-type-text">学习类</span>
-        </p>
-        <p class="right">
-         <i class="iconfont list-right-icon">&#xe63c;</i>
-        </p>
-      </a>
-      </li>
-      <li class="list">
-      <a href="##">
-        <p class="left">
-        <span class="publish-type-text">技术类</span>
-        </p>
-        <p class="right">
-         <i class="iconfont list-right-icon">&#xe63c;</i>
-        </p>
-      </a>
-      </li>
-      <li class="list">
-      <a href="##">
-        <p class="left">
-        <span class="publish-type-text">就业类</span>
-        </p>
-        <p class="right">
-         <i class="iconfont list-right-icon">&#xe63c;</i>
-        </p>
-      </a>
-      </li>
-      <li class="list">
-      <a href="##">
-        <p class="left">
-        <span class="publish-type-text">其他</span>
-        </p>
-        <p class="right">
-         <i class="iconfont list-right-icon">&#xe63c;</i>
-        </p>
-      </a>
-      </li>
-    </ul>
-  </div>
+  
+   <container class="publish-type">
+     <bg-container class="publish-type-container">
+       <list-wrap>
+         <list>
+          <p class="left">分享</p>
+          <p class="right">
+            <i class="iconfont">&#xe63c;</i>    
+          </p>
+         </list>
+       </list-wrap>
+     </bg-container>
+     <bg-container>
+       <list-wrap>
+        <list>
+          <p class="left">分享</p>
+          <p class="right">
+            <i class="iconfont">&#xe63c;</i>    
+          </p>
+        </list>
+        <list>
+          <p class="left">分享</p>
+          <p class="right">
+            <i class="iconfont">&#xe63c;</i>    
+          </p>
+        </list>
+        <list>
+          <p class="left">分享</p>
+          <p class="right">
+            <i class="iconfont">&#xe63c;</i>    
+          </p>
+        </list>
+        <list>
+          <p class="left">分享</p>
+          <p class="right">
+            <i class="iconfont">&#xe63c;</i>    
+          </p>
+        </list>
+        <list>
+          <p class="left">分享</p>
+          <p class="right">
+            <i class="iconfont">&#xe63c;</i>    
+          </p>
+        </list>
+       </list-wrap>
+     </bg-container>
+   </container>
 </template>
 <script>
-  export default {
-    'name': 'publish_type',
+  import container from '../../common_components/container'
+  import bgContainer from '../../common_components/bg-container.vue'
+  import listWrap from '../../common_components/list_wrap'
+  import list from '../../common_components/list'
 
+  export default {
+    name: 'publish-type',
+    components: {
+      container,
+      bgContainer,
+      listWrap,
+      list,
+    }
   }
 </script>

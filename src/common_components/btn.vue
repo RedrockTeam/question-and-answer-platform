@@ -1,14 +1,11 @@
 <template>
-        <a class="btn" href="##">{{message}}</a>
+        <a class="btn" href="##">
+          <slot>
+        </a>
 </template>
 <script>
   export default {
-    props: ['message'],
-    data() {
-      return {
-
-      }
-    }
+    'name': 'btn',
   }
 </script>
 <style type="less">
