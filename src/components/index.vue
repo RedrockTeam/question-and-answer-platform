@@ -26,9 +26,7 @@
                         </p>
                         <h3 class="aq-list-title">
                             新生来报道啦
-                            <span class="type">
-                                生活
-                            </span>
+                            <type>生活</type>
                         </h3>
                         <p class="aq-list-intro">
                             新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦
@@ -55,13 +53,15 @@
     import navbar from '../common_components/navbar'
     import container from '../common_components/container'
     import bgContainer from '../common_components/bg-container'
+    import type from '../common_components/type.vue'
 
     export default  {
         name: 'index',
         components: {
             navbar,
             bgContainer,
-            container
+            container,
+            type,
 
         }
     }

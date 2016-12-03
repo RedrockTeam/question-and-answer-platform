@@ -1,32 +1,122 @@
 <style lang="less">
-  @import "../../assets/styles/publish.less";
+  .publish-editor {
+    overflow: visible;
+  }
+  .publish-form {
+    .publish-title {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    .publish-content {
+      margin-bottom: 43px;
+    }
+    .publish-images-wrap {
+      margin-bottom: 75px;
+      padding-top: 43px;
+      width: 100%;
+      border-top: 1px solid #95e3ef;
+      text-align: justify;
+    }
+    .publish-image {
+      display: inline-block;
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border: 1px solid #95e3ef;
+      border-radius: 10px;
+      margin-bottom: 43px;
+      box-sizing: border-box;
+      img {
+        width: 200px;
+        height: 200px;
+      }
+      &::after {
+        font-family: 'iconfont';
+        content: '\e619';
+        position: absolute;
+        top: -17px;
+        right: -17px;
+        display: block;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 34px;
+        transform: rotateZ(45deg);
+        font-size: 30px;
+        color: #fff;
+        background-color: #f5c33e;
+      }
+    }
+
+    .publish-image-add {
+      display: inline-block;
+      width: 200px;
+      height: 200px;
+      border: 1px dashed #95e3ef;
+      border-radius: 5px;
+      overflow: hidden;
+      text-align: center;
+      .iconfont {
+        vertical-align: middle;
+        font-size: 110px;
+        color: #95e3ef;
+        font-weight: 100;
+        line-height: 200px;
+      }
+    }
+    .justify_fix{
+      display: inline-block; 
+      width: 100%; 
+      height: 0; 
+      overflow: hidden;
+    }
+  }
 </style>
 <template>
-  <div class="publish">
+  <container class="publish-editor">
     <form class="publish-form">
-      <p>
-        <input class="publish-title" type="text" name="title" placeholder="标题(20字以内)">
-      </p>
-      <p>
-        <textarea class="publish-content" placeholder="内容(100字以内)">
-          
-        </textarea>
-      </p>
-      <div class="add-images">
-
+      <inputbox class="publish-title"></inputbox>
+      <textareabox class="publish-content"></textareabox>
+      <div class="publish-images-wrap">
+        <div class="publish-image">
+          <img src="../../assets/logo.png">
+        </div>
+        <div class="publish-image">
+          <img src="../../assets/logo.png">
+        </div>
+        <div class="publish-image">
+          <img src="../../assets/logo.png">
+        </div>
+        <div class="publish-image">
+          <img src="../../assets/logo.png">
+        </div>
+        <div class="publish-image">
+          <img src="../../assets/logo.png">
+        </div>
+        <div class="publish-image-add">
+          <i class="iconfont">&#xe619;</i>
+        </div>
+        <div class="justify_fix"></div>
       </div>
       <btn>发布</btn>
     </form>
-  </div>
+  </container>
 </template>
 <script>
 
   import btn from '../../common_components/btn'
+  import inputbox from '../../common_components/inputbox'
+  import textareabox from '../../common_components/textareabox'
+  import container from '../../common_components/container'
 
   export default {
-    name: 'publish_editor',
+    name: 'publish-editor',
     components: {
+      container,
       btn,
+      textareabox,
+      inputbox,
     }
   }
 </script>

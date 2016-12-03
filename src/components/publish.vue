@@ -1,18 +1,18 @@
 <template>
   <div class="publish">
-    <publish_type/>
-    <publish_editor/>
+    <!-- <publish_type/> -->
+    <publish-editor/>
 </template>
 <script>
 
-  import publish_type from './sub_components/publish_type'
-  import publish_editor from './sub_components/publish_editor'
+  import publishType from './sub_components/publish_type'
+  import publishEditor from './sub_components/publish_editor'
 
   export default {
     name: 'publish',
     components: {
-      publish_type,
-      publish_editor
+      publishType,
+      publishEditor
     }
   }
 </script>
