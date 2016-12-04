@@ -1,11 +1,14 @@
 <template>
   <div>
     <div id="container" style="z-index: 10;">
-      <!-- <zoe/>  -->
+      <!-- <problem-item></problem-item> -->
+
+      <!-- <search></search> -->
+      <zoe/> 
       <!-- <index/>  -->
       <!-- <inputbox></inputbox> -->
       <!-- <textareabox></textareabox> -->
-      <publish/>
+      <!-- <publish/> -->
       <!-- <detail></detail> -->
     </div>
   </div>
@@ -18,8 +21,9 @@ import zoe from './components/zoe'
 import publish from './components/publish'
 import detail from './components/detail'
 import container from './common_components/container'
-import inputbox from './common_components/inputbox'
-import textareabox from './common_components/textareabox'
+import search from './components/search'
+import problemItem from './common_components/problem_item'
+
 
 export default {
   name: 'App',
@@ -29,11 +33,12 @@ export default {
     publish,
     detail,
     container,
-    inputbox,
-    textareabox
+    search,
+    problemItem,
+
   }
 } 
 </script>
 
-<style>
+<style lang="less">
 </style>

@@ -8,7 +8,7 @@
     border: none;
     border-radius: 10px;
     font-size: 26px;
-    color: #cbf8fd;
+    color: #3c676e;
     background-color: rgb(0, 0, 0);
     mix-blend-mode:soft-light;
     &:focus {

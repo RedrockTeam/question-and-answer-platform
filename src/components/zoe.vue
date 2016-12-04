@@ -3,7 +3,7 @@
   @import "../assets/styles/common.less";
 </style>
 <template>
-  <container>
+  <!-- <container>
     <div class="info-header-name-wrap">
       <img class="info-header" src="../assets/logo.png">
       <h2 class="info-username">
@@ -67,7 +67,9 @@
         </list>
       </list-wrap>
     </bg-container>
-  </container>
+  </container> -->
+  <!-- <zoe-editor></zoe-editor> -->
+  <zoe-answer></zoe-answer>
 </template>
 <script>
   import navbar from '../common_components/navbar'
@@ -75,6 +77,10 @@
   import bgContainer from '../common_components/bg-container.vue'
   import listWrap from '../common_components/list_wrap'
   import list from '../common_components/list'
+  import zoeEditor from './sub_components/zoe_editor'
+
+  import zoeAnswer from './sub_components/zoe_answer'
+
   export default {
     name: 'zoe',
     components: {
@@ -83,6 +89,8 @@
       bgContainer,
       listWrap,
       list,
+      zoeEditor,
+      zoeAnswer
     }
   }
 </script>
