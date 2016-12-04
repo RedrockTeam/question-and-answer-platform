@@ -5,7 +5,9 @@
       margin: 0;
       margin-bottom: 20px;
       font-size: 28px;
+      line-height: 30px;
       .answer-time {
+        line-height: 30px;
         float: right;
         font-weight: 100;
         font-size: 22px;
