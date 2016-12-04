@@ -69,7 +69,8 @@
     </bg-container>
   </container> -->
   <!-- <zoe-editor></zoe-editor> -->
-  <zoe-answer></zoe-answer>
+  <!-- <zoe-answer></zoe-answer> -->
+  <zoe-message></zoe-message>
 </template>
 <script>
   import navbar from '../common_components/navbar'
@@ -80,6 +81,8 @@
   import zoeEditor from './sub_components/zoe_editor'
 
   import zoeAnswer from './sub_components/zoe_answer'
+  import zoeMessage from './sub_components/zoe_message'
+
 
   export default {
     name: 'zoe',
@@ -90,7 +93,8 @@
       listWrap,
       list,
       zoeEditor,
-      zoeAnswer
+      zoeAnswer,
+      zoeMessage
     }
   }
 </script>
