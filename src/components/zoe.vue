@@ -70,7 +70,8 @@
   </container> -->
   <!-- <zoe-editor></zoe-editor> -->
   <!-- <zoe-answer></zoe-answer> -->
-  <zoe-message></zoe-message>
+  <!-- <zoe-message></zoe-message> -->
+  <zoe-chat></zoe-chat>
 </template>
 <script>
   import navbar from '../common_components/navbar'
@@ -82,7 +83,7 @@
 
   import zoeAnswer from './sub_components/zoe_answer'
   import zoeMessage from './sub_components/zoe_message'
-
+  import zoeChat from './sub_components/zoe_chat'
 
   export default {
     name: 'zoe',
@@ -94,7 +95,9 @@
       list,
       zoeEditor,
       zoeAnswer,
-      zoeMessage
+      zoeMessage,
+      zoeChat,
+
     }
   }
 </script>
