@@ -1,5 +1,10 @@
 # stu-helper
 
+# todo
+  + router
+  + event
+  + mock data
+
 > A Vue.js project
 
 ## Build Setup

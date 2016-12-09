@@ -1,5 +1,6 @@
 <style lang="less">
 .problem-list {
+  margin-bottom: 25px;
   padding: 25px 15px;
   width: 100%;
   overflow: hidden;
@@ -93,25 +94,23 @@
 <template>
   <bg-container class="problem-list">
       <p class="problem-list-user-info">
-        <img class="problem-list-header" src="../assets/logo.png">
-        <span class="problem-list-username">用户名</span>
+        <img class="problem-list-header" :src="problem.header">
+        <span class="problem-list-username">{{problem.username}}</span>
         <i class="iconfont problem-list-collect"></i>
       </p>
       <h3 class="problem-list-title">
-        新生来报道啦
-        <type>生活</type>
+        {{problem.title}}
+        <type>{{problem.type}}</type>
       </h3>
       <p class="problem-list-intro">
-        新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦新生来报道啦
+        {{problem.content}}
       </p>
-      <div class="problem-list-pics">
-        <img src="../assets/logo.png">
-        <img src="../assets/logo.png">
-        <img src="../assets/logo.png">
+      <div v-if="problem.images && problem.images[0]" class="problem-list-pics">
+        <img v-for="img in problem.images" :src="img">
       </div>
       <div class="problem-list-time-comments">
-        <span class="problem-list-time">时间</span>
-        <span class="problem-list-comments" href="##">1000000条评论</span>
+        <span class="problem-list-time">{{problem.time}}</span>
+        <span class="problem-list-comments" href="##">{{problem.comments_num}}条评论</span>
       </div>
   </bg-container>
 </template>
@@ -120,8 +119,10 @@
   import type from './type'
 
   export default {
-    'name': 'problem-item',
-    'components': {
+    props: ['problem'],
+
+    name: 'problem-item',
+    components: {
       bgContainer,
       type,
     }
