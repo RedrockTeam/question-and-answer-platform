@@ -50,34 +50,13 @@
 <template>
   <container>
     <bg-container class="message-wrap">
-      <a class="message-list" href="##">
+      <router-link to="/zoe/chat/1" class="message-list" href="##">
         <img class="message-header" src="../../assets/logo.png" alt="user-header"/>
         <div class="message">
           <h3 class="message-from">aau<span class="message-time">13:22</span></h3>
           <p class="message-content">我把写的分词器和mapping手滑、删我把写的分词器和mapping手滑、删我把写的分词器和mapping手滑、删我把写的分词器和mapping手滑、删</p>        
         </div>
-      </a> 
-      <a class="message-list" href="##">
-        <img class="message-header" src="../../assets/logo.png" alt="user-header"/>
-        <div class="message">
-          <h3 class="message-from">aau<span class="message-time">13:22</span></h3> 
-          <p class="message-content">我把写的分词器和mapping手滑、删我把写的分词器和mapping手滑、删我把写的分词器和mapping手滑、删我把写的分词器和mapping手滑、删</p>       
-        </div>
-      </a> 
-      <a class="message-list" href="##">
-        <img class="message-header" src="../../assets/logo.png" alt="user-header"/>
-        <div class="message">
-          <h3 class="message-from">aau<span class="message-time">13:22</span></h3> 
-          <p class="message-content">我把写的分词器和mapping手滑、删我把写的分词器和mapping手滑、删我把写的分词器和mapping手滑、删我把写的分词器和mapping手滑、删</p>       
-        </div>
-      </a> 
-      <a class="message-list" href="##">
-        <img class="message-header" src="../../assets/logo.png" alt="user-header"/>
-        <div class="message">
-          <h3 class="message-from">aau<span class="message-time">13:22</span></h3>
-          <p class="message-content">我把写的分词器和mapping手滑、删我把写的分词器和mapping手滑、删我把写的分词器和mapping手滑、删我把写的分词器和mapping手滑、删</p>
-        </div>
-      </a> 
+      </router-link>
     </bg-container>
   </container>
 </template>

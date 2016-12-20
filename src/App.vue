@@ -12,14 +12,12 @@
 import navbar from './common_components/navbar'
 
 export default {
+  data() {
+    return []
+  },
   name: 'App',
   components: {
-    // zoe,
-    // index,
-    // detail,
-    // search,
     navbar,
-
   }
 } 
 </script>

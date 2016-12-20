@@ -36,34 +36,40 @@
           </p>
         </list>
         <list>
-          <p class="left">
-            <i class="iconfont">&#xe60d;</i>
-            <span>我的发布</span>
-          </p>
-          <p class="right">
-             <span>5</span>
-             <i class="iconfont">&#xe63c;</i>
-          </p>
+          <router-link to="/zoe/publish">
+            <p class="left">
+              <i class="iconfont">&#xe60d;</i>
+              <span>我的发布</span>
+            </p>
+            <p class="right">
+               <span>5</span>
+               <i class="iconfont">&#xe63c;</i>
+            </p>
+          </router-link>
         </list>
         <list>
-          <p class="left">
-            <i class="iconfont">&#xe6a3;</i>
-            <span>我的回答</span>
-          </p>
-          <p class="right">
-             <span>1</span>
-             <i class="iconfont">&#xe63c;</i>
-          </p>
+          <router-link to="/zoe/answer">
+            <p class="left">
+              <i class="iconfont">&#xe6a3;</i>
+              <span>我的回答</span>
+            </p>
+            <p class="right">
+               <span>1</span>
+               <i class="iconfont">&#xe63c;</i>
+            </p>
+          </router-link>
         </list>
         <list>
-          <p class="left">
-            <i class="iconfont">&#xe60e;</i>
-            <span>我的消息</span>
-          </p>
-          <p class="right">
-             <span>10</span>
-             <i class="iconfont">&#xe63c;</i>
-          </p>
+          <router-link to="/zoe/message">
+            <p class="left">
+              <i class="iconfont">&#xe60e;</i>
+              <span>我的消息</span>
+            </p>
+            <p class="right">
+               <span>10</span>
+               <i class="iconfont">&#xe63c;</i>
+            </p>
+          </router-link>
         </list>
       </list-wrap>
     </bg-container>
@@ -78,16 +84,10 @@
   export default {
     name: 'zoe-index',
     components: {
-      // navbar,
       container,
       bgContainer,
       listWrap,
-      list,
-      zoeEditor,
-      zoeAnswer,
-      zoeMessage,
-      zoeChat,
-
+      list
     }
   }
 </script>
