@@ -12,7 +12,7 @@
 </style> 
 <template>
   <li class="list">
-    <a class="list-link" href="##">
+    <a class="list-link" href="javascript:void(0)">
       <slot/>
     </a>
   </li>

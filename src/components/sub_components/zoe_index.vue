@@ -26,6 +26,7 @@
     <bg-container>
       <list-wrap class="my-zoe">
         <list>
+        <router-link to="/zoe/collection">
           <p class="left">
             <i class="iconfont">&#xe65e;</i>
             <span>我的收藏</span>
@@ -34,6 +35,7 @@
             <span>1</span>
             <i class="iconfont">&#xe63c;</i>
           </p>
+          </router-link>
         </list>
         <list>
           <router-link to="/zoe/editor">

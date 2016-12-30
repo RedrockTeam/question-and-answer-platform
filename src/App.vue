@@ -12,9 +12,6 @@
 import navbar from './common_components/navbar'
 
 export default {
-  data() {
-    return []
-  },
   name: 'App',
   components: {
     navbar,
