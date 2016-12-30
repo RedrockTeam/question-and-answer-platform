@@ -66,11 +66,30 @@ const router = new VueRouter({
 
 
 const app = new Vue({
+  data() {
+    return {
+      active: ["active", "", "",""]
+    }
+  },
   el: '#app',
-  template: '<App/>',
+  template: '<App :active="active"/>',
   router,
   components: {
     App
-  }
+  },
+});
+router.beforeEach((to, from, next) => {
+    let path = to.path.split('/')[1];   
+    let map = {
+      'index': 0,
+      'publish': 1,
+      'search': 2,
+      'zoe': 3,
+    }
+    let active = Array(4);
+    active[map[path]] = 'active';
+    app.active = active;
+    next(true);
 })
+
 

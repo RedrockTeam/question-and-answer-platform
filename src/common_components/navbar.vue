@@ -35,7 +35,7 @@
 <template>
     <div>
         <ul class="nav-wrap">
-            <li class="nav-list active">
+            <li class="nav-list" :class="active[0]">
                 <router-link to="/index">
                     <p>
                         <i class="iconfont nav-icon">&#xe60a;</i>
@@ -43,7 +43,7 @@
                     <a href="##" class="nav-name">首页</a>
                 </router-link>
             </li>
-            <li class="nav-list">
+            <li class="nav-list" :class="active[1]">
                 <router-link to="/publish">
                     <p>
                         <i class="iconfont nav-icon">&#xe625;</i>
@@ -51,7 +51,7 @@
                     <a href="##" class="nav-name">发布</a>
                 </router-link>
             </li>
-            <li class="nav-list">
+            <li class="nav-list" :class="active[2]">
                 <router-link to="/search">
                     <p>
                         <i class="iconfont nav-icon">&#xe674;</i>
@@ -59,7 +59,7 @@
                     <a href="##" class="nav-name">搜索</a>
                 </router-link>
             </li>
-            <li class="nav-list">
+            <li class="nav-list" :class="active[3]">
                 <router-link to="/zoe">
                     <p>
                         <i class="iconfont nav-icon">&#xe606;</i>
@@ -76,6 +76,7 @@
 
 <script>
     export default {
-        name: 'navbar'
+      props: ['active'],
+      name: 'navbar'
     }
 </script>
