@@ -15,10 +15,15 @@ import zoeEditor from './components/sub_components/zoe_editor'
 import zoeAnswer from './components/sub_components/zoe_answer'
 import zoeMessage from './components/sub_components/zoe_message'
 import zoeChat from './components/sub_components/zoe_chat'
+import zoeCollection from './components/sub_components/zoe_collection'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/',
+    component: index,
+  },
   {
     path: '/index', 
     component: index,
@@ -31,22 +36,27 @@ const routes = [
   }, { 
     path: '/zoe', 
     component: zoe,
-    children: [{
-      path: '/',
-      component: zoeIndex,
-    }, {
-      path: 'editor',
-      component: zoeEditor,
-    }, {
-      path: 'answer',
-      component: zoeAnswer,
-    }, {
-      path: 'message',
-      component: zoeMessage,
-    }, {
-      path: 'chat/:id',
-      component: zoeChat
-    }]
+    children: [
+      {
+        path: '/',
+        component: zoeIndex,
+      }, {
+        path: 'collection',
+        component: zoeCollection,
+      },{
+        path: 'editor',
+        component: zoeEditor,
+      }, {
+        path: 'answer',
+        component: zoeAnswer,
+      }, {
+        path: 'message',
+        component: zoeMessage,
+      }, {
+        path: 'chat/:id',
+        component: zoeChat
+      },
+    ]
   }
 ]
 
