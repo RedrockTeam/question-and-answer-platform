@@ -1,11 +1,17 @@
-# stu-helper
+# question-and-answer-platform
 
-# todo
-  + router
-  + event
-  + mock data
+问答平台前端, 基于 vuejs.
 
-> A Vue.js project
+
+
+# todos
+- [x] router
+
+- [ ] events
+
+- [ ] mock data
+
+     ​
 
 ## Build Setup
 
@@ -14,19 +20,11 @@
 npm install
 
 # serve with hot reload at localhost:8080
+npm start
+
+# serve with hot reload at localhost:8080
 npm run dev
 
 # build for production with minification
 npm run build
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
