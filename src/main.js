@@ -1,40 +1,33 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
 import App from './App'
-
-
-import index from './components/index'
-import publish from './components/publish'
-import zoe from './components/zoe'
-import search from './components/search'
-
-
-import zoeIndex from './components/sub_components/zoe_index'
-import zoeEditor from './components/sub_components/zoe_editor'
-import zoeAnswer from './components/sub_components/zoe_answer'
-import zoeMessage from './components/sub_components/zoe_message'
-import zoeChat from './components/sub_components/zoe_chat'
-import zoeCollection from './components/sub_components/zoe_collection'
+import index from './pages/index'
+import publish from './pages/publish/index'
+import zoe from './pages/zoe/index'
+import search from './pages/search'
+import zoeIndex from './pages/zoe/zoe_index'
+import zoeEditor from './pages/zoe/zoe_editor'
+import zoeAnswer from './pages/zoe/zoe_answer'
+import zoeMessage from './pages/zoe/zoe_message'
+import zoeChat from './pages/zoe/zoe_chat'
+import zoeCollection from './pages/zoe/zoe_collection'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/',
     component: index,
-  },
-  {
-    path: '/index', 
+  }, {
+    path: '/index',
     component: index,
-  }, { 
-    path: '/publish', 
-    component: publish 
-  }, , {
-    path: '/search', 
-    component: search 
-  }, { 
-    path: '/zoe', 
+  }, {
+    path: '/publish',
+    component: publish,
+  }, {
+    path: '/search',
+    component: search,
+  }, {
+    path: '/zoe',
     component: zoe,
     children: [
       {
@@ -43,7 +36,7 @@ const routes = [
       }, {
         path: 'collection',
         component: zoeCollection,
-      },{
+      }, {
         path: 'editor',
         component: zoeEditor,
       }, {
@@ -54,42 +47,44 @@ const routes = [
         component: zoeMessage,
       }, {
         path: 'chat/:id',
-        component: zoeChat
+        component: zoeChat,
       },
     ]
   }
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
 })
 
 
 const app = new Vue({
-  data() {
-    return {
-      active: ["active", "", "",""]
-    }
-  },
   el: '#app',
-  template: '<App :active="active"/>',
-  router,
   components: {
-    App
+    App,
   },
-});
-router.beforeEach((to, from, next) => {
-    let path = to.path.split('/')[1];   
-    let map = {
-      'index': 0,
-      'publish': 1,
-      'search': 2,
-      'zoe': 3,
+  data() {
+    let active = ['active', null, null, null]
+    return {
+      active,
     }
-    let active = Array(4);
-    active[map[path]] = 'active';
-    app.active = active;
-    next(true);
+  },
+  router,
+  template: '<App :active="active"/>',
 })
+router.beforeEach((to, from, next) => {
 
-
+  let path = to.path.split('/')[1];
+  let map = {
+    'index': 0,
+    'publish': 1,
+    'search': 2,
+    'zoe': 3,
+  }
+  let active = Array(4);
+  let index = map[path];
+  index = index || 0;
+  active[index] = 'active';
+  app.active = active;
+  next(true);
+})

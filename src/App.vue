@@ -1,29 +1,29 @@
+<style lang="less">
+</style>
+
 <template>
   <div>
     <div id="container" style="z-index: 10;">
       <router-view></router-view>
-      <navbar :active='active'></navbar>
+      <navbar :active="active"></navbar>
     </div>
   </div>
 </template>
 
 <script>
 
-import navbar from './common_components/navbar'
+import navbar from './components/navbar'
 
 export default {
-  props: ['active'],
-  // data() {
-  //   return {
-  //     active: ["", "", "","active"]
-  //   }
-  // },
   name: 'App',
   components: {
     navbar,
-  }
-} 
-</script>
+  },
+  props: {
+    active: {
+      type: Array,
+    },
+  },
+}
 
-<style lang="less">
-</style>
+</script>
