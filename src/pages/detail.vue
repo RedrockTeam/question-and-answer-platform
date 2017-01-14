@@ -59,6 +59,7 @@
     },
     beforeRouteEnter(to, from , next) {
       console.log(to.params.id)
+      document.querySelector('.nav-wrap').style.display = 'none'
       next(vm => {
         vm.$http.get('/data')
           .then(res => {
@@ -66,6 +67,16 @@
           .catch(console.error)
         return true
       })
+    },
+    beforeRouteLeave(to, from, next) {
+      let exclude = [/answer/, /detail/]
+      let path = to.path
+
+      let isShowNavBar = !exclude.some((reg) => reg.test(path))
+      if(isShowNavBar) {
+        document.querySelector('.nav-wrap').style.display = 'block'
+      }
+      next(true)
     },
     data() {
       return {
