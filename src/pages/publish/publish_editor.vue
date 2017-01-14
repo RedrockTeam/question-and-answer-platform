@@ -12,11 +12,13 @@
     margin-bottom: 43px;
   }
   .publish-images-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     margin-bottom: 75px;
     padding-top: 43px;
     width: 100%;
     border-top: 1px solid #95e3ef;
-    text-align: justify;
   }
   .publish-image {
     display: inline-block;
@@ -31,9 +33,8 @@
       width: 200px;
       height: 200px;
     }
-    &::after {
+    .iconfont {
       font-family: 'iconfont';
-      content: '\e619';
       position: absolute;
       top: -17px;
       right: -17px;
@@ -66,12 +67,6 @@
       line-height: 200px;
     }
   }
-  .justify_fix{
-    display: inline-block;
-    width: 100%;
-    height: 0;
-    overflow: hidden;
-  }
 }
 
 </style>
@@ -84,24 +79,28 @@
       <textareabox class="publish-content"></textareabox>
       <div class="publish-images-wrap">
         <div class="publish-image">
-          <img src="../../assets/logo.png">
+          <img src="/static/logo.png">
+          <i class="iconfont publish-delete-img">&#xe619;</i>
         </div>
         <div class="publish-image">
-          <img src="../../assets/logo.png">
+          <img src="/static/logo.png">
+          <i class="iconfont publish-delete-img">&#xe619;</i>
         </div>
         <div class="publish-image">
-          <img src="../../assets/logo.png">
+          <img src="/static/logo.png">
+          <i class="iconfont publish-delete-img">&#xe619;</i>
         </div>
         <div class="publish-image">
-          <img src="../../assets/logo.png">
+          <img src="/static/logo.png">
+          <i class="iconfont publish-delete-img">&#xe619;</i>
         </div>
         <div class="publish-image">
-          <img src="../../assets/logo.png">
+          <img src="/static/logo.png">
+          <i class="iconfont publish-delete-img">&#xe619;</i>
         </div>
         <div class="publish-image-add">
           <i class="iconfont">&#xe619;</i>
         </div>
-        <div class="justify_fix"></div>
       </div>
       <btn>发布</btn>
     </form>
