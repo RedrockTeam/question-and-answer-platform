@@ -1,12 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource';
+
 import App from './App'
-import home from './pages/home/index'
+
+// home page and subpages
+import home from './pages/home/'
 import homeHot from './pages/home/hot'
 import homeNew from './pages/home/new'
-import publish from './pages/publish/index'
-import zoe from './pages/zoe/index'
-import search from './pages/search'
+
+import publish from './pages/publish/'
+
+// search page and subpages
+import search from './pages/search/'
+import searchPrompts from './pages/search/prompts'
+import searchResults from './pages/search/results'
+
+// zoe page and subpages
+import zoe from './pages/zoe/'
 import zoeIndex from './pages/zoe/zoe_index'
 import zoeEditor from './pages/zoe/zoe_editor'
 import zoeAnswer from './pages/zoe/zoe_answer'
@@ -15,7 +26,9 @@ import zoeChat from './pages/zoe/zoe_chat'
 import zoeCollection from './pages/zoe/zoe_collection'
 
 Vue.use(VueRouter)
+Vue.use(VueResource)
 
+// /zoe sub routes
 const zoeRoutes = [{
   path: '/',
   component: zoeIndex,
@@ -36,6 +49,7 @@ const zoeRoutes = [{
   component: zoeChat,
 }]
 
+// /home sub routes
 const homeRoutes = [{
   path: '/',
   redirect: 'new',
@@ -47,6 +61,19 @@ const homeRoutes = [{
   component: homeNew,
 }]
 
+// search sub routes
+const searchRoutes = [{
+  path: '/',
+  redirect: 'prompts',
+}, {
+  path: 'prompts',
+  component: searchPrompts,
+}, {
+  path: 'results/:keywords',
+  component: searchResults,
+}]
+
+// app routes
 const routes = [{
   path: '/',
   redirect: '/home'
@@ -60,6 +87,7 @@ const routes = [{
 }, {
   path: '/search',
   component: search,
+  children: searchRoutes,
 }, {
   path: '/zoe',
   component: zoe,
@@ -67,16 +95,15 @@ const routes = [{
 }]
 
 
-const router = new VueRouter({
-  routes,
-})
+const router = new VueRouter({routes})
 
+const el = '#app'
+const components = {App}
+const template = '<App/>'
 
 const app = new Vue({
-  el: '#app',
-  components: {
-    App,
-  },
+  el,
+  components,
+  template,
   router,
-  template: '<App/>',
 })

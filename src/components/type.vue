@@ -11,9 +11,9 @@
 </style>
 
 <template>
-  <a class="type" href="##">
+  <span class="type" href="">
     <slot/>
-  </a>
+  </span>
 </template>
 
 <script>

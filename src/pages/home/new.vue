@@ -20,7 +20,6 @@
 
   import problemItem from '../../components/problem_item'
 
-
   export default  {
     data(){
       return {
@@ -46,7 +45,7 @@
         ]
       }
     } ,
-    name: 'home-hot',
+    name: 'home-new',
     components: {
       problemItem,
     }
