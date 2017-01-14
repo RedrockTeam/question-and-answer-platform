@@ -5,7 +5,7 @@
   <div>
     <div id="container" style="z-index: 10;">
       <router-view></router-view>
-      <navbar :active="active"></navbar>
+      <navbar></navbar>
     </div>
   </div>
 </template>
@@ -18,11 +18,6 @@ export default {
   name: 'App',
   components: {
     navbar,
-  },
-  props: {
-    active: {
-      type: Array,
-    },
   },
 }
 

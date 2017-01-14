@@ -35,32 +35,32 @@
 <template>
   <div>
     <ul class="nav-wrap">
-      <li class="nav-list" :class="active[0]">
-        <router-link to="/index">
+      <li class="nav-list">
+        <router-link to="/index" activeClass="active">
           <p>
             <i class="iconfont nav-icon">&#xe60a;</i>
           </p>
           <a href="##" class="nav-name">首页</a>
         </router-link>
       </li>
-      <li class="nav-list" :class="active[1]">
-        <router-link to="/publish">
+      <li class="nav-list">
+        <router-link to="/publish" activeClass="active">
           <p>
             <i class="iconfont nav-icon">&#xe625;</i>
           </p>
           <a href="##" class="nav-name">发布</a>
         </router-link>
       </li>
-      <li class="nav-list" :class="active[2]">
-        <router-link to="/search">
+      <li class="nav-list">
+        <router-link to="/search" activeClass="active">
           <p>
             <i class="iconfont nav-icon">&#xe674;</i>
           </p>
           <a href="##" class="nav-name">搜索</a>
         </router-link>
       </li>
-      <li class="nav-list" :class="active[3]">
-        <router-link to="/zoe">
+      <li class="nav-list">
+        <router-link to="/zoe" activeClass="active">
           <p>
             <i class="iconfont nav-icon">&#xe606;</i>
           </p>
@@ -74,27 +74,5 @@
 <script>
   export default {
     name: 'navbar',
-    props: {
-      active: {
-        type: Array,
-        default() {
-          let path = window.location.hash.slice(1).split('/')[1]
-          let map = {
-            '': 0,
-            'index': 0,
-            'publish': 1,
-            'search': 2,
-            'zoe': 3,
-          }
-          let active = [null, null, null, null];
-          active[map[path]] = 'active';
-          return active;
-        }
-      }
-    },
-    beforeRouteEnter(to, from , next) {
-      console.log(to);
-      next(true);
-    }
   }
 </script>
