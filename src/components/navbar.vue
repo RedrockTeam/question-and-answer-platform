@@ -9,7 +9,7 @@
     .nav-icon {
       color: #00aaf9;
     }
-    a.nav-name {
+    .nav-name {
       color: #00aaf9;
     }
   }
@@ -35,38 +35,30 @@
 <template>
   <div>
     <ul class="nav-wrap">
-      <li class="nav-list">
-        <router-link to="/index" activeClass="active">
+        <router-link tag="li" to="/index"  activeClass="active" class="nav-list">
           <p>
             <i class="iconfont nav-icon">&#xe60a;</i>
           </p>
-          <a href="##" class="nav-name">首页</a>
+          <span href="##" class="nav-name">首页</span>
         </router-link>
-      </li>
-      <li class="nav-list">
-        <router-link to="/publish" activeClass="active">
+        <router-link tag="li" to="/publish" activeClass="active" class="nav-list">
           <p>
             <i class="iconfont nav-icon">&#xe625;</i>
           </p>
-          <a href="##" class="nav-name">发布</a>
+          <span href="##" class="nav-name">发布</span>
         </router-link>
-      </li>
-      <li class="nav-list">
-        <router-link to="/search" activeClass="active">
+        <router-link tag="li" to="/search" activeClass="active" class="nav-list">
           <p>
             <i class="iconfont nav-icon">&#xe674;</i>
           </p>
-          <a href="##" class="nav-name">搜索</a>
+          <span href="##" class="nav-name">搜索</span>
         </router-link>
-      </li>
-      <li class="nav-list">
-        <router-link to="/zoe" activeClass="active">
+        <router-link  tag="li" to="/zoe" activeClass="active" class="nav-list">
           <p>
             <i class="iconfont nav-icon">&#xe606;</i>
           </p>
-          <a href="##" class="nav-name" >个人中心</a>
+          <span href="##" class="nav-name" >个人中心</span>
         </router-link>
-      </li>
     </ul>
   </div>
 </template>
