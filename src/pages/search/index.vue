@@ -6,16 +6,13 @@
   width: 100%;
   height: 140px;
   overflow: visible;
-  background-color: rgba(255, 255, 255, .5);
+  background-color: rgba(255, 255, 255, .2);
   box-sizing: border-box;
   border-radius: 0;
   margin-bottom: 57px;
   .input-wrap {
-    background-color: rgb(0, 0, 0);
-    mix-blend-mode: soft-light;
   }
   .search-input {
-
   }
 }
 
