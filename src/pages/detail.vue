@@ -25,7 +25,9 @@
       </p>
       <div class="detail-browse-answer">
         <span class="detail-browse">浏览{{questionInfo.browse}}次</span>
-        <btn><i class="iconfont">&#xe619;</i> 回答</btn>
+        <router-link :to="`/answer/${questionInfo.id}`">
+          <btn><i class="iconfont">&#xe619;</i> 回答</btn>
+        </router-link>
       </div>
     </bg-container>
 
@@ -81,6 +83,7 @@
     data() {
       return {
         questionInfo: {
+          id: 1,
           header: '/static/logo.png',
           username: 'jackson',
           time: '2017-1-1',

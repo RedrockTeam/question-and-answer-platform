@@ -14,6 +14,9 @@ import detail from './pages/detail'
 
 import publish from './pages/publish/'
 
+import answer from './pages/answer'
+
+
 // search page and subpages
 import search from './pages/search/'
 import searchPrompts from './pages/search/prompts'
@@ -83,7 +86,7 @@ const routes = [{
 }, {
   path: '/home',
   component: home,
-  children: homeRoutes
+  children: homeRoutes,
 }, {
   path: '/publish',
   component: publish,
@@ -94,10 +97,13 @@ const routes = [{
 }, {
   path: '/zoe',
   component: zoe,
-  children: zoeRoutes
+  children: zoeRoutes,
 }, {
   path: '/detail/:id',
-  component: detail
+  component: detail,
+}, {
+  path: '/answer/:id',
+  component: answer,
 }]
 
 
