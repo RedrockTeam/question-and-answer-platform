@@ -1,5 +1,4 @@
 <style lang="less">
-
 .search-prompt-wrap {
   display: flex;
   flex-wrap: wrap;
@@ -23,17 +22,14 @@
 }
 </style>
 <template>
-
   <container class="search-prompt-wrap">
     <router-link class="search-prompt" v-for="prompt in prompts" :to="`/search/results/${prompt}`">
       {{prompt}}
     </router-link>
   </container>
-
 </template>
 
 <script>
-
   import type from '../../components/type'
   import container from '../../components/container'
 
@@ -41,7 +37,7 @@
     name: 'search-prompt',
     components: {
       type,
-      container,
+      container
     },
     data() {
       return {

@@ -1,5 +1,4 @@
 <style lang="less">
-
 .message-wrap {
   margin-top: 30px;
   .message-list:last-child {
@@ -47,11 +46,9 @@
     white-space: nowrap;
   }
 }
-
 </style>
 
 <template>
-
   <container>
     <bg-container class="message-wrap">
       <router-link to="/zoe/chat/1" class="message-list" href="##">
@@ -63,11 +60,9 @@
       </router-link>
     </bg-container>
   </container>
-
 </template>
 
 <script>
-
   import container from '../../components/container'
   import bgContainer from '../../components/bg-container.vue'
   import listWrap from '../../components/list_wrap'
@@ -79,9 +74,7 @@
       container,
       bgContainer,
       list,
-      listWrap,
-
+      listWrap
     }
   }
-
 </script>

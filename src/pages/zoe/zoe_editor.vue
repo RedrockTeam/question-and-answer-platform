@@ -1,5 +1,4 @@
 <style lang="less">
-
 .zoe-editor-wrap {
   padding-top: 46px;
 }
@@ -20,11 +19,9 @@
     font-size: 28px;
   }
 }
-
 </style>
 
 <template>
-
   <container class="zoe-editor-wrap">
     <form>
       <div class="zoe-editor-row">
@@ -41,11 +38,9 @@
       </div>
     </form>
   </container>
-
 </template>
 
 <script>
-
   import container from '../../components/container'
   import inputbox from '../../components/inputbox'
 
@@ -53,7 +48,7 @@
     'name': 'zoe-editor',
     'components': {
       container,
-      inputbox,
+      inputbox
     }
   }
 

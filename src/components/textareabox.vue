@@ -16,17 +16,14 @@
   }
 }
 </style>
-<template>
 
+<template>
   <textarea class="textareabox">
   </textarea>
-
 </template>
 
 <script>
-
   export default {
     name: 'textareabox'
   }
-
 </script>

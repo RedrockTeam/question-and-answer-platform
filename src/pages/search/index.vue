@@ -1,5 +1,4 @@
 <style lang="less">
-
 .search-form-wrap {
   margin: 0;
   padding: 24px;
@@ -15,7 +14,6 @@
   .search-input {
   }
 }
-
 </style>
 
 <template>
@@ -30,11 +28,9 @@
     </container>
     <router-view></router-view>
   </section>
-
 </template>
 
 <script>
-
   import inputbox from '../../components/inputbox'
   import container from '../../components/container'
   import problemItem from '../../components/problem_item'
@@ -44,8 +40,7 @@
     'components': {
       inputbox,
       container,
-      problemItem,
+      problemItem
     },
   }
-
 </script>

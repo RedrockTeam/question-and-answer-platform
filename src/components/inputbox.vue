@@ -1,5 +1,4 @@
 <style lang="less">
-
 .inputbox {
   display: block;
   padding: 28px;
@@ -15,18 +14,13 @@
     outline: none;
   }
 }
-
 </style>
 
 <template>
-
   <input class="inputbox" type="text">
-
 </template>
 <script>
-
   export default {
     'name': 'inputbox'
   }
-
 </script>

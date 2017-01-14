@@ -29,7 +29,6 @@
     font-size: 24px;
   }
 }
-
 </style>
 
 <template>
@@ -65,6 +64,6 @@
 
 <script>
   export default {
-    name: 'navbar',
+    name: 'navbar'
   }
 </script>

@@ -1,7 +1,4 @@
 <style lang="less">
-
-
-
 .answer-info-wrap {
   overflow: hidden;
 }
@@ -42,7 +39,6 @@
 </style>
 
 <template>
-
   <list class="answer-list">
     <div class="answer-info-wrap">
       <img class="answer-header" :src="answer.header">
@@ -57,24 +53,20 @@
     </div>
     <p class="answer-content">{{answer.content}}</p>
   </list>
-
 </template>
 
 <script>
-
-  import bgContainer from '../components/bg-container'
-  // import listWrap from '../components/list_wrap'
   import list from './list'
 
   export default {
     'name': 'answer',
     'components': {
-      list,
+      list
     },
     props: {
       answer: {
         type: Object,
-        default: {},
+        default: {}
       }
     }
   }

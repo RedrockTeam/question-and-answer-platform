@@ -116,7 +116,6 @@
 </template>
 
 <script>
-
   import bgContainer from './bg-container'
   import type from './type'
 
@@ -125,9 +124,8 @@
       problem: {
         type: Object,
         default() {
-          alert("problem must a object")
+          console.warn('problem must a object')
           return {
-
           }
         }
       }
@@ -135,7 +133,7 @@
     name: 'problem-item',
     components: {
       bgContainer,
-      type,
+      type
     }
   }
 </script>

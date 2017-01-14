@@ -1,5 +1,4 @@
 <style lang="less">
-
 .type {
   padding: 0 10px;
   border: 1px solid #00aaf7;
@@ -7,7 +6,6 @@
   font-weight: 500;
   color: #00aaf7;
 }
-
 </style>
 
 <template>

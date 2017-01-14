@@ -1,12 +1,9 @@
 <style lang="less">
-
   @import "../../assets/styles/zoe.less";
   @import "../../assets/styles/common.less";
-
 </style>
 
 <template>
-
   <container>
     <div class="info-header-name-wrap">
       <img class="info-header" src="../../assets/logo.png">
@@ -80,11 +77,9 @@
       </list-wrap>
     </bg-container>
   </container>
-
 </template>
 
 <script>
-
   import container from '../../components/container'
   import bgContainer from '../../components/bg-container.vue'
   import listWrap from '../../components/list_wrap'

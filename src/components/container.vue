@@ -1,13 +1,4 @@
-<template>
-
-  <section class="container">
-    <slot/>
-  </section>
-
-</template>
-
 <style lang="less">
-
   .container {
     margin: 0 auto;
     width: 710px;
@@ -16,13 +7,16 @@
     overflow: hidden;
     z-index: 10;
   }
-
 </style>
 
+<template>
+  <section class="container">
+    <slot/>
+  </section>
+</template>
+
 <script>
-
   export default {
-    name: 'container',
+    name: 'container'
   }
-
 </script>

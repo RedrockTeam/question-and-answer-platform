@@ -1,5 +1,4 @@
 <style lang="less">
-
 .list {
   padding: 24px 0;
   width: 100%;
@@ -11,21 +10,16 @@
     overflow: hidden;
   }
 }
-
 </style>
 
 <template>
-
   <li class="list">
     <slot/>
   </li>
-
 </template>
 
 <script>
-
   export default {
-    'name': 'list',
+    'name': 'list'
   }
-
 </script>

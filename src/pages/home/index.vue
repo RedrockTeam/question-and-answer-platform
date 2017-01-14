@@ -1,15 +1,12 @@
 <style lang="less">
-
   @import '../../assets/font/iconfont.css';
   @import '../../assets/styles/index.less';
   .index-content-container {
     padding-bottom: 180px;
   }
-
 </style>
 
 <template>
-
   <div>
     <div class="slider-wrap">
       <a class="slider-list" href="##">
@@ -28,14 +25,12 @@
 
 
 <script>
-
   import container from '../../components/container'
 
   export default  {
     name: 'home',
     components: {
-      container,
+      container
     }
   }
-
 </script>

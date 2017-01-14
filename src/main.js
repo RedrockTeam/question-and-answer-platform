@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import VueResource from 'vue-resource';
+import VueResource from 'vue-resource'
 
 import App from './App'
 
@@ -9,13 +9,11 @@ import home from './pages/home/'
 import homeHot from './pages/home/hot'
 import homeNew from './pages/home/new'
 
-
 import detail from './pages/detail'
 
 import publish from './pages/publish/'
 
 import answer from './pages/answer'
-
 
 // search page and subpages
 import search from './pages/search/'
@@ -37,46 +35,46 @@ Vue.use(VueResource)
 // /zoe sub routes
 const zoeRoutes = [{
   path: '/',
-  component: zoeIndex,
+  component: zoeIndex
 }, {
   path: 'collection',
-  component: zoeCollection,
+  component: zoeCollection
 }, {
   path: 'editor',
-  component: zoeEditor,
+  component: zoeEditor
 }, {
   path: 'answer',
-  component: zoeAnswer,
+  component: zoeAnswer
 }, {
   path: 'message',
-  component: zoeMessage,
+  component: zoeMessage
 }, {
   path: 'chat/:id',
-  component: zoeChat,
+  component: zoeChat
 }]
 
 // /home sub routes
 const homeRoutes = [{
   path: '/',
-  redirect: 'new',
-} , {
+  redirect: 'new'
+}, {
   path: 'hot',
-  component: homeHot,
+  component: homeHot
 }, {
   path: 'new',
-  component: homeNew,
+  component: homeNew
 }]
 
 // search sub routes
 const searchRoutes = [{
   path: '/',
-  redirect: 'prompts',
+  redirect: 'prompts'
 }, {
   path: 'prompts',
-  component: searchPrompts,
+  component: searchPrompts
 }, {
   path: 'results/:keywords',
-  component: searchResults,
+  component: searchResults
 }]
 
 // app routes
@@ -86,26 +84,25 @@ const routes = [{
 }, {
   path: '/home',
   component: home,
-  children: homeRoutes,
+  children: homeRoutes
 }, {
   path: '/publish',
-  component: publish,
+  component: publish
 }, {
   path: '/search',
   component: search,
-  children: searchRoutes,
+  children: searchRoutes
 }, {
   path: '/zoe',
   component: zoe,
-  children: zoeRoutes,
+  children: zoeRoutes
 }, {
   path: '/detail/:id',
-  component: detail,
+  component: detail
 }, {
   path: '/answer/:id',
-  component: answer,
+  component: answer
 }]
-
 
 const router = new VueRouter({routes})
 
@@ -113,9 +110,9 @@ const el = '#app'
 const components = {App}
 const template = '<App/>'
 
-const app = new Vue({
+new Vue({
   el,
   components,
   template,
-  router,
+  router
 })

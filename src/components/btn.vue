@@ -1,5 +1,4 @@
 <style type="less">
-
 .btn {
   display: block;
   line-height: 2.5;
@@ -10,20 +9,17 @@
   background-color: #76c6fc;
   color:  #fff;
 }
-
 </style>
 
 <template>
-
   <span class="btn" href="##">
     <slot>
   </span>
-
 </template>
-<script>
 
+<script>
   export default {
-    'name': 'btn',
+    'name': 'btn'
   }
 
 </script>

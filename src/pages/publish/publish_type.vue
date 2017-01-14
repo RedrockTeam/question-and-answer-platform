@@ -1,5 +1,4 @@
 <style lang="less">
-
 .publish-type {
   p {
     font-size: 30px;
@@ -16,11 +15,9 @@
   margin-top: 30px;
   margin-bottom: 24px;
 }
-
 </style>
 
 <template>
-
   <container class="publish-type">
    <bg-container class="publish-type-container">
      <list-wrap>
@@ -67,11 +64,9 @@
      </list-wrap>
    </bg-container>
   </container>
-
 </template>
 
 <script>
-
   import container from '../../components/container'
   import bgContainer from '../../components/bg-container.vue'
   import listWrap from '../../components/list_wrap'
@@ -83,7 +78,7 @@
       container,
       bgContainer,
       listWrap,
-      list,
+      list
     }
   }
 

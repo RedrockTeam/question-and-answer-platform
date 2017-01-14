@@ -1,5 +1,4 @@
 <style lang="less">
-
 .publish-editor {
   overflow: visible;
 }
@@ -68,11 +67,9 @@
     }
   }
 }
-
 </style>
 
 <template>
-
   <container class="publish-editor">
     <form class="publish-form">
       <inputbox class="publish-title"></inputbox>
@@ -105,11 +102,9 @@
       <btn>发布</btn>
     </form>
   </container>
-
 </template>
 
 <script>
-
   import btn from '../../components/btn'
   import inputbox from '../../components/inputbox'
   import textareabox from '../../components/textareabox'
@@ -121,7 +116,7 @@
       container,
       btn,
       textareabox,
-      inputbox,
+      inputbox
     }
   }
 

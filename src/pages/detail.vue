@@ -1,11 +1,8 @@
 <style lang="less">
-
   @import '../assets/styles/detail.less';
-
 </style>
 
 <template>
-
   <container>
     <bg-container class="detail-wrap">
       <div class="detail-info">
@@ -37,11 +34,9 @@
       </list-wrap>
     </bg-container>
   </container>
-
 </template>
 
 <script>
-
   import btn from '../components/btn'
   import container from '../components/container'
   import bgContainer from '../components/bg-container'
@@ -57,7 +52,7 @@
       bgContainer,
       answer,
       listWrap,
-      type,
+      type
     },
     beforeRouteEnter(to, from , next) {
       console.log(to.params.id)
@@ -90,15 +85,14 @@
           title: 'hello 2017',
           type: '技术',
           content: '@全体成员@全体成员 产品票在大一值班手上 视觉在陈定票桌子上 移动在zhuangzhi那 sre在huojiangtian桌子上 web石喵这 产品票在大一值班手上 视觉在陈定票桌子上 移动在zhuangzhi那 sre在huojiangtian桌子上 web石喵这@全体成员 产品票在大一值班手上 视觉在陈定票桌子上 移动在zhuangzhi那 sre在huojiangtian桌子上 web石喵这',
-          browse: 1111,
-
+          browse: 1111
         },
         answers: [{
           header: '/static/logo.png',
           username: 'jackson',
           time: '30分钟之前',
           praiseNum: 15,
-          content: '在 2016 年学 JavaScript 是一种什么样的体验？（分享自知乎网）http://zhuanlan.zhihu.com/p/22782487',
+          content: '在 2016 年学 JavaScript 是一种什么样的体验？（分享自知乎网）http://zhuanlan.zhihu.com/p/22782487'
         }]
       }
     }

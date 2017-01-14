@@ -1,5 +1,4 @@
 <style lang="less">
-
 .answer-editor {
   overflow: visible;
 }
@@ -69,11 +68,9 @@
     }
   }
 }
-
 </style>
 
 <template>
-
   <container class="answer-editor">
     <form class="answer-form">
       <textareabox class="answer-content"></textareabox>
@@ -93,11 +90,9 @@
       <btn>发布</btn>
     </form>
   </container>
-
 </template>
 
 <script>
-
   import btn from '../components/btn'
   import inputbox from '../components/inputbox'
   import textareabox from '../components/textareabox'
@@ -109,8 +104,7 @@
       container,
       btn,
       textareabox,
-      inputbox,
+      inputbox
     }
   }
-
 </script>
