@@ -15,9 +15,9 @@
 
 <template>
 
-  <a class="btn" href="##">
+  <span class="btn" href="##">
     <slot>
-  </a>
+  </span>
 
 </template>
 <script>

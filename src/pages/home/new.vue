@@ -11,7 +11,9 @@
 <template>
 
   <div>
-    <problem-item v-for="problem in problem_list" :problem="problem"></problem-item>
+    <router-link v-for="problem in problem_list" :to="`/detail/${problem.id}`">
+      <problem-item :problem="problem"></problem-item>
+    </router-link>
   </div>
 </template>
 
@@ -24,6 +26,7 @@
     data(){
       return {
         problem_list: [{
+            id: 1,
             username: 'yaermalfd',
             content: "hello world",
             title: "fjdsklfjd",
@@ -33,6 +36,7 @@
             time: '2016nian 1211',
             header: '../static/logo.png'
           }, {
+            id: 2,
             username: 'yaermalfd',
             content: "hello world",
             title: "fjdsklfjd",

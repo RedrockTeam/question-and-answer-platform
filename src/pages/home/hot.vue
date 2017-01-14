@@ -5,7 +5,9 @@
 <template>
 
   <div>
-    <problem-item v-for="problem in problem_list" :problem="problem"></problem-item>
+    <router-link v-for="problem in problem_list" :to="`/detail/${problem.id}`">
+      <problem-item :problem="problem"></problem-item>
+    </router-link>
   </div>
 </template>
 

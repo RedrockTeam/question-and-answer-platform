@@ -9,6 +9,9 @@ import home from './pages/home/'
 import homeHot from './pages/home/hot'
 import homeNew from './pages/home/new'
 
+
+import detail from './pages/detail'
+
 import publish from './pages/publish/'
 
 // search page and subpages
@@ -92,6 +95,9 @@ const routes = [{
   path: '/zoe',
   component: zoe,
   children: zoeRoutes
+}, {
+  path: '/detail/:id',
+  component: detail
 }]
 
 
