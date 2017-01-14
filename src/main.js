@@ -16,10 +16,11 @@ Vue.use(VueRouter)
 
 const routes = [{
     path: '/',
+    redirect: '/home'
+  } , {
+    path: '/home',
     component: index,
-  }, {
-    path: '/index',
-    component: index,
+    name: 'home',
   }, {
     path: '/publish',
     component: publish,

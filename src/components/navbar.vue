@@ -35,7 +35,7 @@
 <template>
   <div>
     <ul class="nav-wrap">
-        <router-link tag="li" to="/index"  activeClass="active" class="nav-list">
+        <router-link tag="li" to="/home"  activeClass="active" class="nav-list">
           <p>
             <i class="iconfont nav-icon">&#xe60a;</i>
           </p>
