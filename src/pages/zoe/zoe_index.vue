@@ -29,20 +29,20 @@
     </bg-container>
     <bg-container>
       <list-wrap class="my-zoe">
-        <list>
-        <router-link to="/zoe/collection">
-          <p class="left">
-            <i class="iconfont">&#xe65e;</i>
-            <span>我的收藏</span>
-          </p>
-          <p class="right">
-            <span>1</span>
-            <i class="iconfont">&#xe63c;</i>
-          </p>
+        <list to="/zoe/collection">
+          <router-link class="list-link" to="/zoe/collection">
+            <p class="left">
+              <i class="iconfont">&#xe65e;</i>
+              <span>我的收藏</span>
+            </p>
+            <p class="right">
+              <span>1</span>
+              <i class="iconfont">&#xe63c;</i>
+            </p>
           </router-link>
         </list>
         <list>
-          <router-link to="/zoe/editor">
+          <router-link class="list-link" to="/zoe/editor">
             <p class="left">
               <i class="iconfont">&#xe60d;</i>
               <span>我的发布</span>
@@ -54,7 +54,7 @@
           </router-link>
         </list>
         <list>
-          <router-link to="/zoe/answer">
+          <router-link class="list-link" to="/zoe/answer">
             <p class="left">
               <i class="iconfont">&#xe6a3;</i>
               <span>我的回答</span>
@@ -66,7 +66,7 @@
           </router-link>
         </list>
         <list>
-          <router-link to="/zoe/message">
+          <router-link class="list-link" to="/zoe/message">
             <p class="left">
               <i class="iconfont">&#xe60e;</i>
               <span>我的消息</span>

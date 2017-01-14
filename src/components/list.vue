@@ -5,6 +5,7 @@
   width: 100%;
   box-sizing: border-box;
   border-bottom: 1px solid #b9ebf2;
+  overflow: hidden;
   .list-link {
     display: block;
     overflow: hidden;
@@ -16,9 +17,7 @@
 <template>
 
   <li class="list">
-    <a class="list-link" href="javascript:void(0)">
-      <slot/>
-    </a>
+    <slot/>
   </li>
 
 </template>
