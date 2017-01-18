@@ -79,12 +79,12 @@
         class="publish-title inputbox"
         placeholder="请填写内容30个字以内">
 
-      <textareabox
+      <textarea
         name="content"
         v-model="content"
         class="publish-content textareabox"
         placeholder="请填写内容30个字以内">
-      </textareabox>
+      </textarea>
 
       <div class="publish-images-wrap">
         <div class="publish-image-add">
@@ -120,7 +120,6 @@
     methods: {
       publish() {
         let title = this.title
-        console.log(title)
         let category_id = this.category_id
         let content = this.content
 
@@ -143,7 +142,12 @@
           alert('内容长度不得找过300个字啊')
           return
         }
-        this.$http.post('http://stu.dev/public/post', data)
+        this.$http.post('http://stu.dev/public/post', data, {
+          emulateJSON: true,
+          headers: {
+            'X-PINGOTHER': 'pingpong'
+          }
+        })
           .then((res) => {
             alert
           })

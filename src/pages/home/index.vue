@@ -76,9 +76,8 @@
     data() {
       return {
         notice: {
-          content: '1.成功：id 保存的id2.失败：03.回复的主题不存在：当前主题不存在4.回复的评论不属于当前主题：该评论不属于当前主题或无该评在4.回复的评论不属于当前主题：该评论不属于当前主题或无该评论',
         },
-        noticeReaded: false,
+        noticeReaded: true,
       }
     },
     methods: {

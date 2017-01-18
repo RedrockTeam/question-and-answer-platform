@@ -130,20 +130,20 @@
   import type from '../../components/type'
 
   export default  {
-    data(){
-      return {
-        problemList: []
-      }
-    },
     name: 'home-new',
     components: {
       type,
       bgContainer
     },
+    data(){
+      return {
+        problemList: []
+      }
+    },
     created() {
       this.$http.get('http://stu.dev/public/q/new')
         .then((res) => {
-          console.log(res)
+          this.problemList = res.body
         })
         .catch(console.error())
     }

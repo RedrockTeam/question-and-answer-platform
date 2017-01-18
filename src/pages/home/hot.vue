@@ -93,12 +93,15 @@
 
 <template>
   <div>
-    <router-link v-for="problem in problem_list" :to="`/detail/${problem.id}`">
+    <router-link
+      v-for="problem in problemList"
+      :to="`/detail/${problem.id}`">
+
       <bg-container class="problem-list">
         <router-link :to="`/user/${problem.user_id}`">
           <p class="problem-list-user-info">
             <img class="problem-list-header" :src="problem.user.headimgurl">
-            <span class="problem-list-username">{{problem}}</span>
+            <span class="problem-list-username">{{problem.user.nickname}}</span>
             <i
               class="iconfont problem-list-collect"
               :class="{isFavorite: problem.isFavorite}"
@@ -138,13 +141,24 @@
     },
     data(){
       return {
-        problem_list: []
+        problemList: []
+      }
+    },
+    methods: {
+      favorite: function(id) {
+        // 收藏接口没有咩
+        this.$http.post('http://stu.dev/public/')
+          .then((res) => {
+            console.log(res)
+
+          })
+          .catch(console.error)
       }
     },
     created() {
-      this.$http.get('http://stu.dev/q/hot')
+      this.$http.get('http://stu.dev/public/q/hot')
         .then((res) => {
-          console.log(res)
+          this.problemList = res.body
         })
         .catch(console.error)
     }
