@@ -72,34 +72,26 @@
 <template>
   <container class="publish-editor">
     <form class="publish-form">
-      <inputbox class="publish-title"></inputbox>
-      <textareabox class="publish-content"></textareabox>
+      <input
+        type="text"
+        name="title"
+        v-model="title"
+        class="publish-title inputbox"
+        placeholder="请填写内容30个字以内">
+
+      <textareabox
+        name="content"
+        v-model="content"
+        class="publish-content textareabox"
+        placeholder="请填写内容30个字以内">
+      </textareabox>
+
       <div class="publish-images-wrap">
-        <div class="publish-image">
-          <img src="/static/logo.png">
-          <i class="iconfont publish-delete-img">&#xe619;</i>
-        </div>
-        <div class="publish-image">
-          <img src="/static/logo.png">
-          <i class="iconfont publish-delete-img">&#xe619;</i>
-        </div>
-        <div class="publish-image">
-          <img src="/static/logo.png">
-          <i class="iconfont publish-delete-img">&#xe619;</i>
-        </div>
-        <div class="publish-image">
-          <img src="/static/logo.png">
-          <i class="iconfont publish-delete-img">&#xe619;</i>
-        </div>
-        <div class="publish-image">
-          <img src="/static/logo.png">
-          <i class="iconfont publish-delete-img">&#xe619;</i>
-        </div>
         <div class="publish-image-add">
           <i class="iconfont">&#xe619;</i>
         </div>
       </div>
-      <btn>发布</btn>
+      <btn v-on:click.native="publish">发布</btn>
     </form>
   </container>
 </template>
@@ -117,6 +109,50 @@
       btn,
       textareabox,
       inputbox
+    },
+    data() {
+      return {
+        category_id: 0,
+        title: '',
+        content: ''
+      }
+    },
+    methods: {
+      publish() {
+        let title = this.title
+        console.log(title)
+        let category_id = this.category_id
+        let content = this.content
+
+        let titleLen = title.length
+        let contentLen = this.content.length
+
+        let data = {
+          category_id,
+          title,
+          content
+        }
+        if(titleLen === 0) {
+          alert('请填写标题')
+          return
+        } else if(titleLen > 30) {
+          alert('标题太长了啊')
+          return
+        }
+        if(contentLen > 300) {
+          alert('内容长度不得找过300个字啊')
+          return
+        }
+        this.$http.post('http://stu.dev/public/post', data)
+          .then((res) => {
+            alert
+          })
+          .catch(console.error)
+      }
+    },
+    created() {
+      this.category_id = this.$route.params.category_id
+      console.log(this.category_id)
     }
   }
 

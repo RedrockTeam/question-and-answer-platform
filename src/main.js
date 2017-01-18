@@ -75,7 +75,7 @@ const publishRoutes = [{
   path: 'categorys',
   component: publishCategorys
 }, {
-  path: 'editor/:category',
+  path: 'editor/:category_id',
   component: publishEditor
 }]
 

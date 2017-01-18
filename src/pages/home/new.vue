@@ -141,7 +141,7 @@
       bgContainer
     },
     created() {
-      this.$http.get('https://stu.dev/public/q/new')
+      this.$http.get('http://stu.dev/public/q/new')
         .then((res) => {
           console.log(res)
         })
