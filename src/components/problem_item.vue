@@ -37,7 +37,7 @@
     }
 
   }
-  .active {
+  .isFavorite {
     &::after {
       content: "\E7a3";
     }
@@ -93,24 +93,30 @@
 
 <template>
   <bg-container class="problem-list">
-    <p class="problem-list-user-info">
-      <img class="problem-list-header" :src="problem.header">
-      <span class="problem-list-username">{{problem.username}}</span>
-      <i class="iconfont problem-list-collect"></i>
-    </p>
+    <router-link :to="`/user/${problem.user_id}`">
+      <p class="problem-list-user-info">
+        <img class="problem-list-header" :src="problem.user.headimgurl">
+        <span class="problem-list-username">{{problem.user.nickname}}</span>
+        <i
+          class="iconfont problem-list-collect"
+          :class="{isFavorite: problem.isFavorite}"
+          v-on:click.stop.prevent="favorite(problem.id)"
+          ></i>
+      </p>
+    </router-link>
     <h3 class="problem-list-title">
       {{problem.title}}
-      <type>{{problem.type}}</type>
+      <type>type</type>
     </h3>
     <p class="problem-list-intro">
       {{problem.content}}
     </p>
-    <div v-if="problem.images && problem.images[0]" class="problem-list-pics">
-      <img v-for="img in problem.images" :src="img">
+    <div v-if="problem.image_url && problem.image_url[0]" class="problem-list-pics">
+      <img v-for="url in problem.image_url" :src="url">
     </div>
     <div class="problem-list-time-comments">
-      <span class="problem-list-time">{{problem.time}}</span>
-      <span class="problem-list-comments" href="##">{{problem.comments_num}}条评论</span>
+      <span class="problem-list-time">{{problem.updated_at}}</span>
+      <span class="problem-list-comments" href="##">{{problem.reply_count}}条评论</span>
     </div>
   </bg-container>
 </template>
@@ -124,9 +130,7 @@
       problem: {
         type: Object,
         default() {
-          console.warn('problem must a object')
-          return {
-          }
+          return {}
         }
       }
     },
@@ -134,6 +138,12 @@
     components: {
       bgContainer,
       type
+    },
+    methods: {
+      favorite(id) {
+        this.problem.isFavorite = true
+        // console.log(this.problem.isFavorite = !this.problem.isFavorite)
+      }
     }
   }
 </script>

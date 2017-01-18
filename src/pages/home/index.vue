@@ -4,10 +4,50 @@
   .index-content-container {
     padding-bottom: 180px;
   }
+  .disabled {
+    display: none;
+  }
+  .notice {
+    &-wrap {
+      z-index: 100;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, .5);
+    }
+    & {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -300px;
+      margin-top: -380px;
+      padding: 0 30px;
+      width: 540px;
+      border-radius: 5px;
+      background-image: url('/static/notice.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      p {
+        margin-top: 280px;
+        margin-bottom: 50px;
+        font-size: 26px;
+        color: #777;
+      }
+      .btn {
+        margin-bottom: 54px;
+      }
+    }
+  }
 </style>
 
 <template>
   <div>
+    <div :class="{disabled: noticeReaded}" class="notice-wrap">
+      <div class="notice">
+        <p>{{notice.content}}</p>
+        <btn v-on:click.native="read">确定</btn>
+      </div>
+    </div>
     <div class="slider-wrap">
       <a class="slider-list" href="##">
         <img class="slider-list-image" src="../../assets/images/slider.jpg">
@@ -26,11 +66,33 @@
 
 <script>
   import container from '../../components/container'
-
+  import btn from '../../components/btn'
   export default  {
     name: 'home',
     components: {
-      container
+      container,
+      btn
+    },
+    data() {
+      return {
+        notice: {
+          content: '1.成功：id 保存的id2.失败：03.回复的主题不存在：当前主题不存在4.回复的评论不属于当前主题：该评论不属于当前主题或无该评在4.回复的评论不属于当前主题：该评论不属于当前主题或无该评论',
+        },
+        noticeReaded: false,
+      }
+    },
+    methods: {
+      read() {
+        console.log(this.notice.readed)
+        this.noticeReaded = true
+      }
+    },
+    created() {
+      this.$http.get('http://stu.dev/public/notice')
+        .then((res) => {
+          this.notice = res.body
+        })
+        .catch(console.error)
     }
   }
 </script>
