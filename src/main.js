@@ -12,6 +12,8 @@ import homeNew from './pages/home/new'
 import detail from './pages/detail'
 
 import publish from './pages/publish/'
+import publishCategorys from './pages/publish/publish_categorys'
+import publishEditor from './pages/publish/publish_editor'
 
 import answer from './pages/answer'
 
@@ -65,6 +67,18 @@ const homeRoutes = [{
   component: homeNew
 }]
 
+// publish sub routes
+const publishRoutes = [{
+  path: '/',
+  redirect: 'categorys'
+}, {
+  path: 'categorys',
+  component: publishCategorys
+}, {
+  path: 'editor/:category',
+  component: publishEditor
+}]
+
 // search sub routes
 const searchRoutes = [{
   path: '/',
@@ -87,7 +101,8 @@ const routes = [{
   children: homeRoutes
 }, {
   path: '/publish',
-  component: publish
+  component: publish,
+  children: publishRoutes
 }, {
   path: '/search',
   component: search,

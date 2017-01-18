@@ -31,36 +31,16 @@
    </bg-container>
    <bg-container>
      <list-wrap>
-      <list>
-        <p class="left">分享</p>
-        <p class="right">
-          <i class="iconfont">&#xe63c;</i>
-        </p>
-      </list>
-      <list>
-        <p class="left">分享</p>
-        <p class="right">
-          <i class="iconfont">&#xe63c;</i>
-        </p>
-      </list>
-      <list>
-        <p class="left">分享</p>
-        <p class="right">
-          <i class="iconfont">&#xe63c;</i>
-        </p>
-      </list>
-      <list>
-        <p class="left">分享</p>
-        <p class="right">
-          <i class="iconfont">&#xe63c;</i>
-        </p>
-      </list>
-      <list>
-        <p class="left">分享</p>
-        <p class="right">
-          <i class="iconfont">&#xe63c;</i>
-        </p>
-      </list>
+      <router-link
+        v-for="category in categorys"
+        :to="`/publish/editor/${category.id}`">
+        <list>
+          <p class="left">{{category.name}}</p>
+          <p class="right">
+            <i class="iconfont">&#xe63c;</i>
+          </p>
+        </list>
+      </router-link>
      </list-wrap>
    </bg-container>
   </container>
@@ -79,6 +59,19 @@
       bgContainer,
       listWrap,
       list
+    },
+    data() {
+      return {
+        categorys: []
+      }
+    },
+    created() {
+      this.$http.get('http://stu.dev/public/weixiao/category')
+        .then((res) => {
+          console.log(res)
+          this.categorys = res.body
+        })
+        .catch(console.error)
     }
   }
 
