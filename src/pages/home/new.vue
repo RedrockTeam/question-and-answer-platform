@@ -108,7 +108,7 @@
         </router-link>
         <h3 class="problem-list-title">
           {{problem.title}}
-          <type>type</type>
+          <type>{{problem.category.name}}</type>
         </h3>
         <p class="problem-list-intro">
           {{problem.content}}
