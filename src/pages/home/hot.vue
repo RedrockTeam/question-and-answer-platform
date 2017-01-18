@@ -94,7 +94,7 @@
 <template>
   <div>
     <router-link
-      v-for="problem in problemList"
+      v-for="(problem, index) in problemList"
       :to="`/detail/${problem.id}`">
 
       <bg-container class="problem-list">
@@ -105,7 +105,7 @@
             <i
               class="iconfont problem-list-collect"
               :class="{isFavorite: problem.isFavorite}"
-              v-on:click.stop.prevent="favorite(problem.id)"
+              v-on:click.stop.prevent="favorite(index, problem.id)"
               ></i>
           </p>
         </router-link>
@@ -145,14 +145,15 @@
       }
     },
     methods: {
-      favorite: function(id) {
+      favorite: function(index, id) {
         // 收藏接口没有咩
-        this.$http.post('http://stu.dev/public/')
-          .then((res) => {
-            console.log(res)
-
-          })
-          .catch(console.error)
+        console.log(index, id)
+        this.problemList[index].isFavorite = true
+        // this.$http.post('http://stu.dev/public/')
+        //   .then((res) => {
+        //     console.log(res)
+        //   })
+        //   .catch(console.error)
       }
     },
     created() {
