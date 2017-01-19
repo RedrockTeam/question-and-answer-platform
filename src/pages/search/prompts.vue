@@ -23,8 +23,8 @@
 </style>
 <template>
   <container class="search-prompt-wrap">
-    <router-link class="search-prompt" v-for="prompt in prompts" :to="`/search/results/${prompt}`">
-      {{prompt}}
+    <router-link class="search-prompt" v-for="category in categorys" :to="`/search/results/${category.id}`">
+      {{category.name}}
     </router-link>
   </container>
 </template>
@@ -41,13 +41,13 @@
     },
     data() {
       return {
-        prompts: ['火锅店', '学习', 'yaerma', 'vuejs', 'C语言']
+        categorys: []
       }
     },
     created() {
-      this.$http.get('prompts')
+      this.$http.get('http://stu.dev/public/weixiao/category')
         .then(res => {
-          this.prompts = res.body.prompts
+          this.categorys = res.body
         })
         .catch(console.error)
     }

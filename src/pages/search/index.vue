@@ -20,9 +20,9 @@
 
   <section>
     <container class="search-form-wrap">
-      <form>
+      <form v-on:submit.prevent="search(this.keyword)">
         <div class="input-wrap">
-          <inputbox class="search-input" value="yaerjkljafl;djfkjdskl;fjdfj"/>
+          <input v-model="keyword" class="inputbox search-input" value=""/>
         </div>
       </form>
     </container>
@@ -31,16 +31,26 @@
 </template>
 
 <script>
-  import inputbox from '../../components/inputbox'
   import container from '../../components/container'
   import problemItem from '../../components/problem_item'
+  import router from '../../router'
 
   export default {
     'name': 'search',
     'components': {
-      inputbox,
       container,
       problemItem
     },
+    data() {
+      return {
+        keyword: ''
+      }
+    },
+    methods: {
+      search(keyword) {
+        router.replace(`/search/results/${this.keyword}`)
+        return false
+      }
+    }
   }
 </script>

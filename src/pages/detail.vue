@@ -34,7 +34,7 @@
       <list-wrap>
         <list v-for="answer in answers" class="answer-list">
           <div class="answer-info-wrap">
-            <img class="answer-header" :src="answer.user.headimgurl">
+            <img class="answer-header" :src="answer.user&&answer.user.headimgurl">
             <div class="answer-user-time">
               <span class="answer-user">{{answer.user.nickname}}</span>
               <span class="answer-time">{{answer.update_at}}</span>
