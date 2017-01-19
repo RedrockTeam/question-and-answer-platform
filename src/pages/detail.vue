@@ -112,7 +112,7 @@
       })
     },
     beforeRouteLeave(to, from, next) {
-      let exclude = [/answer/, /detail/]
+      let exclude = [/reply/, /detail/]
       let path = to.path
 
       let isShowNavBar = !exclude.some((reg) => reg.test(path))

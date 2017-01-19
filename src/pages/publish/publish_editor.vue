@@ -97,6 +97,8 @@
 </template>
 
 <script>
+  import router from '../../router'
+
   import btn from '../../components/btn'
   import inputbox from '../../components/inputbox'
   import textareabox from '../../components/textareabox'
@@ -149,7 +151,8 @@
           }
         })
           .then((res) => {
-            alert
+            if(res.body !== 0)
+              router.push(`/detail/${res.body}`)
           })
           .catch(console.error)
       }
