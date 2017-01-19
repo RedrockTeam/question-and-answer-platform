@@ -73,38 +73,68 @@
 <template>
   <container class="answer-editor">
     <form class="answer-form">
-      <textareabox class="answer-content"></textareabox>
+      <textarea v-model="content" class="textareabox answer-content"></textarea>
       <div class="answer-images-wrap">
-        <div class="answer-image">
+<!--         <div class="answer-image">
           <img src="/static/logo.png">
           <i class="iconfont answer-delete-img">&#xe619;</i>
         </div>
         <div class="answer-image">
           <img src="/static/logo.png">
           <i class="iconfont answer-delete-img">&#xe619;</i>
-        </div>
+        </div> -->
         <div class="answer-image-add">
           <i class="iconfont">&#xe619;</i>
         </div>
       </div>
-      <btn>发布</btn>
+      <btn v-on:click.native="reply">发布</btn>
     </form>
   </container>
 </template>
 
 <script>
+  import router from '../router'
   import btn from '../components/btn'
   import inputbox from '../components/inputbox'
   import textareabox from '../components/textareabox'
   import container from '../components/container'
 
   export default {
-    name: 'answer',
+    name: 'reply',
     components: {
       container,
       btn,
       textareabox,
       inputbox
+    },
+    data() {
+      return {
+        id: 0,
+        content: ''
+      }
+    },
+    methods: {
+      reply() {
+        let pid = 0
+        let content = this.content
+        if(content.length === 0 && content.length > 100) {
+          alert('content so long or empty')
+        }
+        let data = {
+          pid,
+          content
+        }
+        this.$http.post(`http://stu.dev/public/reply/${this.id}`, data)
+          .then((res) => {
+            if(res.body !== 0) {
+              console.log(router.go(-1))
+            }
+          })
+          .catch(console.error)
+      }
+    },
+    created() {
+      this.id = this.$route.params.id
     }
   }
 </script>

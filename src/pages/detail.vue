@@ -8,21 +8,21 @@
       <div class="detail-info">
         <img class="detail-header" src="../assets/logo.png">
         <div class="detail-user-time">
-          <span class="detail-user">{{questionInfo.username}}</span>
-          <span class="detail-time">{{questionInfo.time}}</span>
+          <span class="detail-user">{{ questionInfo.user && questionInfo.user.nickname}}</span>
+          <span class="detail-time">{{questionInfo.updated_at}}</span>
         </div>
         <i class="iconfont detail-collect">&#xe682;</i>
       </div>
-      <h2 class="detail-title">{{questionInfo.title}} <type>{{questionInfo.type}}</type>  </h2>
+      <h2 class="detail-title">{{questionInfo.title}} <type>{{questionInfo.category && questionInfo.category.name}}</type>  </h2>
       <p class="detail-content">
         {{questionInfo.content}}
       </p>
-      <p class="detail-image">
-        <img src="../assets/logo.png">
+      <p v-if="questionInfo.image_url && questionInfo.image_url[0]" class="detail-image">
+        <img v-for="imgurl in questionInfo.mage_url" :src="imgurl">
       </p>
       <div class="detail-browse-answer">
-        <span class="detail-browse">浏览{{questionInfo.browse}}次</span>
-        <router-link :to="`/answer/${questionInfo.id}`">
+        <span class="detail-browse">浏览{{questionInfo.browseTime}}次</span>
+        <router-link :to="`/reply/${questionInfo.id}`">
           <btn><i class="iconfont">&#xe619;</i> 回答</btn>
         </router-link>
       </div>
@@ -30,7 +30,20 @@
 
     <bg-container class="answers-wrap">
       <list-wrap>
-        <answer v-for="answer in answers" :answer="answer"></answer>
+        <list v-for="answer in answers" class="answer-list">
+          <div class="answer-info-wrap">
+            <img class="answer-header" :src="answer.user.headimgurl">
+            <div class="answer-user-time">
+              <span class="answer-user">{{answer.user.nickname}}</span>
+              <span class="answer-time">{{answer.update_at}}</span>
+            </div>
+            <div class="answer-praise">
+              <i class="iconfont">&#xe64e;</i>
+              <span class="answer-praise-num">{{answer.praiseNum}}</span>
+            </div>
+          </div>
+          <p class="answer-content">{{answer.content}}</p>
+        </list>
       </list-wrap>
     </bg-container>
   </container>
@@ -41,18 +54,46 @@
   import container from '../components/container'
   import bgContainer from '../components/bg-container'
   import listWrap from '../components/list_wrap'
-  import answer from '../components/answer'
   import type from '../components/type'
+  import list from '../components/list'
 
   export default {
-    name: '',
+    name: 'detail',
     components: {
+      list,
       btn,
       container,
       bgContainer,
-      answer,
       listWrap,
       type
+    },
+    data() {
+      return {
+        id: this.$route.params.id,
+        questionInfo: {
+        },
+        answers: []
+      }
+    },
+    created() {
+      this.getQuestion()
+      this.getAnswers()
+    },
+    methods: {
+      getQuestion() {
+        this.$http.get(`http://stu.dev/public/post/${this.id}`)
+          .then((res) => {
+            this.questionInfo = res.body
+          })
+          .catch(console.error)
+      },
+      getAnswers() {
+        this.$http.get(`http://stu.dev/public/reply/${this.id}`)
+          .then((res) => {
+            this.answers = res.body
+          })
+          .catch(console.error)
+      }
     },
     beforeRouteEnter(to, from , next) {
       console.log(to.params.id)
@@ -75,27 +116,7 @@
       }
       next(true)
     },
-    data() {
-      return {
-        questionInfo: {
-          id: 1,
-          header: '/static/logo.png',
-          username: 'jackson',
-          time: '2017-1-1',
-          title: 'hello 2017',
-          type: '技术',
-          content: '@全体成员@全体成员 产品票在大一值班手上 视觉在陈定票桌子上 移动在zhuangzhi那 sre在huojiangtian桌子上 web石喵这 产品票在大一值班手上 视觉在陈定票桌子上 移动在zhuangzhi那 sre在huojiangtian桌子上 web石喵这@全体成员 产品票在大一值班手上 视觉在陈定票桌子上 移动在zhuangzhi那 sre在huojiangtian桌子上 web石喵这',
-          browse: 1111
-        },
-        answers: [{
-          header: '/static/logo.png',
-          username: 'jackson',
-          time: '30分钟之前',
-          praiseNum: 15,
-          content: '在 2016 年学 JavaScript 是一种什么样的体验？（分享自知乎网）http://zhuanlan.zhihu.com/p/22782487'
-        }]
-      }
-    }
+
   }
 
 </script>
