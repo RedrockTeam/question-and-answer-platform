@@ -6,7 +6,9 @@
   overflow: hidden;
   border-radius: 5px;
   box-sizing: border-box;
+
 }
+
 .problem-list-user-info {
   line-height: 40px;
   margin-bottom: 25px;
@@ -91,8 +93,9 @@
 
 <template>
   <div>
-    <router-link v-for="(problem, index) in problemList" :to="`/detail/${problem.id}`">
-      <!-- <problem-item :problem="problem"></problem-item> -->
+    <router-link
+      v-for="(problem, index) in problemList"
+      :to="`/detail/${problem.id}`">
 
       <bg-container class="problem-list">
         <router-link :to="`/user/${problem.user_id}`">
@@ -125,12 +128,13 @@
   </div>
 </template>
 
+
 <script>
   import bgContainer from '../../components/bg-container'
   import type from '../../components/type'
 
   export default  {
-    name: 'home-new',
+    name: 'home-bew',
     components: {
       type,
       bgContainer
@@ -142,12 +146,8 @@
     },
     methods: {
       favorite(index, id) {
-        console.log(index, id)
-         // this.$http.post('http://stu.dev/public/')
-        //   .then((res) => {
-        //     console.log(res)
-        //   })
-        //   .catch(console.error)
+        console.log(this.problemList[index].isFavorite)
+        this.problemList[index].isFavorite = !this.problemList[index].isFavorite
       }
     },
     created() {
@@ -155,7 +155,8 @@
         .then((res) => {
           this.problemList = res.body
         })
-        .catch(console.error())
+        .catch(console.error)
     }
   }
+
 </script>

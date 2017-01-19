@@ -8,21 +8,23 @@
       <div class="detail-info">
         <img class="detail-header" src="../assets/logo.png">
         <div class="detail-user-time">
-          <span class="detail-user">{{ questionInfo.user && questionInfo.user.nickname}}</span>
-          <span class="detail-time">{{questionInfo.updated_at}}</span>
+          <span class="detail-user">{{ problem.user && problem.user.nickname}}</span>
+          <span class="detail-time">{{problem.updated_at}}</span>
         </div>
-        <i class="iconfont detail-collect">&#xe682;</i>
+        <i
+          v-on:click.native="favorite(problem.id)"
+          class="iconfont detail-collect">&#xe682;</i>
       </div>
-      <h2 class="detail-title">{{questionInfo.title}} <type>{{questionInfo.category && questionInfo.category.name}}</type>  </h2>
+      <h2 class="detail-title">{{problem.title}} <type>{{problem.category && problem.category.name}}</type>  </h2>
       <p class="detail-content">
-        {{questionInfo.content}}
+        {{problem.content}}
       </p>
-      <p v-if="questionInfo.image_url && questionInfo.image_url[0]" class="detail-image">
-        <img v-for="imgurl in questionInfo.mage_url" :src="imgurl">
+      <p v-if="problem.image_url && problem.image_url[0]" class="detail-image">
+        <img v-for="imgurl in problem.mage_url" :src="imgurl">
       </p>
       <div class="detail-browse-answer">
-        <span class="detail-browse">浏览{{questionInfo.browseTime}}次</span>
-        <router-link :to="`/reply/${questionInfo.id}`">
+        <span class="detail-browse">浏览{{problem.browseTime}}次</span>
+        <router-link :to="`/reply/${problem.id}`">
           <btn><i class="iconfont">&#xe619;</i> 回答</btn>
         </router-link>
       </div>
@@ -70,7 +72,7 @@
     data() {
       return {
         id: this.$route.params.id,
-        questionInfo: {
+        problem: {
         },
         answers: []
       }
@@ -83,7 +85,7 @@
       getQuestion() {
         this.$http.get(`http://stu.dev/public/post/${this.id}`)
           .then((res) => {
-            this.questionInfo = res.body
+            this.problem = res.body
           })
           .catch(console.error)
       },
@@ -93,6 +95,9 @@
             this.answers = res.body
           })
           .catch(console.error)
+      },
+      favorite(id) {
+        // 提交
       }
     },
     beforeRouteEnter(to, from , next) {

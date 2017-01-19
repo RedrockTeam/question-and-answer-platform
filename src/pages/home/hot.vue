@@ -145,15 +145,9 @@
       }
     },
     methods: {
-      favorite: function(index, id) {
-        // 收藏接口没有咩
-        console.log(index, id)
-        this.problemList[index].isFavorite = true
-        // this.$http.post('http://stu.dev/public/')
-        //   .then((res) => {
-        //     console.log(res)
-        //   })
-        //   .catch(console.error)
+      favorite(index, id) {
+        console.log(this.problemList[index].isFavorite)
+        this.problemList[index].isFavorite = !this.problemList[index].isFavorite
       }
     },
     created() {
