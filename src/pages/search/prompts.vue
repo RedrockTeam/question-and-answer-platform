@@ -45,7 +45,7 @@
       }
     },
     created() {
-      this.$http.get('http://stu.dev/public/weixiao/category')
+      this.$http.get('/weixiao/category')
         .then(res => {
           this.categorys = res.body
         })

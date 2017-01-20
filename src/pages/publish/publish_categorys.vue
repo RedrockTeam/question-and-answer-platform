@@ -10,7 +10,6 @@
     }
   }
 }
-
 .publish-type-container {
   margin-top: 30px;
   margin-bottom: 24px;
@@ -66,7 +65,7 @@
       }
     },
     created() {
-      this.$http.get('http://stu.dev/public/weixiao/category')
+      this.$http.get('/weixiao/category')
         .then((res) => {
           console.log(res)
           this.categorys = res.body

@@ -149,7 +149,7 @@
     created() {
       let keywords = this.$route.params.keywords
       if(typeof (~~keywords) === 'number') {
-        this.get(`http://stu.dev/public/q/category/${keywords}`)
+        this.get(`/q/category/${keywords}`)
       } else {
         console.log(keywords)
       }

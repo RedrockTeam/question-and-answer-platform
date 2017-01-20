@@ -87,7 +87,7 @@
       }
     },
     created() {
-      this.$http.get('http://stu.dev/public/notice')
+      this.$http.get('/notice')
         .then((res) => {
           this.notice = res.body
         })

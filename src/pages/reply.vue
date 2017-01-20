@@ -124,7 +124,7 @@
           pid,
           content
         }
-        this.$http.post(`http://stu.dev/public/reply/${this.id}`, data)
+        this.$http.post(`/reply/${this.id}`, data)
           .then((res) => {
             if(res.body !== 0) {
               console.log(router.go(-1))

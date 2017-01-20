@@ -83,14 +83,14 @@
     },
     methods: {
       getQuestion() {
-        this.$http.get(`http://stu.dev/public/post/${this.id}`)
+        this.$http.get(`/post/${this.id}`)
           .then((res) => {
             this.problem = res.body
           })
           .catch(console.error)
       },
       getAnswers() {
-        this.$http.get(`http://stu.dev/public/reply/${this.id}`)
+        this.$http.get(`/reply/${this.id}`)
           .then((res) => {
             this.answers = res.body
           })
@@ -104,7 +104,7 @@
       console.log(to.params.id)
       document.querySelector('.nav-wrap').style.display = 'none'
       next(vm => {
-        vm.$http.get('/data')
+        vm.$http.get(`/post/${id}`)
           .then(res => {
           })
           .catch(console.error)

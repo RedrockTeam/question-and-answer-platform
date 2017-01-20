@@ -111,7 +111,7 @@
         </router-link>
         <h3 class="problem-list-title">
           {{problem.title}}
-          <type>{{problem.category.name}}</type>
+          <type>{{(problem.category&&problem.category.name)||'其他'}}</type>
         </h3>
         <p class="problem-list-intro">
           {{problem.content}}
@@ -151,7 +151,7 @@
       }
     },
     created() {
-      this.$http.get('http://stu.dev/public/q/hot')
+      this.$http.get('/q/hot')
         .then((res) => {
           this.problemList = res.body
         })

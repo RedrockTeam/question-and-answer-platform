@@ -144,12 +144,7 @@
           alert('内容长度不得找过300个字啊')
           return
         }
-        this.$http.post('http://stu.dev/public/post', data, {
-          emulateJSON: true,
-          headers: {
-            'X-PINGOTHER': 'pingpong'
-          }
-        })
+        this.$http.post('/post', data)
           .then((res) => {
             if(res.body !== 0)
               router.push(`/detail/${res.body}`)
