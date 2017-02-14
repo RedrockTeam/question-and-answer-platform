@@ -23,10 +23,10 @@ import searchResults from './pages/search/results'
 import zoe from './pages/zoe/'
 import zoeIndex from './pages/zoe/zoe_index'
 import zoeEditor from './pages/zoe/zoe_editor'
-import zoeAnswer from './pages/zoe/zoe_answer'
 import zoeMessage from './pages/zoe/zoe_message'
 import zoeChat from './pages/zoe/zoe_chat'
 import zoeCollection from './pages/zoe/zoe_collection'
+import zoePublish from './pages/zoe/zoe_publish'
 
 // /zoe sub routes
 const zoeRoutes = [{
@@ -39,14 +39,14 @@ const zoeRoutes = [{
   path: 'editor',
   component: zoeEditor
 }, {
-  path: 'answer',
-  component: zoeAnswer
-}, {
   path: 'message',
   component: zoeMessage
 }, {
   path: 'chat/:id',
   component: zoeChat
+}, {
+  path: 'publish',
+  component: zoePublish
 }]
 
 // /home sub routes

@@ -1,31 +1,49 @@
 <style lang="less">
-.zoe-collection-container {
-  margin-top: 30px;
-}
+  .zoe-publish-container {
+    margin-top: 30px;
+  }
+  .zoe-publish-list-info {
+    margin-bottom: 20px;
+    .zoe-publish-list-user-link {
+      display: inline-block;
+      width: 0.4rem;
+      height: 0.4rem;
+      border: 1px solid #76c5fd;
+      border-radius: 50%;
+      vertical-align: middle;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .zoe-publish-list-title {
+    position: relative;
+    top: 5px;
+    margin-left: 30px;
+    font-size: 28px;
+    line-height: 30px;
+  }
+
 </style>
 
 <template>
-  <container class="zoe-collection-container">
+  <container class="zoe-publish-container">
     <router-link
       v-for="(problem, index) in problemList"
       :to="`/detail/${problem.id}`">
 
       <bg-container class="problem-list">
-        <router-link :to="`/user/${problem.user_id}`">
-          <p class="problem-list-user-info">
+          <p class="zoe-publish-list-info">
+            <router-link :to="`/user/${problem.user_id}`" class="zoe-publish-list-user-link">
             <img class="problem-list-header" :src="problem.user && problem.user.headimgurl">
-            <span class="problem-list-username">{{problem.user && problem.user.nickname}}</span>
-            <i
-              class="iconfont problem-list-collect"
-              :class="{isFavorite: problem.isFavorite}"
-              v-on:click.stop.prevent="favorite(index, problem.id)"
-              ></i>
+            </router-link>
+            <span class="zoe-publish-list-title">
+              {{problem.title}}
+              <type>{{(problem.category&&problem.category.name)||'其他'}}</type>
+            </span>
           </p>
-        </router-link>
-        <h3 class="problem-list-title">
-          {{problem.title}}
-          <type>{{(problem.category&&problem.category.name)||'其他'}}</type>
-        </h3>
+
         <p class="problem-list-intro">
           {{problem.content}}
         </p>
@@ -47,11 +65,16 @@
   import type from '../../components/type'
 
   export default {
-    name: 'zoe-collection',
-    data(){
+    'name': 'zoe-answer',
+    data() {
       return {
         problemList: []
       }
+    },
+    'components': {
+      container,
+      bgContainer,
+      type
     },
     methods: {
       favorite(index, id) {
@@ -59,6 +82,9 @@
           .catch(console.error)
           .then((res) => {
             let body = res.body
+            console.log(body)
+            console.log(this.problemList)
+            console.log(index, id)
             if(body === '主题不存在') {
               return
             }
@@ -71,17 +97,14 @@
           })
       }
     },
-    components: {
-      container,
-      bgContainer,
-      type
-    },
     created() {
-      this.$http.get('/user/favorite')
+      this.$http.get('/user/publish')
+        .catch(console.error)
         .then((res) => {
-          console.log(res.body)
+          console.log(res)
           this.problemList = res.body
         })
     }
   }
+
 </script>

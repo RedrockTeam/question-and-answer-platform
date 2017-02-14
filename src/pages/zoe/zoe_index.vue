@@ -39,7 +39,7 @@
           </router-link>
         </list>
         <list>
-          <router-link class="list-link" to="/zoe/editor">
+          <router-link class="list-link" to="/zoe/publish">
             <p class="left">
               <i class="iconfont">&#xe60d;</i>
               <span>我的发布</span>
