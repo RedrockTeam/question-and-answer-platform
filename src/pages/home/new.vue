@@ -146,8 +146,20 @@
     },
     methods: {
       favorite(index, id) {
-        console.log(this.problemList[index].isFavorite)
-        this.problemList[index].isFavorite = !this.problemList[index].isFavorite
+        this.$http.get(`/favorite/${id}`)
+          .catch(console.error)
+          .then((res) => {
+            let body = res.body
+            if(body === '主题不存在') {
+              return
+            }
+            if(body === 'no') {
+              this.problemList[index].isFavorite = false
+            }
+            if(body === 'yes') {
+              this.problemList[index].isFavorite = true
+            }
+          })
       }
     },
     created() {
