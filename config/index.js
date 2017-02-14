@@ -56,6 +56,27 @@ module.exports = {
         pathRewrite: {
           '^/reply': '/reply'
         }
+      },
+      '/favorite': {
+        target: 'http://stu.dev',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/favorite': '/favorite'
+        }
+      },
+      '/publish': {
+        target: 'http://stu.dev',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/publish': '/publish'
+        }
+      },
+      '/user': {
+        target: 'http://stu.dev',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/user': '/user'
+        }
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
