@@ -1,5 +1,5 @@
 <style lang="less">
-  @import "../../assets/styles/zoe.less";
+  @import "../../assets/styles/user.less";
   @import "../../assets/styles/common.less";
 </style>
 
@@ -25,9 +25,9 @@
       </list-wrap>
     </bg-container>
     <bg-container>
-      <list-wrap class="my-zoe">
-        <list to="/zoe/collection">
-          <router-link class="list-link" to="/zoe/collection">
+      <list-wrap class="my-user">
+        <list to="/user/collection">
+          <router-link class="list-link" to="/user/collection">
             <p class="left">
               <i class="iconfont">&#xe65e;</i>
               <span>我的收藏</span>
@@ -39,7 +39,7 @@
           </router-link>
         </list>
         <list>
-          <router-link class="list-link" to="/zoe/publish">
+          <router-link class="list-link" to="/user/publish">
             <p class="left">
               <i class="iconfont">&#xe60d;</i>
               <span>我的发布</span>
@@ -51,7 +51,7 @@
           </router-link>
         </list>
         <list>
-          <router-link class="list-link" to="/zoe/reply">
+          <router-link class="list-link" to="/user/reply">
             <p class="left">
               <i class="iconfont">&#xe6a3;</i>
               <span>我的回答</span>
@@ -63,7 +63,7 @@
           </router-link>
         </list>
         <list>
-          <router-link class="list-link" to="/zoe/message">
+          <router-link class="list-link" to="/user/message">
             <p class="left">
               <i class="iconfont">&#xe60e;</i>
               <span>我的消息</span>
@@ -86,7 +86,7 @@
   import list from '../../components/list'
 
   export default {
-    name: 'zoe-index',
+    name: 'user-index',
     data() {
       return {
         userInfo: {}

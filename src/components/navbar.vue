@@ -52,7 +52,7 @@
           </p>
           <span href="##" class="nav-name">搜索</span>
         </router-link>
-        <router-link  tag="li" to="/zoe" activeClass="active" class="nav-list">
+        <router-link  tag="li" to="/user" activeClass="active" class="nav-list">
           <p>
             <i class="iconfont nav-icon">&#xe606;</i>
           </p>

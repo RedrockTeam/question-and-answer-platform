@@ -19,37 +19,37 @@ import search from './pages/search/'
 import searchPrompts from './pages/search/prompts'
 import searchResults from './pages/search/results'
 
-// zoe page and subpages
-import zoe from './pages/zoe/'
-import zoeIndex from './pages/zoe/zoe_index'
-import zoeEditor from './pages/zoe/zoe_editor'
-import zoeMessage from './pages/zoe/zoe_message'
-import zoeChat from './pages/zoe/zoe_chat'
-import zoeCollection from './pages/zoe/zoe_collection'
-import zoePublish from './pages/zoe/zoe_publish'
-import zoeReply from './pages/zoe/zoe_reply'
-// /zoe sub routes
-const zoeRoutes = [{
+// user page and subpages
+import user from './pages/user/'
+import userIndex from './pages/user/user_index'
+import userEditor from './pages/user/user_editor'
+import userMessage from './pages/user/user_message'
+import userChat from './pages/user/user_chat'
+import userCollection from './pages/user/user_collection'
+import userPublish from './pages/user/user_publish'
+import userReply from './pages/user/user_reply'
+// /user sub routes
+const userRoutes = [{
   path: '/',
-  component: zoeIndex
+  component: userIndex
 }, {
   path: 'collection',
-  component: zoeCollection
+  component: userCollection
 }, {
   path: 'editor',
-  component: zoeEditor
+  component: userEditor
 }, {
   path: 'message',
-  component: zoeMessage
+  component: userMessage
 }, {
   path: 'chat/:id',
-  component: zoeChat
+  component: userChat
 }, {
   path: 'publish',
-  component: zoePublish
+  component: userPublish
 }, {
   path: 'reply',
-  component: zoeReply
+  component: userReply
 }]
 
 // /home sub routes
@@ -105,9 +105,9 @@ const routes = [{
   component: search,
   children: searchRoutes
 }, {
-  path: '/zoe',
-  component: zoe,
-  children: zoeRoutes
+  path: '/user',
+  component: user,
+  children: userRoutes
 }, {
   path: '/detail/:id',
   component: detail
