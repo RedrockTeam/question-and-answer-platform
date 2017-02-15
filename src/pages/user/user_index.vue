@@ -1,6 +1,98 @@
 <style lang="less">
-  @import "../../assets/styles/user.less";
-  @import "../../assets/styles/common.less";
+.right {
+  float: right;
+}
+.left {
+  float: left;
+}
+.user {
+  margin: 0 auto;
+  width: 710px;
+}
+.info-header-name-wrap {
+  position: relative;
+  width: 100%;
+  margin-top: 46px;
+  overflow: hidden;
+  text-align: center;
+  .info-header {
+    width: 143px;
+    height: 143px;
+  }
+  .info-username {
+    margin-top: 34px;
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bolder;
+  }
+  .sex {
+    color: #30C0FD;
+    font-size: 32px;
+    &::after {
+      content: '\E608'
+    }
+    &.girl {
+      &::after {
+        color: red;
+        content: '\E614'
+      }
+    }
+  }
+
+}
+
+.list-wrap-school-info {
+  margin-top: 79px;
+  font-size: 32px;
+  color: #747e7f;
+  .left {
+    font-size: 24px;
+  }
+  .right {
+    font-size: 26px;
+  }
+  p {
+    height: 57px;
+    line-height: 57px;
+  }
+}
+
+.my-user {
+  margin-top: 30px;
+  color: #666;
+  .left {
+    font-size: 26px;
+    font-weight: bolder;
+    .iconfont {
+      margin-right: 15px;
+      font-weight: 500;
+      font-size: 50px;
+      color: #7dd5fb;
+      display: inline-block;
+      vertical-align:middle;
+    }
+  }
+  .right {
+    font-size: 24px;
+    .iconfont {
+      font-size: 30px;
+      color: #4cc5fa;
+    }
+  }
+  p {
+    height: 57px;
+    line-height: 55px;
+    color: #555;
+  }
+}
+.user-editor-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+}
 </style>
 
 <template>
@@ -9,8 +101,14 @@
       <img class="info-header" :src="userInfo.headimgurl">
       <h2 class="info-username">
         {{userInfo.nickname}}
-        <i class="iconfont sex">&#xe608;</i>
+        <i class="iconfont sex" :class="{girl: userInfo.sex === 2}"></i>
       </h2>
+      <router-link to="/user/editor">
+        <img
+          class="user-editor-icon"
+          src="../../assets/images/user-editor.png"
+          alt="编辑个人信息">
+      </router-link>
     </div>
     <bg-container>
       <list-wrap class="list-wrap-school-info">
