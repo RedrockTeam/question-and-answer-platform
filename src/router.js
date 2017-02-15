@@ -27,7 +27,7 @@ import zoeMessage from './pages/zoe/zoe_message'
 import zoeChat from './pages/zoe/zoe_chat'
 import zoeCollection from './pages/zoe/zoe_collection'
 import zoePublish from './pages/zoe/zoe_publish'
-
+import zoeReply from './pages/zoe/zoe_reply'
 // /zoe sub routes
 const zoeRoutes = [{
   path: '/',
@@ -47,6 +47,9 @@ const zoeRoutes = [{
 }, {
   path: 'publish',
   component: zoePublish
+}, {
+  path: 'reply',
+  component: zoeReply
 }]
 
 // /home sub routes
