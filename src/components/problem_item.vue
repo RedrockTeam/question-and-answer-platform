@@ -75,13 +75,17 @@
   }
 
 }
-
-
-
-
-
-
-
+.problem-list-time-comments {
+  overflow: auto;
+  font-size: 24px;
+  color: #999;
+  .problem-list-time {
+    float: left;
+  }
+  .problem-list-comments {
+    float: right;
+  }
+}
 
 </style>
 
