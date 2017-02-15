@@ -1,6 +1,3 @@
-<style lang="less">
-</style>
-
 <template>
   <container>
     <router-link
@@ -30,7 +27,6 @@
         this.$http.get(`/q/category/${keywords}`)
           .catch(console.error)
           .then((res) => {
-            console.log(res)
             this.problemList = res.body.map((item, index) => {
               item.index = index
               return item

@@ -7,12 +7,16 @@
   border-radius: 5px;
   box-sizing: border-box;
 
-}
-
-.problem-list-user-info {
-  line-height: 40px;
-  margin-bottom: 25px;
-  .problem-list-header {
+  &-user-info {
+    line-height: 40px;
+    margin-bottom: 25px;
+    .isFavorite {
+      &::after {
+        content: "\E7a3";
+      }
+    }
+  }
+  &-header {
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -20,13 +24,13 @@
     border-radius: 50%;
     vertical-align:middle;
   }
-  .problem-list-username {
+  &-username {
     margin-left: 10px;
     font-weight: bolder;
     font-size: 24px;
     color: #8e9fa1;
   }
-  .problem-list-collect {
+  &-collect {
     float: right;
     width: 50px;
     height: 50px;
@@ -35,60 +39,50 @@
     &::after {
       content: "\E682"
     }
-
   }
-  .isFavorite {
-    &::after {
-      content: "\E7a3";
+  &-title {
+    font-size: 28px;
+    line-height: 30px;
+    .type {
+      font-size: 24px;
     }
   }
-}
-
-.problem-list-title {
-  font-size: 28px;
-  line-height: 30px;
-  .type {
+  &-intro {
+    display: -webkit-box;
+    margin-bottom: 36px;
+    width: 100%;
+    overflow: hidden;
+    line-height: 36px;
     font-size: 24px;
+    color: #3e4546;
+    /*3行省略*/
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
-}
-.problem-list-intro {
-  display: -webkit-box;
-  margin-bottom: 36px;
-  width: 100%;
-  overflow: hidden;
-  line-height: 36px;
-  font-size: 24px;
-  color: #3e4546;
-  /*3行省略*/
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-}
-.problem-list-pics {
-  overflow: scroll;
-  margin-bottom: 50px;
-  img {
-    margin-right: 30px;
-    width: 190px;
-    height: 190px;
-    border: 1px solid #76c5fd;
-    border-radius: 5px;
+  &-pics {
+    overflow: scroll;
+    margin-bottom: 50px;
+    img {
+      margin-right: 30px;
+      width: 190px;
+      height: 190px;
+      border: 1px solid #76c5fd;
+      border-radius: 5px;
+    }
+    img:last-child {
+      margin-right: 0;
+    }
   }
-  img:last-child {
-    margin-right: 0;
-  }
+
 }
 
-.problem-list-time-comments {
-  overflow: auto;
-  font-size: 24px;
-  color: #999;
-  .problem-list-time {
-    float: left;
-  }
-  .problem-list-comments {
-    float: right;
-  }
-}
+
+
+
+
+
+
+
 </style>
 
 <template>
