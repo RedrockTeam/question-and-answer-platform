@@ -171,7 +171,7 @@
             <img class="reply-header" :src="reply.user&&reply.user.headimgurl">
             <div class="reply-user-time">
               <h6 class="reply-user">
-                {{reply.user.nickname}}
+                {{reply.user && reply.user.nickname}}
               </h6>
               <span class="reply-time">{{reply.updated_at}}</span>
             </div>
@@ -223,8 +223,7 @@
       this.$http.get(`/reply/${this.id}`)
         .catch(console.error)
         .then((res) => {
-          console.log(res.body)
-          this.replys = res.body
+          this.replys = res.body.replies
         })
     },
     methods: {
