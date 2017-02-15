@@ -1,5 +1,5 @@
 <style lang="less">
-  .reply {
+  .user-reply {
     &-container {
       position: relative;
       margin-bottom: 35px;
@@ -32,19 +32,19 @@
   <container class="user-publish-container">
       <bg-container
         v-for="(reply, index) in replyList"
-        class="reply-container">
-        <list class="reply-list">
+        class="user-reply-container">
+        <list class="user-reply-list">
           <router-link :to="`/detail/${reply.id}`">
-            <h3 class="reply-title">
+            <h3 class="user-reply-title">
               回答: {{reply.post && reply.post.title}}
             </h3>
           </router-link>
           <img
             src="../../assets/images/discard.png"
-            class="iconfont reply-discard"
+            class="iconfont user-reply-discard"
             v-on:click="discard(reply.id)"/>
-          <p class="reply-time">{{reply.updated_at}}</p>
-          <p class="reply-content">{{reply.content}}</p>
+          <p class="user-reply-time">{{reply.updated_at}}</p>
+          <p class="user-reply-content">{{reply.content}}</p>
         </list>
       </bg-container>
   </container>
