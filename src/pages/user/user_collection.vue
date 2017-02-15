@@ -9,78 +9,33 @@
     <router-link
       v-for="(problem, index) in problemList"
       :to="`/detail/${problem.id}`">
-
-      <bg-container class="problem-list">
-        <router-link :to="`/user/${problem.user_id}`">
-          <p class="problem-list-user-info">
-            <img class="problem-list-header" :src="problem.user && problem.user.headimgurl">
-            <span class="problem-list-username">{{problem.user && problem.user.nickname}}</span>
-            <i
-              class="iconfont problem-list-collect"
-              :class="{isFavorite: problem.isFavorite}"
-              v-on:click.stop.prevent="favorite(index, problem.id)"
-              ></i>
-          </p>
-        </router-link>
-        <h3 class="problem-list-title">
-          {{problem.title}}
-          <type>{{(problem.category&&problem.category.name)||'其他'}}</type>
-        </h3>
-        <p class="problem-list-intro">
-          {{problem.content}}
-        </p>
-        <div v-if="problem.image_url && problem.image_url[0]" class="problem-list-pics">
-          <img v-for="url in problem.image_url" :src="url">
-        </div>
-        <div class="problem-list-time-comments">
-          <span class="problem-list-time">{{problem.updated_at}}</span>
-          <span class="problem-list-comments" href="##">{{problem.reply_count}}条评论</span>
-        </div>
-      </bg-container>
+      <problem-item
+        v-on:favorite="favorite"
+        :problem="problem">
+      </problem-item>
     </router-link>
   </container>
 </template>
 
 <script>
   import container from '../../components/container'
-  import bgContainer from '../../components/bg-container'
-  import type from '../../components/type'
+  import problemItem from '../../components/problem_item'
+  import problemContainer from '../../components/problem_container-mixin'
 
   export default {
     name: 'zoe-collection',
-    data(){
-      return {
-        problemList: []
-      }
-    },
-    methods: {
-      favorite(index, id) {
-        this.$http.get(`/favorite/${id}`)
-          .catch(console.error)
-          .then((res) => {
-            let body = res.body
-            if(body === '主题不存在') {
-              return
-            }
-            if(body === 'no') {
-              this.problemList[index].isFavorite = false
-            }
-            if(body === 'yes') {
-              this.problemList[index].isFavorite = true
-            }
-          })
-      }
-    },
+    mixins: [problemContainer],
     components: {
       container,
-      bgContainer,
-      type
+      problemItem
     },
     created() {
       this.$http.get('/user/favorite')
         .then((res) => {
-          console.log(res.body)
-          this.problemList = res.body
+          this.problemList = res.body.map((item, index) => {
+            item.index = index
+            return item
+          })
         })
     }
   }

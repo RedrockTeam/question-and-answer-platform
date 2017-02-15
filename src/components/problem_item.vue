@@ -95,18 +95,18 @@
   <bg-container class="problem-list">
     <router-link :to="`/user/${problem.user_id}`">
       <p class="problem-list-user-info">
-        <img class="problem-list-header" :src="problem.user.headimgurl">
-        <span class="problem-list-username">{{problem.user.nickname}}</span>
+        <img class="problem-list-header" :src="problem.user && problem.user.headimgurl">
+        <span class="problem-list-username">{{problem.user && problem.user.nickname}}</span>
         <i
           class="iconfont problem-list-collect"
           :class="{isFavorite: problem.isFavorite}"
-          v-on:click.stop.prevent="favorite(problem.id)"
+          v-on:click.stop.prevent="favorite(problem.index, problem.id)"
           ></i>
       </p>
     </router-link>
     <h3 class="problem-list-title">
       {{problem.title}}
-      <type>type</type>
+      <type>{{(problem.category && problem.category.name)||'其他'}}</type>
     </h3>
     <p class="problem-list-intro">
       {{problem.content}}
@@ -140,10 +140,11 @@
       type
     },
     methods: {
-      favorite(id) {
-        this.problem.isFavorite = true
-        // console.log(this.problem.isFavorite = !this.problem.isFavorite)
+      favorite() {
+        this.$emit('favorite', this.problem.index, this.problem.id)
       }
+    },
+    created() {
     }
   }
 </script>
