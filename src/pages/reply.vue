@@ -1,5 +1,6 @@
 <style lang="less">
 .answer-editor {
+  margin-top: 30px;
   overflow: visible;
 }
 .answer-form {

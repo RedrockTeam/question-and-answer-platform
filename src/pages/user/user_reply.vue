@@ -1,4 +1,8 @@
 <style lang="less">
+  .user-publish-container {
+    margin-top: 30px;
+    margin-bottom: 100px;
+  }
   .user-reply {
     &-container {
       position: relative;

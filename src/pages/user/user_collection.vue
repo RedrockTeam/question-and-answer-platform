@@ -1,6 +1,7 @@
 <style lang="less">
 .zoe-collection-container {
   margin-top: 30px;
+  margin-bottom: 100px;
 }
 </style>
 

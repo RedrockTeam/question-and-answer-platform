@@ -1,6 +1,7 @@
 <style lang="less">
   .zoe-publish-container {
     margin-top: 30px;
+    margin-bottom: 100px;
   }
   .zoe-publish-list-info {
     margin-bottom: 20px;
