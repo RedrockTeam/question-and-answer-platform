@@ -1,5 +1,135 @@
 <style lang="less">
-  @import '../assets/styles/detail.less';
+.detail {
+  &-wrap {
+    margin-top: 30px;
+    margin-bottom: 16px;
+    padding: 24px;
+  }
+  &-info {
+    margin-bottom: 26px;
+    overflow: hidden;
+  }
+  &-header {
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+  }
+  &-user-time {
+    float: left;
+  }
+  &-user {
+    display: block;
+    font-size: 22px;
+    color: #849396;
+    margin-bottom: 5px;
+  }
+  &-time  {
+    font-size: 20px;
+    color: #b9ccd2;
+  }
+  &-collect {
+    float: right;
+    font-size: 50px;
+    color: #74c5fd;
+    &::after {
+      content: "\E682"
+    }
+    &.isFavorite {
+      &::after {
+        content: "\E7a3";
+      }
+    }
+  }
+
+  &-title {
+    margin-bottom: 24px;
+    font-size: 30px;
+    color: #3a4445;
+    .type {
+      font-size: 26px;
+    }
+  }
+  &-content {
+    margin-bottom: 23px;
+    line-height: 1.5;
+    font-size: 24px;
+    color: #4c5759;
+  }
+  &-image {
+    margin-bottom: 50px;
+    img {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #b1f0f9;
+    }
+  }
+  &-browse-reply {
+    overflow: hidden;
+    .detail-browse {
+      position: relative;
+      top: 20px;
+      float: left;
+      color: #9aa9ac;
+      font-size: 22px;
+    }
+    .btn {
+      display: inline-block;
+      float: right;
+      width: 160px;
+      height: 60px;
+      line-height: 60px;
+      font-weight: 500;
+      font-size: 24px;
+    }
+  }
+}
+
+.reply {
+  &-list {
+    position: relative;
+  }
+  &-header {
+    float: left;
+    margin-right: 20px;
+    margin-top: 2px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #76c5fd;
+    border-radius: 50%;
+  }
+  &-user {
+    margin: 0;
+    font-size: 22px;
+    color: #8c9ea0;
+  }
+  &-time {
+    font-size: 20px;
+    color: #b2c9cf;
+  }
+  &-praise-wrap {
+    position: absolute;
+    top: 20px;
+    right: 0;
+  }
+  &-praise {
+    font-size: 40px;
+    color: #74c6fe;
+  }
+  &-praise-num {
+    font-size: 20px;
+    color: #aac6c9;
+  }
+  &-content {
+    margin-top: 15px;
+    font-size: 24px;
+  }
+}
+.reply-reply-btn-content {
+  position: relative;
+  top: 2px;
+}
+
 </style>
 
 <template>
@@ -12,8 +142,9 @@
           <span class="detail-time">{{problem.updated_at}}</span>
         </div>
         <i
-          v-on:click.native="favorite(problem.id)"
-          class="iconfont detail-collect">&#xe682;</i>
+          v-on:click.stop.prevent="favorite(problem.id)"
+          class="iconfont detail-collect"
+          :class="{isFavorite: problem.isFavorite}"></i>
       </div>
       <h2 class="detail-title">{{problem.title}} <type>{{problem.category && problem.category.name}}</type>  </h2>
       <p class="detail-content">
@@ -22,29 +153,34 @@
       <p v-if="problem.image_url && problem.image_url[0]" class="detail-image">
         <img v-for="imgurl in problem.mage_url" :src="imgurl">
       </p>
-      <div class="detail-browse-answer">
-        <span class="detail-browse">浏览{{problem.browseTime}}次</span>
+      <div class="detail-browse-reply">
+        <span class="detail-browse">浏览{{problem.view_count}}次</span>
         <router-link :to="`/reply/${problem.id}`">
-          <btn><i class="iconfont">&#xe619;</i> 回答</btn>
+          <btn>
+            <i class="iconfont" style="font-weight: 900">&#xe619;</i>
+            <span class="reply-reply-btn-content">回答</span>
+          </btn>
         </router-link>
       </div>
     </bg-container>
 
-    <bg-container class="answers-wrap">
+    <bg-container class="replys-wrap">
       <list-wrap>
-        <list v-for="answer in answers" class="answer-list">
-          <div class="answer-info-wrap">
-            <img class="answer-header" :src="answer.user&&answer.user.headimgurl">
-            <div class="answer-user-time">
-              <span class="answer-user">{{answer.user.nickname}}</span>
-              <span class="answer-time">{{answer.update_at}}</span>
+        <list v-for="reply in replys" class="reply-list">
+          <div class="reply-info-wrap">
+            <img class="reply-header" :src="reply.user&&reply.user.headimgurl">
+            <div class="reply-user-time">
+              <h6 class="reply-user">
+                {{reply.user.nickname}}
+              </h6>
+              <span class="reply-time">{{reply.updated_at}}</span>
             </div>
-            <div class="answer-praise">
-              <i class="iconfont">&#xe64e;</i>
-              <span class="answer-praise-num">{{answer.praiseNum}}</span>
+            <div class="reply-praise-wrap">
+              <i class="iconfont reply-praise">&#xe64e;</i>
+              <span class="reply-praise-num">{{reply.praisen_num || '假装有数字'}}</span>
             </div>
           </div>
-          <p class="answer-content">{{answer.content}}</p>
+          <p class="reply-content">{{reply.content}}</p>
         </list>
       </list-wrap>
     </bg-container>
@@ -72,55 +208,50 @@
     data() {
       return {
         id: this.$route.params.id,
-        problem: {
-        },
-        answers: []
+        problem: {},
+        replys: []
       }
     },
     created() {
-      this.getQuestion()
-      this.getAnswers()
+      this.id = this.$route.params.id
+      this.$http.get(`/post/${this.id}`)
+        .catch(console.error)
+        .then((res) => {
+          this.problem = res.body
+        })
+
+      this.$http.get(`/reply/${this.id}`)
+        .catch(console.error)
+        .then((res) => {
+          console.log(res.body)
+          this.replys = res.body
+        })
     },
     methods: {
-      getQuestion() {
-        this.$http.get(`/post/${this.id}`)
-          .then((res) => {
-            this.problem = res.body
-          })
-          .catch(console.error)
-      },
-      getAnswers() {
-        this.$http.get(`/reply/${this.id}`)
-          .then((res) => {
-            this.answers = res.body
-          })
-          .catch(console.error)
-      },
       favorite(id) {
-        // 提交
+        this.$http.get(`/favorite/${id}`)
+          .catch(console.error)
+          .then((res) => {
+            let body = res.body
+            if(body === '主题不存在') {
+              return
+            }
+            if(body === 'no') {
+              this.problem.isFavorite = false
+            }
+            if(body === 'yes') {
+              this.problem.isFavorite = true
+            }
+          })
       }
     },
     beforeRouteEnter(to, from , next) {
-      console.log(to.params.id)
-      document.querySelector('.nav-wrap').style.display = 'none'
-      next(vm => {
-        vm.$http.get(`/post/${id}`)
-          .then(res => {
-          })
-          .catch(console.error)
-        return true
-      })
-    },
-    beforeRouteLeave(to, from, next) {
-      let exclude = [/reply/, /detail/]
-      let path = to.path
-
-      let isShowNavBar = !exclude.some((reg) => reg.test(path))
-      if(isShowNavBar) {
-        document.querySelector('.nav-wrap').style.display = 'block'
+      let navWrap = document.querySelector('.nav-wrap')
+      if (navWrap) {
+        navWrap.style.display = 'none'
       }
       next(true)
-    },
+    }
 
   }
 
