@@ -29,8 +29,7 @@
 </style>
 
 <template>
-  <container class="zoe-publish-container">
-
+  <container class="user-publish-container">
       <bg-container
         v-for="(reply, index) in replyList"
         class="reply-container">
@@ -48,7 +47,6 @@
           <p class="reply-content">{{reply.content}}</p>
         </list>
       </bg-container>
-
   </container>
 </template>
 
@@ -56,14 +54,12 @@
   import container from '../../components/container'
   import bgContainer from '../../components/bg-container'
   import list from '../../components/list'
-  import discard from '../../assets/images/discard.png'
 
   export default {
-    'name': 'zoe-answer',
+    name: 'user-reply',
     data() {
       return {
         replyList: [],
-        discardSrc: discard
       }
     },
     'components': {
@@ -73,7 +69,7 @@
     },
     methods: {
       discard(id) {
-        // 删除回答
+        // 删除回答 接口还没给
         this.$http.delete(`/user/reply/${id}`)
           .catch(console.error)
           .then((res) => {
