@@ -74,10 +74,15 @@
     methods: {
       discard(id) {
         // 删除回答 接口还没给
-        this.$http.delete(`/user/reply/${id}`)
+        this.$http.post(`/reply/${id}?_method=delete`)
           .catch(console.error)
           .then((res) => {
-            console.log(res)
+            let body = res.body
+            if(~~body === 1) {
+              this.replyList = this.replyList.filter(function(item, index) {
+                return item.id !== id
+              })
+            }
           })
       }
     },
