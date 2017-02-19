@@ -55,6 +55,7 @@
 
   }
   .most-list-wrap {
+    display: none;
     margin-top: 45px;
     padding-bottom: 30px;
     overflow: hidden;
@@ -95,10 +96,10 @@
 
 <template>
   <div>
-    <div :class="{disabled: noticeReaded}" class="notice-wrap">
+    <div style="display: none" v-show="noticeShow"  class="notice-wrap">
       <div class="notice">
         <p>{{notice.content}}</p>
-        <btn v-on:click.native="read">确定</btn>
+        <btn v-on:click.native="noticeConfirm">确定</btn>
       </div>
     </div>
     <div class="slider-wrap">
@@ -128,21 +129,25 @@
     },
     data() {
       return {
-        notice: {
-        },
-        noticeReaded: true,
+        notice: {},
+        preNoticeId: ~~window.localStorage.getItem('noticeId'),
+        noticeShow: false
       }
     },
     methods: {
-      read() {
-        console.log(this.notice.readed)
-        this.noticeReaded = true
+      noticeConfirm() {
+        window.localStorage.setItem('noticeId', this.notice.id)
+        this.preNoticeId = this.notice.id
+        this.noticeShow = false
       }
     },
     created() {
       this.$http.get('/notice')
         .then((res) => {
           this.notice = res.body
+          if(this.notice.id !== this.preNoticeId) {
+            this.noticeShow = true
+          }
         })
         .catch(console.error)
     }
