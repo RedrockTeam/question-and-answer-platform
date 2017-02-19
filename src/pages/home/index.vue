@@ -55,7 +55,6 @@
 
   }
   .most-list-wrap {
-    display: none;
     margin-top: 45px;
     padding-bottom: 30px;
     overflow: hidden;
@@ -104,7 +103,7 @@
     </div>
     <div class="slider-wrap">
       <a class="slider-list" href="##">
-        <img class="slider-list-image" src="../../assets/images/slider.jpg">
+        <img class="slider-list-image" :src="info.index_url">
       </a>
     </div>
     <container class="index-content-container">
@@ -129,6 +128,7 @@
     },
     data() {
       return {
+        info: {},
         notice: {},
         preNoticeId: ~~window.localStorage.getItem('noticeId'),
         noticeShow: false
@@ -150,6 +150,13 @@
           }
         })
         .catch(console.error)
+
+      this.$http.get('/info')
+        .catch(console.error)
+        .then((res) => {
+          this.info = res.body
+          document.title = this.info.name
+        })
     }
   }
 </script>
