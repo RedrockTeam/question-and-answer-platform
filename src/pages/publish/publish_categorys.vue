@@ -17,32 +17,37 @@
 </style>
 
 <template>
-  <container class="publish-type">
-   <bg-container class="publish-type-container">
-     <list-wrap>
-       <list>
-        <p class="left">分享</p>
-        <p class="right">
-          <i class="iconfont">&#xe63c;</i>
-        </p>
-       </list>
-     </list-wrap>
-   </bg-container>
-   <bg-container>
-     <list-wrap>
-      <router-link
-        v-for="category in categorys"
-        :to="`/publish/editor/${category.id}`">
-        <list>
-          <p class="left">{{category.name}}</p>
+  <div>
+
+
+    <container class="publish-type">
+     <bg-container class="publish-type-container">
+       <list-wrap>
+         <list>
+          <p class="left">分享</p>
           <p class="right">
             <i class="iconfont">&#xe63c;</i>
           </p>
-        </list>
-      </router-link>
-     </list-wrap>
-   </bg-container>
-  </container>
+         </list>
+       </list-wrap>
+     </bg-container>
+     <bg-container>
+       <list-wrap>
+        <router-link
+          v-for="category in categorys"
+          :to="`/publish/editor/${category.id}`">
+          <list>
+            <p class="left">{{category.name}}</p>
+            <p class="right">
+              <i class="iconfont">&#xe63c;</i>
+            </p>
+          </list>
+        </router-link>
+       </list-wrap>
+     </bg-container>
+    </container>
+    <navbar></navbar>
+  </div>
 </template>
 
 <script>
@@ -50,6 +55,7 @@
   import bgContainer from '../../components/bg-container.vue'
   import listWrap from '../../components/list_wrap'
   import list from '../../components/list'
+  import navbar from '../../components/navbar'
 
   export default {
     name: 'publish-type',
@@ -57,7 +63,8 @@
       container,
       bgContainer,
       listWrap,
-      list
+      list,
+      navbar
     },
     data() {
       return {

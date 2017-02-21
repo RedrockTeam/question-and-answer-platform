@@ -106,6 +106,12 @@
       inputbox,
       bgContainer,
       container
+    },
+    created() {
+      let navbar = document.querySelector('.nav-wrap')
+      if(navbar) {
+        navbar.style.display = 'none'
+      }
     }
   }
 </script>

@@ -58,6 +58,7 @@
   import container from '../../components/container'
   import bgContainer from '../../components/bg-container'
   import list from '../../components/list'
+  import utils from '../../utils'
 
   export default {
     name: 'user-reply',
@@ -87,7 +88,17 @@
       }
     },
     created() {
-      this.$http.get('/user/reply')
+
+      let id = ~~this.$route.params.id
+      let userInfo = utils.ls.get('myUserInfo')
+
+      if(id === userInfo.id) {
+        id = ''
+      } else {
+        id = '/' + id
+      }
+
+      this.$http.get(`/user/reply${id}`)
         .catch(console.error)
         .then((res) => {
           console.log(res.body.replies)

@@ -113,6 +113,7 @@
       </ul>
       <router-view></router-view>
     </container>
+    <navbar></navbar>
   </div>
 </template>
 
@@ -120,11 +121,14 @@
 <script>
   import container from '../../components/container'
   import btn from '../../components/btn'
+  import navbar from '../../components/navbar'
+
   export default  {
     name: 'home',
     components: {
       container,
-      btn
+      btn,
+      navbar
     },
     data() {
       return {

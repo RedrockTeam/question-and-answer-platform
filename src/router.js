@@ -1,6 +1,5 @@
 import VueRouter from 'vue-router'
 
-
 // home page and subpages
 import home from './pages/home/'
 import homeHot from './pages/home/hot'
@@ -42,7 +41,7 @@ const userRoutes = [{
   path: 'message',
   component: userMessage
 }, {
-  path: 'chat/:id',
+  path: 'chat/:to',
   component: userChat
 }, {
   path: 'publish',
@@ -105,7 +104,7 @@ const routes = [{
   component: search,
   children: searchRoutes
 }, {
-  path: '/user',
+  path: '/user/:id',
   component: user,
   children: userRoutes
 }, {

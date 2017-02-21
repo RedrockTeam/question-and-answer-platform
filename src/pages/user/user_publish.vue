@@ -65,6 +65,8 @@
   import bgContainer from '../../components/bg-container'
   import type from '../../components/type'
 
+  import utils from '../../utils'
+
   export default {
     'name': 'zoe-answer',
     data() {
@@ -99,7 +101,17 @@
       }
     },
     created() {
-      this.$http.get('/user/publish')
+
+      let id = ~~this.$route.params.id
+      let userInfo = utils.ls.get('myUserInfo')
+
+      if(id === userInfo.id) {
+        id = ''
+      } else {
+        id = '/' + id
+      }
+
+      this.$http.get(`/user/publish${id}`)
         .catch(console.error)
         .then((res) => {
           console.log(res)

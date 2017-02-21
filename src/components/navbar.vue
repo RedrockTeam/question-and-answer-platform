@@ -52,7 +52,7 @@
           </p>
           <span href="##" class="nav-name">搜索</span>
         </router-link>
-        <router-link  tag="li" to="/user" activeClass="active" class="nav-list">
+        <router-link  tag="li" :to="`/user/${myUserInfo.id}`" activeClass="active" class="nav-list">
           <p>
             <i class="iconfont nav-icon">&#xe606;</i>
           </p>
@@ -63,7 +63,26 @@
 </template>
 
 <script>
+  import utils from '../utils'
+
   export default {
-    name: 'navbar'
+    name: 'navbar',
+    data() {
+      return {
+        myUserInfo: {}
+      }
+    },
+    created() {
+      let myUserInfo = utils.ls.get('myUserInfo')
+      if(myUserInfo) {
+        this.userid = myUserInfo.id
+      }
+      this.$http.get('/user')
+        .catch(console.error)
+        .then((res) => {
+          this.myUserInfo = res.body
+          utils.ls.set('myUserInfo', res.body)
+        })
+    }
   }
 </script>
