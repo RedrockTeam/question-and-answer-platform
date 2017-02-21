@@ -99,6 +99,7 @@
 </style>
 
 <template>
+<div>
   <container>
     <div class="info-header-name-wrap">
       <img class="info-header" :src="myUserInfo.headimgurl">
@@ -183,6 +184,8 @@
       <btn class="send-msg">发送消息</btn>
     </router-link>
   </container>
+  <navbar v-show="self"></navbar>
+</div>
 </template>
 
 <script>
@@ -191,6 +194,7 @@
   import listWrap from '../../components/list_wrap'
   import list from '../../components/list'
   import btn from '../../components/btn'
+  import navbar from '../../components/navbar'
 
   import utils from '../../utils'
 
@@ -208,7 +212,8 @@
       bgContainer,
       listWrap,
       list,
-      btn
+      btn,
+      navbar
     },
     created() {
       let id = ~~this.$route.params.id

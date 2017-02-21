@@ -2,6 +2,16 @@
   .zoe-publish-container {
     margin-top: 30px;
     margin-bottom: 100px;
+    .problem-list {
+      position: relative;
+      .user-publish-discard {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        width: 40px;
+        height: 40px;
+      }
+    }
   }
   .zoe-publish-list-info {
     margin-bottom: 20px;
@@ -35,15 +45,21 @@
       :to="`/detail/${problem.id}`">
 
       <bg-container class="problem-list">
-          <p class="zoe-publish-list-info">
-            <router-link :to="`/user/${problem.user_id}`" class="zoe-publish-list-user-link">
-            <img class="problem-list-header" :src="problem.user && problem.user.headimgurl">
-            </router-link>
-            <span class="zoe-publish-list-title">
-              {{problem.title}}
-              <type>{{(problem.category&&problem.category.name)||'其他'}}</type>
-            </span>
-          </p>
+        <p class="zoe-publish-list-info">
+          <router-link :to="`/user/${problem.user_id}`" class="zoe-publish-list-user-link">
+          <img class="problem-list-header" :src="problem.user && problem.user.headimgurl">
+          </router-link>
+          <span class="zoe-publish-list-title">
+            {{problem.title}}
+            <type>{{(problem.category&&problem.category.name)||'其他'}}</type>
+          </span>
+        </p>
+
+        <img
+          v-show="self"
+          src="../../assets/images/discard.png"
+          class="iconfont user-publish-discard"
+          v-on:click.stop.prevent="discard(problem.id)"/>
 
         <p class="problem-list-intro">
           {{problem.content}}
@@ -68,10 +84,11 @@
   import utils from '../../utils'
 
   export default {
-    'name': 'zoe-answer',
+    name: 'zoe-answer',
     data() {
       return {
-        problemList: []
+        problemList: [],
+        self: true
       }
     },
     'components': {
@@ -80,14 +97,14 @@
       type
     },
     methods: {
+      discard(id) {
+        return false
+      },
       favorite(index, id) {
         this.$http.get(`/favorite/${id}`)
           .catch(console.error)
           .then((res) => {
             let body = res.body
-            console.log(body)
-            console.log(this.problemList)
-            console.log(index, id)
             if(body === '主题不存在') {
               return
             }
@@ -109,6 +126,7 @@
         id = ''
       } else {
         id = '/' + id
+        this.self = false
       }
 
       this.$http.get(`/user/publish${id}`)

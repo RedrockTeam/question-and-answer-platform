@@ -44,6 +44,7 @@
             </h3>
           </router-link>
           <img
+            v-show="self"
             src="../../assets/images/discard.png"
             class="iconfont user-reply-discard"
             v-on:click="discard(reply.id)"/>
@@ -65,6 +66,7 @@
     data() {
       return {
         replyList: [],
+        self: true
       }
     },
     'components': {
@@ -96,6 +98,7 @@
         id = ''
       } else {
         id = '/' + id
+        this.self = false
       }
 
       this.$http.get(`/user/reply${id}`)

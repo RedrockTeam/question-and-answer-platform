@@ -96,6 +96,7 @@
         <img class="problem-list-header" :src="problem.user && problem.user.headimgurl">
         <span class="problem-list-username">{{problem.user && problem.user.nickname}}</span>
         <i
+          v-show="problem.self !== false"
           class="iconfont problem-list-collect"
           :class="{isFavorite: problem.isFavorite}"
           v-on:click.stop.prevent="favorite(problem.index, problem.id)"

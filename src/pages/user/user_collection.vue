@@ -30,7 +30,12 @@
     mixins: [problemContainer],
     components: {
       container,
-      problemItem
+      problemItem,
+    },
+    data() {
+      return {
+        self: true
+      }
     },
     created() {
       let id = ~~this.$route.params.id
@@ -39,6 +44,7 @@
       if(id === userInfo.id) {
         id = ''
       } else {
+        this.self = false
         id = '/' + id
       }
 
@@ -46,6 +52,9 @@
         .then((res) => {
           this.problemList = res.body.map((item, index) => {
             item.index = index
+            if(this.self === false) {
+              item.self = false
+            }
             return item
           })
         })
