@@ -102,12 +102,12 @@
 <div>
   <container>
     <div class="info-header-name-wrap">
-      <img class="info-header" :src="myUserInfo.headimgurl">
+      <img class="info-header" :src="userInfo.headimgurl">
       <h2 class="info-username">
-        {{myUserInfo.nickname}}
-        <i class="iconfont sex" :class="{girl: myUserInfo.sex === 2}"></i>
+        {{userInfo.nickname}}
+        <i class="iconfont sex" :class="{girl: userInfo.sex === '0'}"></i>
       </h2>
-      <router-link v-show="self" :to="`/user/${myUserInfo.id}/editor`">
+      <router-link v-show="self" :to="`/user/${userInfo.id}/editor`">
         <img
           class="user-editor-icon"
           src="../../assets/images/user-editor.png"
@@ -129,7 +129,7 @@
     <bg-container>
       <list-wrap class="my-user">
         <list to="/user/collection">
-          <router-link class="list-link" :to="`/user/${myUserInfo.id}/collection`">
+          <router-link class="list-link" :to="`/user/${userInfo.id}/collection`">
             <p class="left">
               <i class="iconfont">&#xe65e;</i>
               <span>{{self ? "我" : "他"}}的收藏</span>
@@ -141,7 +141,7 @@
           </router-link>
         </list>
         <list>
-          <router-link class="list-link" :to="`/user/${myUserInfo.id}/publish`">
+          <router-link class="list-link" :to="`/user/${userInfo.id}/publish`">
             <p class="left">
               <i class="iconfont">&#xe60d;</i>
               <span>{{self ? "我" : "他"}}的发布</span>
@@ -153,7 +153,7 @@
           </router-link>
         </list>
         <list>
-          <router-link class="list-link" :to="`/user/${myUserInfo.id}/reply`">
+          <router-link class="list-link" :to="`/user/${userInfo.id}/reply`">
             <p class="left">
               <i class="iconfont">&#xe6a3;</i>
               <span>{{self ? "我" : "他"}}的回答</span>
@@ -165,13 +165,13 @@
           </router-link>
         </list>
         <list v-show="self">
-          <router-link class="list-link" :to="`/user/${myUserInfo.id}/message`">
+          <router-link class="list-link" :to="`/user/${userInfo.id}/message`">
             <p class="left">
               <i class="iconfont">&#xe60e;</i>
-              <span>{{self ? "我" : "他"}}的消息</span>
+              <span>我的消息</span>
             </p>
             <p class="right">
-               <span>10</span>
+               <span>数据占位符</span>
                <i class="iconfont">&#xe63c;</i>
             </p>
           </router-link>
@@ -180,7 +180,7 @@
       </list-wrap>
     </bg-container>
 
-    <router-link  v-show="!self" :to="`/user/${myUserInfo.id}/chat/`">
+    <router-link disabled="true"  v-show="!self" :to="`/user/${myUserInfo.id}/chat/${userInfo.id}`">
       <btn class="send-msg">发送消息</btn>
     </router-link>
   </container>
@@ -215,6 +215,22 @@
       btn,
       navbar
     },
+    beforeRouteLeave(to, from , next) {
+      let path = to.path
+      if(/collection/.test(path) &&
+        this.userInfo.favorite_num === 0) {
+        return false
+      }
+      if(/reply/.test(path)
+        && this.userInfo.reply_num === 0) {
+        return false
+      }
+      if(/publish/.test(path)
+        && this.userInfo.publish_num === 0) {
+        return false
+      }
+      next(true)
+    },
     created() {
       let id = ~~this.$route.params.id
       this.myUserInfo = utils.ls.get('myUserInfo')
@@ -230,6 +246,7 @@
       this.$http.get(`/user/${id}`)
         .catch(console.error)
         .then((res) => {
+          console.log(res)
           this.userInfo = res.body
         })
     }
