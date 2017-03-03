@@ -51,11 +51,11 @@
 <template>
   <container>
     <bg-container class="message-wrap">
-      <router-link to="/zoe/chat/1" class="message-list" href="##">
-        <img class="message-header" src="../../assets/logo.png" alt="user-header"/>
+      <router-link v-if="messages[0]" v-for="message in messages" :to="`/user/${myUserInfo.id}/chat/${message.user.id}`" class="message-list" href="##">
+        <img class="message-header" :src="message.user.headimgurl" alt="user-header"/>
         <div class="message">
-          <h3 class="message-from">aau<span class="message-time">13:22</span></h3>
-          <p class="message-content">我把写的分词器和mapping手滑、删我把写的分词器和mapping手滑、删我把写的分词器和mapping手滑、删我把写的分词器和mapping手滑、删</p>
+          <h3 class="message-from">{{message.user.nickname}}<span class="message-time">{{message.lastMsg.updated_at}}</span></h3>
+          <p class="message-content">{{message.lastMsg.content}}</p>
         </div>
       </router-link>
     </bg-container>
@@ -67,14 +67,33 @@
   import bgContainer from '../../components/bg-container.vue'
   import listWrap from '../../components/list_wrap'
   import list from '../../components/list'
+  import utils from '../../utils'
+
 
   export default {
     'name': 'zoe-message',
+    data() {
+      return {
+        messages: [],
+        myUserInfo: {}
+      }
+    },
     'components': {
       container,
       bgContainer,
       list,
       listWrap
+    },
+    created() {
+      this.myUserInfo = utils.ls.get('myUserInfo')
+      this.$http.get('/msg/history')
+        .then((res) => {
+          console.log(res)
+          this.messages = res.body.map((message) => {
+            message.lastMsg = message.messages[message.messages.length - 1]
+            return message
+          })
+        })
     }
   }
 </script>

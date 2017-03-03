@@ -28,6 +28,7 @@
   }
 }
 .chat-messages-wrap {
+  margin-bottom: 100px;
   width: 100%;
   padding: 30px;
   box-sizing: border-box;
@@ -74,22 +75,24 @@
 <template>
   <container class="zoe-chat-container">
     <div class="chat-messages-wrap">
-      <div class="chat-message">
-        <img class="chat-header" src="../../assets/logo.png">
+      <div
+        v-for="message in messages"
+        class="chat-message"
+        :class="{'chat-message_to': message.from_id == myUserInfo.id}">
+        <img
+          class="chat-header"
+          :src="message.from_id == myUserInfo.id ? myUserInfo.headimgurl : toHead">
         <p class="chat-message-content">
-          你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界
-        </p>
-      </div>
-      <div class="chat-message chat-message_to">
-        <img class="chat-header" src="../../assets/logo.png">
-        <p class="chat-message-content">
-          你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界
+          {{message.content}}
         </p>
       </div>
     </div>
     <bg-container class="sender-box">
-      <inputbox class="sender-input"></inputbox>
-      <btn class="sender-btn">发送</btn>
+      <input class="sender-input inputbox" v-model="msg"/>
+      <btn
+        class="sender-btn"
+        v-on:click.native="send"
+        >发送</btn>
     </bg-container>
   </container>
 </template>
@@ -98,6 +101,7 @@
   import btn from '../../components/btn'
   import bgContainer from '../../components/bg-container.vue'
   import container from '../../components/container'
+  import utils from '../../utils'
 
   export default {
     'name': 'zoe-chat',
@@ -107,11 +111,77 @@
       bgContainer,
       container
     },
-    created() {
-      let navbar = document.querySelector('.nav-wrap')
-      if(navbar) {
-        navbar.style.display = 'none'
+    data() {
+      return {
+        messages: [],
+        msg: '',
+        to: 0,
+        timer: 0,
+        toHead: '',
+        myUserInfo: {}
       }
+    },
+    methods: {
+      send() {
+        let data = {
+          to: this.to,
+          content: this.msg
+        }
+
+        this.$http.post('/msg/send', data)
+          .then((res) => {
+            let body = res.body
+            if(body.status === 200) {
+              this.messages.push({
+                from_id: this.id,
+                content: this.msg
+              })
+            }
+          })
+          .catch(console.error)
+
+        this.msg = '' // 清空消息框
+      }
+    },
+    created() {
+      this.id = ~~this.$route.params['id']
+      this.to = ~~this.$route.params['to']
+      this.myUserInfo = utils.ls.get('myUserInfo') || {}
+
+      // 获取历史消息
+      this.$http.get(`/msg/history/${this.to}`)
+        .then((res) => {
+          this.toHead = res.body.user.headimgurl
+          this.messages = res.body.messages.reverse()
+        })
+        .catch(console.error)
+
+      // 自动获取消息
+      this.timer = setInterval(() => {
+        this.$http.get(`/msg/receive/${this.to}`)
+          .then((res) => {
+            let messages = res.body
+            this.messages.concat(messages)
+
+            if(!messages.length) {
+              return
+            }
+            window.scrollTo(0, 100000)
+          })
+          .catch(console.error)
+      }, 1000)
+    },
+    beforeDestroy() {
+      clearInterval(this.timer)
+    },
+    mounted() {
+      console.log('obj')
+      window.scrollTo(0, 100000)
+    },
+    updated() {
+      window.scrollTo(0, 100000)
+
     }
+
   }
 </script>

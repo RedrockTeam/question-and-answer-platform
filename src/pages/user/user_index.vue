@@ -34,7 +34,7 @@
     }
     &.girl {
       &::after {
-        color: red;
+        color: #f295ff;
         content: '\E614'
       }
     }
