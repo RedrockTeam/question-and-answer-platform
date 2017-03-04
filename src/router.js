@@ -2,8 +2,7 @@ import VueRouter from 'vue-router'
 
 // home page and subpages
 import home from './pages/home/'
-import homeHot from './pages/home/hot'
-import homeNew from './pages/home/new'
+import post from './pages/home/post'
 
 import detail from './pages/detail'
 
@@ -54,13 +53,10 @@ const userRoutes = [{
 // /home sub routes
 const homeRoutes = [{
   path: '/',
-  redirect: 'new'
+  redirect: 'new/0'
 }, {
-  path: 'hot',
-  component: homeHot
-}, {
-  path: 'new',
-  component: homeNew
+  path: ':type/:id',
+  component: post
 }]
 
 // publish sub routes
