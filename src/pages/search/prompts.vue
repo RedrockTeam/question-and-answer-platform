@@ -32,6 +32,7 @@
 <script>
   import type from '../../components/type'
   import container from '../../components/container'
+  import util from '../../utils'
 
   export default {
     name: 'search-prompt',
@@ -45,11 +46,7 @@
       }
     },
     created() {
-      this.$http.get('/weixiao/category')
-        .then(res => {
-          this.categorys = res.body
-        })
-        .catch(console.error)
+      this.categorys = util.ls.get('info').categories
     }
   }
 

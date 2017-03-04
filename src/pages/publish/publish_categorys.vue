@@ -56,6 +56,7 @@
   import listWrap from '../../components/list_wrap'
   import list from '../../components/list'
   import navbar from '../../components/navbar'
+  import util from '../../utils'
 
   export default {
     name: 'publish-type',
@@ -72,12 +73,7 @@
       }
     },
     created() {
-      this.$http.get('/weixiao/category')
-        .then((res) => {
-          console.log(res)
-          this.categorys = res.body
-        })
-        .catch(console.error)
+      this.categorys = util.ls.get('info').categories
     }
   }
 

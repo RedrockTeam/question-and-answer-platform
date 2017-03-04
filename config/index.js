@@ -22,13 +22,6 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/weixiao': {
-        target: 'http://stu.dev/',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/weixiao': '/weixiao'
-        }
-      },
       '/q': {
         target: 'http://stu.dev/',
         changeOrigin: true,
