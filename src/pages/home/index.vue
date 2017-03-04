@@ -23,7 +23,7 @@
       padding: 0 30px;
       width: 540px;
       border-radius: 5px;
-      background-image: url('/static/notice.png');
+      background-image: url('../../assets/images/notice.png');
       background-size: 100% 100%;
       background-repeat: no-repeat;
       p {
