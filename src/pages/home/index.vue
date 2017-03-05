@@ -53,6 +53,7 @@
     margin-top: 45px;
     margin-bottom: 50px;
     overflow: hidden;
+    padding-bottom: 10px;
     li {
       position: relative;
       float: left;
