@@ -1,7 +1,7 @@
 <style lang="less">
   @import '../../assets/font/iconfont.css';
   .post-content-container {
-    padding-bottom: 180px;
+    margin-bottom: 80px;
   }
   .disabled {
     display: none;
@@ -51,7 +51,7 @@
   }
   .post-container {
     margin-top: 45px;
-    padding-bottom: 30px;
+    margin-bottom: 50px;
     overflow: hidden;
     li {
       position: relative;
@@ -92,7 +92,7 @@
   overflow: hidden;
   justify-content: space-between;
   overflow: hidden;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   width: 100%;
   .category-item {
     margin-top: 20px;
@@ -177,7 +177,7 @@
         <router-link tag="li" activeClass="active" :to="`/home/new/${category_id}`" replace>最新</router-link>
         <router-link tag="li" activeClass="active" :to="`/home/hot/${category_id}`" replace>最热</router-link>
       </ul>
-      <router-view></router-view>
+      <router-view style="margin-bottom: 60px;"></router-view>
     </container>
     <navbar></navbar>
   </div>
