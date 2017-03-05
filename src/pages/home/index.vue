@@ -260,6 +260,7 @@
       if(to.params['id'] === '-1') {
         return
       }
+      this.category_id = this.id
       next(true)
     },
   }
