@@ -72,6 +72,7 @@
 </style>
 
 <template>
+<div>
   <container class="answer-editor">
     <form class="answer-form">
       <textarea v-model="content" class="textareabox answer-content"></textarea>
@@ -90,8 +91,9 @@
       </div>
       <btn v-on:click.native="reply">发布</btn>
     </form>
-    <navbar></navbar>
   </container>
+  <navbar></navbar>
+</div>
 </template>
 
 <script>
