@@ -101,7 +101,7 @@
   import btn from '../../components/btn'
   import bgContainer from '../../components/bg-container.vue'
   import container from '../../components/container'
-  import utils from '../../utils'
+  import util from '../../util'
 
   export default {
     'name': 'zoe-chat',
@@ -146,7 +146,7 @@
     created() {
       this.id = ~~this.$route.params['id']
       this.to = ~~this.$route.params['to']
-      this.myUserInfo = utils.ls.get('myUserInfo') || {}
+      this.myUserInfo = util.ls.get('myUserInfo') || {}
 
       // 获取历史消息
       this.$http.get(`/msg/history/${this.to}`)

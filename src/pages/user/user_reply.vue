@@ -59,7 +59,7 @@
   import container from '../../components/container'
   import bgContainer from '../../components/bg-container'
   import list from '../../components/list'
-  import utils from '../../utils'
+  import util from '../../util'
 
   export default {
     name: 'user-reply',
@@ -92,7 +92,7 @@
     created() {
 
       let id = ~~this.$route.params.id
-      let userInfo = utils.ls.get('myUserInfo')
+      let userInfo = util.ls.get('myUserInfo')
 
       if(id === userInfo.id) {
         id = ''

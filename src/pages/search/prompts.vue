@@ -32,7 +32,7 @@
 <script>
   import type from '../../components/type'
   import container from '../../components/container'
-  import util from '../../utils'
+  import util from '../../util'
 
   export default {
     name: 'search-prompt',

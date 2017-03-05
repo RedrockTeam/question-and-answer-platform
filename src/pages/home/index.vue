@@ -191,7 +191,7 @@
   import container from '../../components/container'
   import btn from '../../components/btn'
   import navbar from '../../components/navbar'
-  import util from '../../utils'
+  import util from '../../util'
 
   const categoriesMap = {
     '学习': 'learing',

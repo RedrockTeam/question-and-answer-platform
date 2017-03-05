@@ -3,8 +3,13 @@ let ls = window.localStorage
 export default {
   ls: {
     set(key, value) {
+      if(key && value) {
+        console.error('localStorage key and value must not empty')
+      }
       if(typeof value === 'object') {
         ls.setItem(key, JSON.stringify(value))
+      } else {
+        ls.setItem(key, value)
       }
     },
     get(key) {
@@ -15,7 +20,7 @@ export default {
       } catch(e) {
         console.error(e)
       }
-      return ls.getItem(key)
+      return value
     }
   }
 }

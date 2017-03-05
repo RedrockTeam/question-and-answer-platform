@@ -81,7 +81,7 @@
   import bgContainer from '../../components/bg-container'
   import type from '../../components/type'
 
-  import utils from '../../utils'
+  import util from '../../util'
 
   export default {
     name: 'zoe-answer',
@@ -120,7 +120,7 @@
     created() {
 
       let id = ~~this.$route.params.id
-      let userInfo = utils.ls.get('myUserInfo')
+      let userInfo = util.ls.get('myUserInfo')
 
       if(id === userInfo.id) {
         id = ''

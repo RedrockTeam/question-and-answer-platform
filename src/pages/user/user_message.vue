@@ -67,7 +67,7 @@
   import bgContainer from '../../components/bg-container.vue'
   import listWrap from '../../components/list_wrap'
   import list from '../../components/list'
-  import utils from '../../utils'
+  import util from '../../util'
 
 
   export default {
@@ -85,7 +85,7 @@
       listWrap
     },
     created() {
-      this.myUserInfo = utils.ls.get('myUserInfo')
+      this.myUserInfo = util.ls.get('myUserInfo')
       this.$http.get('/msg/history')
         .then((res) => {
           console.log(res)

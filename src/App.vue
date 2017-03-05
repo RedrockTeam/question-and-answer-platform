@@ -11,7 +11,7 @@
 
 <script>
 import navbar from './components/navbar'
-import utils from './utils'
+import util from './util'
 
 export default {
   name: 'App',
@@ -22,7 +22,7 @@ export default {
     this.$http.get('/user')
       .catch(console.error)
       .then((res) => {
-        utils.ls.set('myUserInfo', res.body)
+        util.ls.set('myUserInfo', res.body)
       })
   }
 }

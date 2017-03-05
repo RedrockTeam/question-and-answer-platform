@@ -196,7 +196,7 @@
   import btn from '../../components/btn'
   import navbar from '../../components/navbar'
 
-  import utils from '../../utils'
+  import util from '../../util'
 
   export default {
     name: 'user-index',
@@ -233,7 +233,7 @@
     },
     created() {
       let id = ~~this.$route.params.id
-      this.myUserInfo = utils.ls.get('myUserInfo')
+      this.myUserInfo = util.ls.get('myUserInfo')
 
 
       if(id === this.myUserInfo.id) {

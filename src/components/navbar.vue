@@ -63,7 +63,7 @@
 </template>
 
 <script>
-  import utils from '../utils'
+  import util from '../util'
 
   export default {
     name: 'navbar',
@@ -73,7 +73,7 @@
       }
     },
     created() {
-      let myUserInfo = utils.ls.get('myUserInfo')
+      let myUserInfo = util.ls.get('myUserInfo')
       if(myUserInfo) {
         this.userid = myUserInfo.id
       }
@@ -81,7 +81,7 @@
         .catch(console.error)
         .then((res) => {
           this.myUserInfo = res.body
-          utils.ls.set('myUserInfo', res.body)
+          util.ls.set('myUserInfo', res.body)
         })
     }
   }

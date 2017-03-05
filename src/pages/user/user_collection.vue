@@ -23,7 +23,7 @@
   import problemItem from '../../components/problem_item'
   import problemContainer from '../../components/problem_container-mixin'
 
-  import utils from '../../utils'
+  import util from '../../util'
 
   export default {
     name: 'zoe-collection',
@@ -39,7 +39,7 @@
     },
     created() {
       let id = ~~this.$route.params.id
-      let userInfo = utils.ls.get('myUserInfo')
+      let userInfo = util.ls.get('myUserInfo')
 
       if(id === userInfo.id) {
         id = ''

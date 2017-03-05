@@ -11,7 +11,7 @@
 
 <script>
   import problemItem from '../../components/problem_item'
-  import util from '../../utils'
+  import util from '../../util'
 
   export default  {
     components: {

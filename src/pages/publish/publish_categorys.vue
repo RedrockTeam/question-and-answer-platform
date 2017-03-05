@@ -56,7 +56,7 @@
   import listWrap from '../../components/list_wrap'
   import list from '../../components/list'
   import navbar from '../../components/navbar'
-  import util from '../../utils'
+  import util from '../../util'
 
   export default {
     name: 'publish-type',
