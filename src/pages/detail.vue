@@ -133,10 +133,11 @@
 </style>
 
 <template>
+<div>
   <container>
     <bg-container class="detail-wrap">
       <div class="detail-info">
-        <img class="detail-header" src="../assets/logo.png">
+        <img class="detail-header" :src="problem.user && problem.user.headimgurl">
         <div class="detail-user-time">
           <span class="detail-user">{{ problem.user && problem.user.nickname}}</span>
           <span class="detail-time">{{problem.updated_at}}</span>
@@ -187,8 +188,9 @@
         </list>
       </list-wrap>
     </bg-container>
-    <navbar></navbar>
   </container>
+  <navbar></navbar>
+</div>
 </template>
 
 <script>
@@ -224,6 +226,7 @@
         .catch(console.error)
         .then((res) => {
           this.problem = res.body
+          console.log(this.problem)
         })
 
       this.$http.get(`/reply/${this.id}`)
