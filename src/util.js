@@ -3,8 +3,8 @@ let ls = window.localStorage
 export default {
   ls: {
     set(key, value) {
-      if(key && value) {
-        console.error('localStorage key and value must not empty')
+      if(!(key && value)) {
+        return console.error('localStorage key and value must not empty')
       }
       if(typeof value === 'object') {
         ls.setItem(key, JSON.stringify(value))

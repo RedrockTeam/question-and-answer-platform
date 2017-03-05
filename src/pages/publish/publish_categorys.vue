@@ -18,8 +18,6 @@
 
 <template>
   <div>
-
-
     <container class="publish-type">
      <bg-container class="publish-type-container">
        <list-wrap>
@@ -46,7 +44,6 @@
        </list-wrap>
      </bg-container>
     </container>
-    <navbar></navbar>
   </div>
 </template>
 
@@ -55,7 +52,6 @@
   import bgContainer from '../../components/bg-container.vue'
   import listWrap from '../../components/list_wrap'
   import list from '../../components/list'
-  import navbar from '../../components/navbar'
   import util from '../../util'
 
   export default {
@@ -64,8 +60,7 @@
       container,
       bgContainer,
       listWrap,
-      list,
-      navbar
+      list
     },
     data() {
       return {

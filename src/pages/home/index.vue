@@ -49,10 +49,6 @@
     width:  100%;
     height: 100%;
   }
-  .container {
-    margin: 0 auto;
-    width: 690px;
-  }
   .post-container {
     margin-top: 45px;
     padding-bottom: 30px;
@@ -252,7 +248,6 @@
           this.info.categories.forEach((item) => {
             if(categoriesMap[item.name]) {
               let category_id = categoriesMap[item.name] + '_id'
-              console.log(category_id)
               this[category_id] = item.id
             }
           })

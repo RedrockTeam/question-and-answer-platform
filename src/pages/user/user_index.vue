@@ -184,7 +184,6 @@
       <btn class="send-msg">发送消息</btn>
     </router-link>
   </container>
-  <navbar v-show="self"></navbar>
 </div>
 </template>
 
@@ -194,7 +193,6 @@
   import listWrap from '../../components/list_wrap'
   import list from '../../components/list'
   import btn from '../../components/btn'
-  import navbar from '../../components/navbar'
 
   import util from '../../util'
 
@@ -212,8 +210,7 @@
       bgContainer,
       listWrap,
       list,
-      btn,
-      navbar
+      btn
     },
     beforeRouteLeave(to, from , next) {
       let path = to.path
