@@ -20,7 +20,6 @@
   height: 88px;
 }
 .message {
-  float: left;
   padding: 24px 0;
   height: 88px;
   width: 550px;

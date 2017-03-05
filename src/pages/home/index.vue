@@ -92,11 +92,12 @@
   overflow: hidden;
   justify-content: space-between;
   overflow: hidden;
+  margin-bottom: 50px;
   width: 100%;
   .category-item {
     margin-top: 20px;
-    margin-left: 60px;
-    margin-right: 60px;
+    margin-left: 55px;
+    margin-right: 55px;
     width: 115px;
     height: 155px;
     background-size: 100% 100%;

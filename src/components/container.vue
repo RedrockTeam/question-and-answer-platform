@@ -1,7 +1,7 @@
 <style lang="less">
   .container {
     margin: 0 auto;
-    width: 710px;
+    padding: 0 30px;
     border-radius: 5px;
     background-color: none;
     overflow: hidden;

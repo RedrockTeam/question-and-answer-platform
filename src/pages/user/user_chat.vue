@@ -73,6 +73,7 @@
 }
 </style>
 <template>
+<div>
   <container class="zoe-chat-container">
     <div class="chat-messages-wrap">
       <div
@@ -87,14 +88,15 @@
         </p>
       </div>
     </div>
-    <bg-container class="sender-box">
-      <input class="sender-input inputbox" v-model="msg"/>
-      <btn
-        class="sender-btn"
-        v-on:click.native="send"
-        >发送</btn>
-    </bg-container>
   </container>
+  <bg-container class="sender-box">
+    <input class="sender-input inputbox" v-model="msg"/>
+    <btn
+      class="sender-btn"
+      v-on:click.native="send"
+      >发送</btn>
+  </bg-container>
+</div>
 </template>
 <script>
   import inputbox from '../../components/inputbox'
@@ -175,12 +177,10 @@
       clearInterval(this.timer)
     },
     mounted() {
-      console.log('obj')
       window.scrollTo(0, 100000)
     },
     updated() {
       window.scrollTo(0, 100000)
-
     }
 
   }

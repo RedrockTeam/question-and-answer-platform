@@ -69,6 +69,7 @@
     name: 'navbar',
     data() {
       return {
+        show: true,
         myUserInfo: {}
       }
     },
@@ -83,6 +84,6 @@
           this.myUserInfo = res.body
           util.ls.set('myUserInfo', res.body)
         })
-    }
+    },
   }
 </script>
