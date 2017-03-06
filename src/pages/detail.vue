@@ -129,12 +129,14 @@
   position: relative;
   top: 2px;
 }
-
+.detail-container {
+  padding-bottom: 100px;
+}
 </style>
 
 <template>
 <div>
-  <container>
+  <container class="detail-container">
     <bg-container class="detail-wrap">
       <div class="detail-info">
         <img class="detail-header" :src="problem.user && problem.user.headimgurl">
@@ -181,7 +183,7 @@
 
             <div class="reply-praise-wrap">
               <i class="iconfont reply-praise">&#xe64e;</i>
-              <span class="reply-praise-num">{{reply.praisen_num || '假装有数字'}}</span>
+              <span class="reply-praise-num">{{reply.praisen_num || '0'}}</span>
             </div>
           </div>
           <p class="reply-content">{{reply.content}}</p>
