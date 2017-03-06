@@ -13,7 +13,7 @@
   }
   .zoe-editor-input {
     margin-left: 80px;
-    width: 614px;
+    width: 600px;
     text-align: right;
     font-size: 28px;
   }
