@@ -38,7 +38,7 @@
         v-for="(reply, index) in replyList"
         class="user-reply-container">
         <list class="user-reply-list">
-          <router-link :to="`/detail/${reply.id}`">
+          <router-link :to="`/detail/${reply.post.id}`">
             <h3 class="user-reply-title">
               回答: {{reply.post && reply.post.title}}
             </h3>
