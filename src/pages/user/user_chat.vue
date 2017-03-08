@@ -134,15 +134,19 @@
           .then((res) => {
             let body = res.body
             if(body.status === 200) {
+              console.log(this.id, this.msg)
               this.messages.push({
                 from_id: this.id,
                 content: this.msg
               })
+              // 清空消息
+              this.msg = ''
+
             }
           })
           .catch(console.error)
 
-        this.msg = '' // 清空消息框
+
       }
     },
     created() {
