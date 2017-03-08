@@ -49,6 +49,7 @@
 
 <script>
   import router from '../../router'
+  import util from '../../util'
 
   import container from '../../components/container'
   import btn from '../../components/btn'
@@ -61,6 +62,7 @@
     },
     data() {
       return {
+        myUserInfo: {},
         nickname: '',
         school: '',
         college: ''
@@ -68,17 +70,25 @@
     },
     methods: {
       complete() {
-        let nickname = this.nickname
-        let school = this.school
-        let college = this.college
-        this.$http.post('/user', {nickname, school, college})
+        let nickname = this.nickname === '' ? this.myUserInfo.nickname : this.nickname
+        let school = this.school === '' ? this.myUserInfo.school : this.school
+        let college = this.college === '' ? this.myUserInfo.college : this.college
+        let sex = this.myUserInfo.sex
+        let headimgurl = this.myUserInfo.headimgurl
+        this.$http.post('/user', {nickname, school, college, sex, headimgurl})
           .catch(console.error)
           .then((res) => {
             if(res.status === 200) {
-              router.push('/user')
+              router.push(`/user/${this.myUserInfo.id}`)
             }
           })
       }
+    },
+    created() {
+      this.myUserInfo = util.ls.get('myUserInfo')
+      this.nickname = this.myUserInfo.nickname
+      this.school = this.myUserInfo.school
+      this.college = this.myUserInfo.college
     }
   }
 
