@@ -127,7 +127,7 @@
       send() {
         let data = {
           to: this.to,
-          content: this.msg
+          msg: this.msg
         }
 
         this.$http.post('/msg/send', data)

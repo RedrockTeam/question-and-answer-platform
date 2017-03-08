@@ -70,14 +70,14 @@
 
 
   export default {
-    'name': 'zoe-message',
+    name: 'zoe-message',
     data() {
       return {
         messages: [],
         myUserInfo: {}
       }
     },
-    'components': {
+    components: {
       container,
       bgContainer,
       list,
