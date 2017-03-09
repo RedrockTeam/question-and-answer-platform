@@ -77,16 +77,15 @@
     <form class="answer-form">
       <textarea v-model="content" class="textareabox answer-content"></textarea>
       <div class="answer-images-wrap">
-<!--         <div class="answer-image">
-          <img src="/static/logo.png">
-          <i class="iconfont answer-delete-img">&#xe619;</i>
+        <div v-for="(image, index) in previewImages" class="answer-image">
+          <img :src="image">
+          <i class="iconfont answer-delete-img" v-on:click="deleteImage(index)">&#xe619;</i>
         </div>
-        <div class="answer-image">
-          <img src="/static/logo.png">
-          <i class="iconfont answer-delete-img">&#xe619;</i>
-        </div> -->
-        <div class="answer-image-add">
-          <i class="iconfont">&#xe619;</i>
+        <div class="answer-image-add" v-show="false">
+          <label for="image">
+            <i class="iconfont">&#xe619;</i>
+            <input type="file" id="image" accept="image/gif, image/jpeg" v-show="false" name="image" v-on:change="imageChange">
+          </label>
         </div>
       </div>
       <btn v-on:click.native="reply">发布</btn>
@@ -116,27 +115,65 @@
     data() {
       return {
         id: 0,
-        content: ''
+        content: '',
+        image_url: [],
+        previewImages: []
       }
     },
     methods: {
+      deleteImage(index) {
+        this.image_url = this.image_url.filter((a, i) => {
+          return index !== i
+        })
+        this.previewImages = this.previewImages.filter((a, i) => {
+          return index !== i
+        })
+      },
+      previewImage(file) {
+        let reader = new FileReader()
+        reader.onload = (e) => {
+          this.previewImages.push(e.target.result)
+        }
+        reader.readAsDataURL(file)
+      },
       reply() {
         let pid = 0
         let content = this.content
+        let image_url = this.image_url
         if(content.length === 0 && content.length > 100) {
-          alert('content so long or empty')
+          alert('内容不能多于100个字, 或没有内容')
         }
         let data = {
           pid,
-          content
+          content,
+          image_url
         }
         this.$http.post(`/reply/${this.id}`, data)
           .then((res) => {
             if(res.body !== 0) {
-              console.log(router.go(-1))
+              router.go(-1)
             }
           })
           .catch(console.error)
+      },
+      imageChange(e) {
+        let file = e.target.files[0]
+        let size = file.size
+        if(size > 1000000) {
+          return alert('图片太大, 不能上传')
+        }
+        let data = new FormData()
+        data.append('image', file)
+        this.$http.post('/upload/image', data)
+          .then((res) => {
+            let body = res.body
+            if(body.status === 200) {
+              this.image_url.push(body.data)
+            }
+          })
+          .catch(console.error)
+
+        this.previewImage(file)
       }
     },
     created() {

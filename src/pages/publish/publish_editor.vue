@@ -19,7 +19,16 @@
     width: 100%;
     border-top: 1px solid #95e3ef;
   }
-  .publish-image {
+  .answer-images-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 75px;
+    padding-top: 43px;
+    width: 100%;
+    border-top: 1px solid #95e3ef;
+  }
+  .answer-image {
     display: inline-block;
     position: relative;
     width: 200px;
@@ -32,8 +41,9 @@
       width: 200px;
       height: 200px;
     }
-    .iconfont {
+    .answer-delete-img {
       font-family: 'iconfont';
+      content: '\e619';
       position: absolute;
       top: -17px;
       right: -17px;
@@ -50,7 +60,7 @@
     }
   }
 
-  .publish-image-add {
+  .answer-image-add {
     display: inline-block;
     width: 200px;
     height: 200px;
@@ -86,11 +96,29 @@
         placeholder="请填写内容30个字以内">
       </textarea>
 
-      <div class="publish-images-wrap">
-        <div class="publish-image-add">
-          <i class="iconfont">&#xe619;</i>
+      <div class="answer-images-wrap">
+        <div v-for="(image, index) in previewImages" class="answer-image">
+          <img :src="image">
+          <i class="iconfont answer-delete-img" v-on:click="deleteImage(index)">&#xe619;</i>
+        </div>
+        <div class="answer-image-add" v-show="image_url.length <= 2">
+          <label for="image">
+            <i class="iconfont">&#xe619;</i>
+            <input type="file" id="image" accept="image/gif, image/jpeg" v-show="false" name="image" v-on:change="imageChange">
+          </label>
         </div>
       </div>
+      <!-- <div class="publish-images-wrap">
+        <div class="publish-image">
+          <img v-for="(image, index) in previewImages" :src="image">
+        </div>
+        <div class="publish-image publish-image-add">
+          <label for="image">
+            <i class="iconfont">&#xe619;</i>
+            <input type="file" id="image" accept="image/gif, image/jpeg" v-show="false" name="image" v-on:change="imageChange">
+          </label>
+        </div>
+      </div> -->
       <btn v-on:click.native="publish">发布</btn>
     </form>
   </container>
@@ -116,10 +144,39 @@
       return {
         category_id: 0,
         title: '',
-        content: ''
+        content: '',
+        previewImages: [],
+        image_url: []
       }
     },
     methods: {
+      previewImage(file) {
+        let reader = new FileReader()
+        reader.onload = (e) => {
+          this.previewImages.push(e.target.result)
+        }
+        reader.readAsDataURL(file)
+      },
+      imageChange(e) {
+        let file = e.target.files[0]
+        let size = file.size
+        if(size > 1000000) {
+          return alert('图片太大, 不能上传')
+        }
+        let data = new FormData()
+        data.append('image', file)
+        this.$http.post('/upload/image', data)
+          .then((res) => {
+            let body = res.body
+            if(body.status === 200) {
+              this.image_url.push(body.data)
+              console.log(this.image_url)
+            }
+          })
+          .catch(console.error)
+
+        this.previewImage(file)
+      },
       publish() {
         let title = this.title
         let category_id = this.category_id
@@ -128,21 +185,22 @@
         let titleLen = title.length
         let contentLen = this.content.length
 
+        let image_url = this.image_url
+
         let data = {
           category_id,
           title,
-          content
+          content,
+          image_url
         }
+        console.log(data)
         if(titleLen === 0) {
-          alert('请填写标题')
-          return
+          return alert('请填写标题')
         } else if(titleLen > 30) {
-          alert('标题太长了啊')
-          return
+          return alert('标题太长了啊')
         }
         if(contentLen > 300) {
-          alert('内容长度不得找过300个字啊')
-          return
+          return alert('内容长度不得超过300个字啊啊啊啊')
         }
         this.$http.post('/post', data)
           .then((res) => {

@@ -115,6 +115,14 @@
   &-praise {
     font-size: 40px;
     color: #74c6fe;
+    &::after {
+      content: '\e64e'
+    }
+  }
+  &-parise-liked {
+    &::after {
+      content: '\e61f'
+    }
   }
   &-praise-num {
     font-size: 20px;
@@ -154,7 +162,7 @@
         {{problem.content}}
       </p>
       <p v-if="problem.image_url && problem.image_url[0]" class="detail-image">
-        <img v-for="imgurl in problem.mage_url" :src="imgurl">
+        <img v-for="imgurl in problem.image_url" :src="imgurl">
       </p>
       <div class="detail-browse-reply">
         <span class="detail-browse">浏览{{problem.view_count}}次</span>
@@ -181,8 +189,8 @@
               </div>
             </router-link>
 
-            <div class="reply-praise-wrap">
-              <i class="iconfont reply-praise">&#xe64e;</i>
+            <div class="reply-praise-wrap" v-on:click.stop.prevent="thumb(reply.id)">
+              <i class="iconfont reply-praise" :class="{'reply-parise-liked': reply.like_it}"></i>
               <span class="reply-praise-num">{{reply.praisen_num || '0'}}</span>
             </div>
           </div>
@@ -253,6 +261,13 @@
               this.problem.isFavorite = true
             }
           })
+      },
+      thumb(id) {
+        this.$http.get(`/like/${id}`)
+          .then((res) => {
+            console.log(res)
+          })
+          .catch(console.error)
       }
     },
     beforeRouteEnter(to, from , next) {
