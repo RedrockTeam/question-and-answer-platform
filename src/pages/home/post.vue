@@ -101,8 +101,9 @@
         })
       next(true)
     },
-    beforeRouteLeave() {
+    beforeRouteLeave(to, from , next) {
       window.removeEventListener('scroll', this.scroll)
+      next(true)
     }
   }
 </script>
