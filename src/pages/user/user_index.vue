@@ -242,6 +242,10 @@
           this.userInfo = res.body
         })
         .catch(console.error)
+    },
+    beforeRouteUpdate(to, from, next) {
+      this.self = true
+      next(true)
     }
   }
 
