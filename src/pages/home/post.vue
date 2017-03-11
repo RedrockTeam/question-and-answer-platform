@@ -104,6 +104,16 @@
     beforeRouteLeave(to, from , next) {
       window.removeEventListener('scroll', this.scroll)
       next(true)
+    },
+    beforeRouteUpdate(to, from, next) {
+      this.id = to.params.id
+      this.type = to.params.type
+      this.page = 1
+      this.fetchProblemList()
+        .then((problemList) => {
+          this.problemList = problemList
+        })
+      next(true)
     }
   }
 </script>
