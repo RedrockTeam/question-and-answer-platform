@@ -235,7 +235,7 @@
       this.$http.get('/notice')
         .then((res) => {
           this.notice = res.body
-          if(this.notice.id !== this.preNoticeId) {
+          if(this.notice.content !== void 0 && this.notice.id !== this.preNoticeId) {
             this.noticeShow = true
           }
         })
