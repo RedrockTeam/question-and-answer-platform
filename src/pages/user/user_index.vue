@@ -233,19 +233,15 @@
       this.myUserInfo = util.ls.get('myUserInfo')
 
 
-      if(id === this.myUserInfo.id) {
-        this.userInfo = this.myUserInfo
-        return
+      if(id !== this.myUserInfo.id) {
+        this.self = false
       }
 
-      this.self = false
-
       this.$http.get(`/user/${id}`)
-        .catch(console.error)
         .then((res) => {
-          console.log(res)
           this.userInfo = res.body
         })
+        .catch(console.error)
     }
   }
 
