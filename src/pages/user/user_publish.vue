@@ -34,6 +34,13 @@
     margin-left: 30px;
     font-size: 28px;
     line-height: 30px;
+    a {
+      display: inline-block;
+      width: 430px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   }
 
 </style>
@@ -50,7 +57,7 @@
           <img class="problem-list-header" :src="problem.user && problem.user.headimgurl">
           </router-link>
           <span class="zoe-publish-list-title">
-            {{problem.title}}
+            <a>{{problem.title}}</a>
             <type>{{(problem.category&&problem.category.name)||'其他'}}</type>
           </span>
         </p>
