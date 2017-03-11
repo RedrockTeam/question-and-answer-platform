@@ -89,7 +89,7 @@
         .then((res) => {
           console.log(res)
           this.messages = res.body.map((message) => {
-            message.lastMsg = message.messages[message.messages.length - 1]
+            message.lastMsg = message.messages[0]
             return message
           })
         })
