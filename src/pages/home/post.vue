@@ -34,7 +34,8 @@
       },
       fetchProblemList() {
 
-        if(this.id === '0') {
+        // 全部分类
+        if(this.id === '-1') {
           this.fetchURL = `/q/${this.type}?page=${this.page}`
         } else {
           this.fetchURL = `/q/${this.type}?category_id=${this.id}&page=${this.page}`

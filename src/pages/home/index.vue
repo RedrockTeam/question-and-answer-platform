@@ -196,6 +196,7 @@
     '生活': 'life',
     '技术': 'technology',
     '就业': 'employment',
+    '分享': 'sharing'
   }
 
   export default  {
@@ -213,12 +214,12 @@
         noticeShow: false,
         type: 'new',
         category_id: 0,
-        learing_id: -1,
-        life_id: -1,
-        others_id: -1,
-        technology_id: -1,
-        employment_id: -1,
-        sharing_id: -1
+        learing_id: -2, // -2是没有没有该分类 -1是全部分类
+        life_id: -2,
+        others_id: 0, // 其他类别 id 为0
+        technology_id: -2,
+        employment_id: -2,
+        sharing_id: -2
       }
     },
     methods: {
@@ -258,7 +259,8 @@
     beforeRouteUpdate(to, from, next) {
       this.id = ~~to.params['id']
       this.type = to.params['type']
-      if(to.params['id'] === '-1') {
+      // id 是-2表明没有该分类
+      if(to.params['id'] === '-2') {
         return
       }
       this.category_id = this.id

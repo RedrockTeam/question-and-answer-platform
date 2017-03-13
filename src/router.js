@@ -53,7 +53,7 @@ const userRoutes = [{
 // /home sub routes
 const homeRoutes = [{
   path: '/',
-  redirect: 'new/0'
+  redirect: 'new/-1'
 }, {
   path: ':type/:id',
   component: post
