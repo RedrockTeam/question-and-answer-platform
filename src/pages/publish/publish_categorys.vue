@@ -21,12 +21,15 @@
     <container class="publish-type">
      <bg-container class="publish-type-container">
        <list-wrap>
-         <list>
-          <p class="left">分享</p>
-          <p class="right">
-            <i class="iconfont">&#xe63c;</i>
-          </p>
-         </list>
+         <router-link
+          :to="`/publish/editor/${sharing}`">
+           <list>
+            <p class="left">分享</p>
+            <p class="right">
+              <i class="iconfont">&#xe63c;</i>
+            </p>
+           </list>
+         </router-link>
        </list-wrap>
      </bg-container>
      <bg-container>
@@ -64,11 +67,17 @@
     },
     data() {
       return {
-        categorys: []
+        categorys: [],
+        sharing: 0
       }
     },
     created() {
-      this.categorys = util.ls.get('info').categories
+      this.categorys = util.ls.get('info').categories.filter((item) => {
+        if(item.name === '分享') {
+          this.sharing = item.id
+        }
+        return item.name !== '分享'
+      })
     }
   }
 
