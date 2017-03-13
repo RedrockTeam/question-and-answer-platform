@@ -227,25 +227,48 @@
       return {
         id: this.$route.params.id,
         problem: {},
-        replies: []
+        replies: [],
+        page: 1,
+        busy: false
       }
     },
     created() {
       this.id = this.$route.params.id
       this.$http.get(`/post/${this.id}`)
-        .catch(console.error)
         .then((res) => {
           this.problem = res.body
-          console.log(this.problem)
         })
+        .catch(console.error)
 
       this.$http.get(`/reply/${this.id}`)
-        .catch(console.error)
         .then((res) => {
           this.replies = res.body.replies
         })
+        .catch(console.error)
+
+      window.addEventListener('scroll', this.scroll)
     },
     methods: {
+      scroll(event) {
+        let viewportHeight = window.innerHeight
+        let scrollY = window.pageYOffset
+        let documentHeight = document.documentElement.offsetHeight
+        if(viewportHeight + scrollY === documentHeight && this.busy === false) {
+          this.busy = true
+          this.page++
+          this.fetchReplies()
+            .then((replies) => {
+              this.replies = this.replies.concat(replies)
+              this.busy = false
+            })
+        }
+      },
+      fetchReplies() {
+        return this.$http.get(`/reply/${i}?page=${page}`)
+          .then((res) => {
+            return res.body.replies
+          })
+      },
       favorite(id) {
         this.$http.get(`/favorite/${id}`)
           .catch(console.error)
@@ -263,7 +286,6 @@
           })
       },
       thumb(index, id) {
-        console.log(index, id)
         this.$http.get(`/like/${id}`)
           .then((res) => {
             let body = res.body
@@ -284,8 +306,11 @@
         navWrap.style.display = 'none'
       }
       next(true)
-    }
-
+    },
+    beforeRouteLeave(to, from, next) {
+      window.removeEventListener('scroll', this.scroll)
+      next(true)
+    },
   }
 
 </script>
