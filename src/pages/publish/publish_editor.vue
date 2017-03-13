@@ -108,17 +108,6 @@
           </label>
         </div>
       </div>
-      <!-- <div class="publish-images-wrap">
-        <div class="publish-image">
-          <img v-for="(image, index) in previewImages" :src="image">
-        </div>
-        <div class="publish-image publish-image-add">
-          <label for="image">
-            <i class="iconfont">&#xe619;</i>
-            <input type="file" id="image" accept="image/gif, image/jpeg" v-show="false" name="image" v-on:change="imageChange">
-          </label>
-        </div>
-      </div> -->
       <btn v-on:click.native="publish">发布</btn>
     </form>
   </container>
@@ -146,7 +135,8 @@
         title: '',
         content: '',
         previewImages: [],
-        image_url: []
+        image_url: [],
+        disable: false
       }
     },
     methods: {
@@ -170,7 +160,6 @@
             let body = res.body
             if(body.status === 200) {
               this.image_url.push(body.data)
-              console.log(this.image_url)
             }
           })
           .catch(console.error)
@@ -181,10 +170,6 @@
         let title = this.title
         let category_id = this.category_id
         let content = this.content
-
-        let titleLen = title.length
-        let contentLen = this.content.length
-
         let image_url = this.image_url
 
         let data = {
@@ -193,26 +178,29 @@
           content,
           image_url
         }
-        console.log(data)
-        if(titleLen === 0) {
-          return alert('请填写标题')
-        } else if(titleLen > 30) {
-          return alert('标题太长了啊')
+        // check
+        if(title.length === 0 || title.length > 30) {
+          return alert('标题应该在 1-30个字之间')
         }
-        if(contentLen > 300) {
-          return alert('内容长度不得超过300个字啊啊啊啊')
+        if(content.length > 300 || content.length === 0) {
+          return alert('内容长度: 1-300个字啊啊啊啊')
         }
+        if(this.disable === true) {
+          return
+        }
+        this.disable = true
         this.$http.post('/post', data)
           .then((res) => {
-            if(res.body !== 0)
+            if(res.body !== 0){
               router.push(`/detail/${res.body}`)
+            }
+            this.disable = false
           })
           .catch(console.error)
       }
     },
     created() {
       this.category_id = this.$route.params.category_id
-      console.log(this.category_id)
     }
   }
 
