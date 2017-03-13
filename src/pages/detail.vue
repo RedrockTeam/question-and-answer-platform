@@ -175,9 +175,9 @@
       </div>
     </bg-container>
 
-    <bg-container class="replys-wrap">
+    <bg-container class="replies-wrap">
       <list-wrap>
-        <list v-for="reply in replys" class="reply-list">
+        <list v-for="(reply, index) in replies" class="reply-list">
           <div class="reply-info-wrap">
             <router-link :to="`/user/${reply.user&&reply.user.id}`">
               <img class="reply-header" :src="reply.user&&reply.user.headimgurl">
@@ -189,9 +189,9 @@
               </div>
             </router-link>
 
-            <div class="reply-praise-wrap" v-on:click.stop.prevent="thumb(reply.id)">
-              <i class="iconfont reply-praise" :class="{'reply-parise-liked': reply.like_it}"></i>
-              <span class="reply-praise-num">{{reply.praisen_num || '0'}}</span>
+            <div class="reply-praise-wrap" v-on:click.stop.prevent="thumb(index, reply.id)">
+              <i class="iconfont reply-praise" :class="{'reply-parise-liked': reply.isLike}"></i>
+              <span class="reply-praise-num">{{reply.like_count || '0'}}</span>
             </div>
           </div>
           <p class="reply-content">{{reply.content}}</p>
@@ -227,7 +227,7 @@
       return {
         id: this.$route.params.id,
         problem: {},
-        replys: []
+        replies: []
       }
     },
     created() {
@@ -242,7 +242,7 @@
       this.$http.get(`/reply/${this.id}`)
         .catch(console.error)
         .then((res) => {
-          this.replys = res.body.replies
+          this.replies = res.body.replies
         })
     },
     methods: {
@@ -262,10 +262,18 @@
             }
           })
       },
-      thumb(id) {
+      thumb(index, id) {
+        console.log(index, id)
         this.$http.get(`/like/${id}`)
           .then((res) => {
-            console.log(res)
+            let body = res.body
+            if(body === 'yes') {
+              this.replies[index].isLike = true
+              this.replies[index].like_count += 1
+            } else {
+              this.replies[index].isLike = false
+              this.replies[index].like_count -= 1
+            }
           })
           .catch(console.error)
       }
