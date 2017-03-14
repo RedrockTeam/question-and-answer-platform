@@ -13,7 +13,7 @@
 
 <template>
   <span class="btn" href="##">
-    <slot>
+    <slot/>
   </span>
 </template>
 
