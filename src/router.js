@@ -79,7 +79,7 @@ const searchRoutes = [{
   path: 'prompts',
   component: searchPrompts
 }, {
-  path: 'results/:keywords',
+  path: 'results/:keyword',
   component: searchResults
 }]
 

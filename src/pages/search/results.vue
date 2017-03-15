@@ -14,6 +14,7 @@
 <script>
   import problemContainer from '../../components/problem_container-mixin'
   import container from '../../components/container'
+  import util from '../../util'
 
   export default {
     name: 'search-results',
@@ -22,20 +23,27 @@
     },
     mixins: [problemContainer],
     created() {
-      let keywords = this.$route.params.keywords
-      if(typeof (~~keywords) === 'number') {
-        this.$http.get(`/q/category/${keywords}`)
-          .catch(console.error)
+      let keyword = this.$route.params.keyword
+      if(!isNaN(parseInt(keyword))) {
+        this.$http.get(`/q/category/${keyword}`)
           .then((res) => {
             this.problemList = res.body.map((item, index) => {
               item.index = index
               return item
             })
           })
+          .catch(console.error)
       } else {
-        console.log(keywords)
+        keyword = encodeURIComponent(keyword)
+        this.$http.get(`/q/word/${keyword}`)
+          .then((res) => {
+            this.problemList = res.body.data.map((item, index) => {
+              item.index = index
+              return item
+            })
+          })
+          .catch(console.error)
       }
-    },
+    }
   }
-
 </script>
