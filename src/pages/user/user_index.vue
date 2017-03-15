@@ -171,7 +171,7 @@
               <span>我的消息</span>
             </p>
             <p class="right">
-               <span>数据占位符</span>
+               <span>{{unread}}</span>
                <i class="iconfont">&#xe63c;</i>
             </p>
           </router-link>
@@ -202,7 +202,8 @@
       return {
         userInfo: {},
         myUserInfo: {},
-        self: true
+        self: true,
+        unread: 0
       }
     },
     components: {
@@ -232,6 +233,12 @@
       let id = ~~this.$route.params.id
       this.myUserInfo = util.ls.get('myUserInfo')
 
+
+      this.$http.get('/msg/unRead')
+        .then((res) => {
+          this.unread = res.body
+        })
+        .catch(console.error)
 
       if(id !== this.myUserInfo.id) {
         this.self = false
