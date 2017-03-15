@@ -243,7 +243,6 @@
         .catch(console.error)
 
       this.$http.get('/info')
-        .catch(console.error)
         .then((res) => {
           this.info = res.body
           document.title = this.info.name
@@ -255,6 +254,13 @@
             }
           })
         })
+        .catch(console.error)
+      this.$http.get('/oauth/isLogin')
+        .then((res) => {
+          if(res.body === 'no')
+            window.location.href = `http://stu.dev/oauth?community_id=${this.info.id}`
+        })
+        .catch(console.error)
     },
     beforeRouteUpdate(to, from, next) {
       this.id = ~~to.params['id']
