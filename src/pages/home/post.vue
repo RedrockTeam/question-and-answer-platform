@@ -1,11 +1,24 @@
+<style lang="less">
+  .post-nothing {
+    height: 300px;
+    width: 100%;
+    text-align: center;
+    img {
+      height:  250px;
+    }
+  }
+</style>
 <template>
   <div>
-    <router-link v-for="problem in problemList" :to="`/detail/${problem.id}`">
+    <router-link v-for="problem in problemList" v-if="problemList[0]" :to="`/detail/${problem.id}`">
       <problem-item
         v-on:favorite="favorite"
         :problem="problem">
       </problem-item>
     </router-link>
+    <div v-if="!problemList[0]" class="post-nothing">
+      <img :src="nothingSrc">
+    </div>
   </div>
 </template>
 
@@ -25,7 +38,8 @@
         categorgs: {},
         fetchURL: '',
         page: 1,
-        busy: false
+        busy: false,
+        nothingSrc: '/static/noproblem.png'
       }
     },
     methods: {
@@ -109,10 +123,18 @@
     beforeRouteUpdate(to, from, next) {
       this.id = to.params.id
       this.type = to.params.type
+      if(this.id === '-2') {
+        this.nothingSrc = '/static/nocategory.png'
+        return next(true)
+      }
       this.page = 1
       this.fetchProblemList()
         .then((problemList) => {
           this.problemList = problemList
+          if(this.id !== '-2' && !this.problemList[0]) {
+            this.nothingSrc = '/static/noproblem.png'
+          }
+
         })
       next(true)
     }

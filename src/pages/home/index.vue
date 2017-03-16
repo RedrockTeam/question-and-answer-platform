@@ -266,9 +266,9 @@
       this.id = ~~to.params['id']
       this.type = to.params['type']
       // id 是-2表明没有该分类
-      if(to.params['id'] === '-2') {
-        return
-      }
+      // if(to.params['id'] === '-2') {
+      //   return
+      // }
       this.category_id = this.id
       next(true)
     },
