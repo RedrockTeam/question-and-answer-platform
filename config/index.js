@@ -105,6 +105,13 @@ module.exports = {
         pathRewrite: {
           '^/oauth': '/oauth'
         }
+      },
+      '/home': {
+        target: 'http://stu.dev',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/home': '/home'
+        }
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

@@ -39,7 +39,7 @@
         fetchURL: '',
         page: 1,
         busy: false,
-        nothingSrc: '/static/noproblem.png'
+        nothingSrc: '/home/static/noproblem.png'
       }
     },
     methods: {
@@ -124,7 +124,7 @@
       this.id = to.params.id
       this.type = to.params.type
       if(this.id === '-2') {
-        this.nothingSrc = '/static/nocategory.png'
+        this.nothingSrc = '/home/static/nocategory.png'
         return next(true)
       }
       this.page = 1
@@ -132,7 +132,7 @@
         .then((problemList) => {
           this.problemList = problemList
           if(this.id !== '-2' && !this.problemList[0]) {
-            this.nothingSrc = '/static/noproblem.png'
+            this.nothingSrc = '/home/static/noproblem.png'
           }
 
         })
