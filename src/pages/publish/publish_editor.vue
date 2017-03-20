@@ -104,7 +104,7 @@
         <div class="answer-image-add" v-show="image_url.length <= 2">
           <label for="image">
             <i class="iconfont">&#xe619;</i>
-            <input type="file" id="image" accept="image/gif, image/jpeg" v-show="false" name="image" v-on:change="imageChange">
+            <input type="file" id="image" accept="image/gif, image/jpeg, image/png" v-show="false" name="image" v-on:change="imageChange">
           </label>
         </div>
       </div>
