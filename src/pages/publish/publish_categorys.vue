@@ -78,6 +78,10 @@
         }
         return item.name !== '分享'
       })
+      this.categorys.push({
+        name: '其他',
+        id: '0'
+      })
     }
   }
 

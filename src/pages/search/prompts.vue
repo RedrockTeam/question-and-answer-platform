@@ -47,6 +47,10 @@
     },
     created() {
       this.categorys = util.ls.get('info').categories
+      this.categorys.push({
+        name: '其他',
+        id: 0
+      })
     }
   }
 
