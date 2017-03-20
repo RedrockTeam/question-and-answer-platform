@@ -242,6 +242,12 @@
         })
         .catch(console.error)
 
+      this.$http.get('/user')
+        .catch(console.error)
+        .then((res) => {
+          util.ls.set('myUserInfo', res.body)
+        })
+
       this.$http.get('/info')
         .then((res) => {
           this.info = res.body
@@ -255,20 +261,12 @@
           })
         })
         .catch(console.error)
-      this.$http.get('/oauth/isLogin')
-        .then((res) => {
-          if(res.body === 'no')
-            window.location.href = `http://stu.dev/oauth?community_id=${this.info.id}`
-        })
-        .catch(console.error)
     },
     beforeRouteUpdate(to, from, next) {
       this.id = ~~to.params['id']
       this.type = to.params['type']
+
       // id 是-2表明没有该分类
-      // if(to.params['id'] === '-2') {
-      //   return
-      // }
       this.category_id = this.id
       next(true)
     },
