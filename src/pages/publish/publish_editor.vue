@@ -167,9 +167,9 @@
         this.previewImage(file)
       },
       deleteImage(index) {
-        this.previewImages = this.previewImages.filter((item, i) => {
-          return index !== i
-        })
+        const imageFilter = (item, i) => index !== i
+        this.previewImages = this.previewImages.filter(imageFilter)
+        this.image_url = this.image_url.filter(imageFilter)
       },
       publish() {
         let title = this.title
