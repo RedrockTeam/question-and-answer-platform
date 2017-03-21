@@ -166,6 +166,11 @@
 
         this.previewImage(file)
       },
+      deleteImage(index) {
+        this.previewImages = this.previewImages.filter((item, i) => {
+          return index !== i
+        })
+      },
       publish() {
         let title = this.title
         let category_id = this.category_id
