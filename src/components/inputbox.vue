@@ -7,9 +7,8 @@
   border: none;
   border-radius: 10px;
   font-size: 26px;
-  color: #fff;
-  background-color: rgb(0, 0, 0);
-  mix-blend-mode:soft-light;
+  color: #000;
+  background-color: #90e6ee;
   &:focus {
     outline: none;
   }
