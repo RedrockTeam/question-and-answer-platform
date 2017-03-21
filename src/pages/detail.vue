@@ -233,7 +233,11 @@
       }
     },
     created() {
+
+      window.addEventListener('scroll', this.scroll)
+
       this.id = this.$route.params.id
+
       this.$http.get(`/post/${this.id}`)
         .then((res) => {
           this.problem = res.body
@@ -246,13 +250,18 @@
         })
         .catch(console.error)
 
-      window.addEventListener('scroll', this.scroll)
+    },
+    destroyed() {
+      window.removeEventListener('scroll', this.scroll)
     },
     methods: {
       scroll(event) {
+        if(this.busy) return
+
         let viewportHeight = window.innerHeight
         let scrollY = window.pageYOffset
         let documentHeight = document.documentElement.offsetHeight
+
         if(viewportHeight + scrollY === documentHeight && this.busy === false) {
           this.busy = true
           this.page++
@@ -264,7 +273,7 @@
         }
       },
       fetchReplies() {
-        return this.$http.get(`/reply/${i}?page=${page}`)
+        return this.$http.get(`/reply/${this.id}?page=${this.page}`)
           .then((res) => {
             return res.body.replies
           })
@@ -299,18 +308,7 @@
           })
           .catch(console.error)
       }
-    },
-    beforeRouteEnter(to, from , next) {
-      let navWrap = document.querySelector('.nav-wrap')
-      if (navWrap) {
-        navWrap.style.display = 'none'
-      }
-      next(true)
-    },
-    beforeRouteLeave(to, from, next) {
-      window.removeEventListener('scroll', this.scroll)
-      next(true)
-    },
+    }
   }
 
 </script>
