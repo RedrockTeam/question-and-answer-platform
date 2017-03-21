@@ -6,6 +6,7 @@ import post from './pages/home/post'
 
 import detail from './pages/detail'
 
+// publish page and subpages
 import publish from './pages/publish/'
 import publishCategorys from './pages/publish/publish_categorys'
 import publishEditor from './pages/publish/publish_editor'

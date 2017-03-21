@@ -18,16 +18,14 @@ export default {
   created() {
     this.$http.get('/oauth/isLogin')
       .then((res) => {
-        if(res.body === 'yes') {
-          return
-        }
-        let href = window.location.href
+        if(res.body === 'yes') return
+
         let match = href.match('/community_id=\d+/')
+        let query = ''
         if(match) {
-          window.location.href = `/oauth?${match[0]}`
-        } else {
-          window.location.href = '/oauth'
+          query = '?' + match[0]
         }
+        window.location.href = `/oauth${query}`
       })
       .catch(console.error)
   }

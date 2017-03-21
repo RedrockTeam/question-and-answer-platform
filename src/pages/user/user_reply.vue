@@ -78,7 +78,6 @@
       discard(id) {
         // 删除回答 接口还没给
         this.$http.post(`/reply/${id}?_method=delete`)
-          .catch(console.error)
           .then((res) => {
             let body = res.body
             if(~~body === 1) {
@@ -87,6 +86,7 @@
               })
             }
           })
+          .catch(console.error)
       }
     },
     created() {
@@ -104,7 +104,6 @@
       this.$http.get(`/user/reply${id}`)
         .catch(console.error)
         .then((res) => {
-          console.log(res.body.replies)
           this.replyList = res.body.replies
         })
     }

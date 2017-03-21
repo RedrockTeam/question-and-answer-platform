@@ -9,10 +9,6 @@
   box-sizing: border-box;
   border-radius: 0;
   margin-bottom: 57px;
-  .input-wrap {
-  }
-  .search-input {
-  }
 }
 </style>
 

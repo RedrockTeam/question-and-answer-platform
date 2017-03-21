@@ -280,7 +280,6 @@
       },
       favorite(id) {
         this.$http.get(`/favorite/${id}`)
-          .catch(console.error)
           .then((res) => {
             let body = res.body
             if(body === '主题不存在') {
@@ -293,6 +292,7 @@
               this.problem.isFavorite = true
             }
           })
+          .catch(console.error)
       },
       thumb(index, id) {
         this.$http.get(`/like/${id}`)

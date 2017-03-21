@@ -43,9 +43,6 @@
       }
     },
     methods: {
-      loadMore() {
-
-      },
       fetchProblemList() {
 
         // 全部分类
@@ -85,13 +82,11 @@
         let scrollY = window.pageYOffset
         let documentHeight = document.documentElement.offsetHeight
         if(viewportHeight + scrollY === documentHeight && this.busy === false) {
-          console.log('fetch data')
           this.busy = true
           this.page++
           this.fetchProblemList()
             .then((problems) => {
               this.problemList = this.problemList.concat(problems)
-              console.log(this.problemList)
               this.busy = false
             })
         }
@@ -107,6 +102,9 @@
 
       window.addEventListener('scroll', this.scroll)
     },
+    destroyed() {
+      window.removeEventListener('scroll', this.scroll)
+    },
     beforeRouteUpdate(to, from , next) {
       this.id = to.params.id
       this.type = to.params.type
@@ -114,10 +112,6 @@
         .then((problems) => {
           this.problemList = problems
         })
-      next(true)
-    },
-    beforeRouteLeave(to, from , next) {
-      window.removeEventListener('scroll', this.scroll)
       next(true)
     },
     beforeRouteUpdate(to, from, next) {

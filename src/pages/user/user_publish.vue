@@ -109,7 +109,6 @@
       },
       favorite(index, id) {
         this.$http.get(`/favorite/${id}`)
-          .catch(console.error)
           .then((res) => {
             let body = res.body
             if(body === '主题不存在') {
@@ -122,6 +121,7 @@
               this.problemList[index].isFavorite = true
             }
           })
+          .catch(console.error)
       }
     },
     created() {
@@ -137,11 +137,10 @@
       }
 
       this.$http.get(`/user/publish${id}`)
-        .catch(console.error)
         .then((res) => {
-          console.log(res)
           this.problemList = res.body
         })
+        .catch(console.error)
     }
   }
 

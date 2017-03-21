@@ -87,7 +87,6 @@
       this.myUserInfo = util.ls.get('myUserInfo')
       this.$http.get('/msg/history')
         .then((res) => {
-          console.log(res)
           this.messages = res.body.map((message) => {
             message.lastMsg = message.messages[0]
             return message
