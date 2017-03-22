@@ -247,7 +247,6 @@
       this.$http.get(`/user/${id}`)
         .then((res) => {
           this.userInfo = res.body
-          util.ls.set('myUserInfo', this.userInfo)
         })
         .catch(console.error)
     },
