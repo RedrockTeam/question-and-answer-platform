@@ -20,11 +20,8 @@ export default {
       .then((res) => {
         if(res.body === 'yes') return
 
-        let match = href.match('/community_id=\d+/')
-        let query = ''
-        if(match) {
-          query = '?' + match[0]
-        }
+        let match = window.location.href.match(/\?community_id=\d+/)
+        let query = match && match[0] || ''
         window.location.href = `/oauth${query}`
       })
       .catch(console.error)
