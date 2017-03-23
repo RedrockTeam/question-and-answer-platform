@@ -138,7 +138,13 @@
 
       this.$http.get(`/user/publish${id}`)
         .then((res) => {
-          this.problemList = res.body
+          let categories = util.ls.get('info').categories
+          this.problemList = res.body.map((item) => {
+            item.category = categories.filter(function(category) {
+              return item.category_id === category.id
+            })[0]
+            return item
+          })
         })
         .catch(console.error)
     }
