@@ -251,7 +251,14 @@
         .catch(console.error)
     },
     beforeRouteUpdate(to, from, next) {
-      this.self = true
+      if(~~to.params.id === this.myUserInfo.id) {
+        this.$http.get('/user')
+          .then((res) => {
+            this.userInfo = res.body
+          })
+          .catch(console.error)
+        this.self = true
+      }
       next(true)
     }
   }
