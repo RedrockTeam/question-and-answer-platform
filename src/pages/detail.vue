@@ -165,7 +165,7 @@
         <img v-for="imgurl in problem.image_url" :src="imgurl">
       </p>
       <div class="detail-browse-reply">
-        <span class="detail-browse">浏览{{problem.view_count}}次</span>
+        <span class="detail-browse">浏览{{problem.views}}次</span>
         <router-link :to="`/reply/${problem.id}`">
           <btn>
             <i class="iconfont" style="font-weight: 900">&#xe619;</i>
