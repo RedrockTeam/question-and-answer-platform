@@ -63,7 +63,6 @@
       },
       favorite(index, id) {
         this.$http.get(`/favorite/${id}`)
-          .catch(console.error)
           .then((res) => {
             let body = res.body
             if(body === '主题不存在') {
@@ -76,6 +75,7 @@
               this.problemList[index].isFavorite = true
             }
           })
+          .catch(console.error)
       },
       scroll(event) {
         let viewportHeight = window.innerHeight

@@ -12,14 +12,14 @@
 </template>
 
 <script>
-  import problemContainer from '../../components/problem_container-mixin'
+  import problemItem from '../../components/problem_item'
   import container from '../../components/container'
-  import util from '../../util'
 
   export default {
     name: 'search-category',
     components: {
       container,
+      problemItem
     },
     data() {
       return {
@@ -27,6 +27,22 @@
       }
     },
     methods: {
+      favorite(index, id) {
+        this.$http.get(`/favorite/${id}`)
+          .then((res) => {
+            let body = res.body
+            if(body === '主题不存在') {
+              return
+            }
+            if(body === 'no') {
+              this.problemList[index].isFavorite = false
+            }
+            if(body === 'yes') {
+              this.problemList[index].isFavorite = true
+            }
+          })
+          .catch(console.error)
+      },
       fetchData(keyword) {
         this.$http.get(`/q/category/${keyword}`)
           .then((res) => {
@@ -38,14 +54,13 @@
           .catch(console.error)
       }
     },
-    mixins: [problemContainer],
     created() {
-      let keyword = this.$route.params.id
-      this.fetchData(keyword)
+      let id = this.$route.params.id
+      this.fetchData(id)
     },
     beforeRouteUpdate(to, from, next) {
-      let keyword = to.params.id
-      this.fetchData(keyword)
+      let id = to.params.id
+      this.fetchData(id)
       next()
     }
   }

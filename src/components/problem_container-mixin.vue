@@ -24,9 +24,8 @@
     methods: {
       favorite(index, id) {
         this.$http.get(`/favorite/${id}`)
-          .catch(console.error)
           .then((res) => {
-            console.log(index, id)
+
             let body = res.body
             if(body === '主题不存在') {
               return
@@ -38,6 +37,7 @@
               this.problemList[index].isFavorite = true
             }
           })
+          .catch(console.error)
       }
     }
   }

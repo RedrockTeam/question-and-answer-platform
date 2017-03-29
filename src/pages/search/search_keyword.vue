@@ -12,26 +12,38 @@
 </template>
 
 <script>
-  import problemContainer from '../../components/problem_container-mixin'
+  import problemItem from '../../components/problem_item'
   import container from '../../components/container'
-  import util from '../../util'
 
   export default {
-    name: 'search-keyword',
+    name: 'search-category',
     components: {
       container,
+      problemItem
     },
     data() {
       return {
         problemList: [],
-        page: 1
       }
     },
     methods: {
+      favorite(index, id) {
+        this.$http.get(`/favorite/${id}`)
+          .then((res) => {
+            let body = res.body
+            if(body === '主题不存在') {
+              return
+            }
+            if(body === 'no') {
+              this.problemList[index].isFavorite = false
+            }
+            if(body === 'yes') {
+              this.problemList[index].isFavorite = true
+            }
+          })
+          .catch(console.error)
+      },
       fetchData(keyword) {
-
-        keyword = encodeURIComponent(keyword)
-
         this.$http.get(`/q/word/${keyword}`)
           .then((res) => {
             this.problemList = res.body.data.map((item, index) => {
@@ -42,7 +54,6 @@
           .catch(console.error)
       }
     },
-    mixins: [problemContainer],
     created() {
       let keyword = this.$route.params.keyword
       this.fetchData(keyword)
