@@ -251,7 +251,7 @@
       this.$http.get('/info')
         .then((res) => {
           this.info = res.body
-          document.title = this.info.name
+          document.title = this.info.name || '问答平台'
           util.ls.set('info', this.info)
           this.info.categories.forEach((item) => {
             if(categoriesMap[item.name]) {
