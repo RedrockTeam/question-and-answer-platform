@@ -17,50 +17,34 @@
   import util from '../../util'
 
   export default {
-    name: 'search-results',
+    name: 'search-category',
     components: {
       container,
     },
     data() {
       return {
         problemList: [],
-        page: 1
       }
     },
     methods: {
       fetchData(keyword) {
-
-
-        // 是数字, 那么就是分类id;
-        if(/^\d+$/.test(keyword)) {
-          this.$http.get(`/q/category/${keyword}`)
-            .then((res) => {
-              this.problemList = res.body.map((item, index) => {
-                item.index = index
-                return item
-              })
+        this.$http.get(`/q/category/${keyword}`)
+          .then((res) => {
+            this.problemList = res.body.map((item, index) => {
+              item.index = index
+              return item
             })
-            .catch(console.error)
-        } else {
-          keyword = encodeURIComponent(keyword)
-          this.$http.get(`/q/word/${keyword}`)
-            .then((res) => {
-              this.problemList = res.body.data.map((item, index) => {
-                item.index = index
-                return item
-              })
-            })
-            .catch(console.error)
-        }
+          })
+          .catch(console.error)
       }
     },
     mixins: [problemContainer],
     created() {
-      let keyword = this.$route.params.keyword
+      let keyword = this.$route.params.id
       this.fetchData(keyword)
     },
     beforeRouteUpdate(to, from, next) {
-      let keyword = to.params.keyword
+      let keyword = to.params.id
       this.fetchData(keyword)
       next()
     }

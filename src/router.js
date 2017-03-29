@@ -16,7 +16,8 @@ import reply from './pages/reply'
 // search page and subpages
 import search from './pages/search/'
 import searchPrompts from './pages/search/prompts'
-import searchResults from './pages/search/results'
+import searchCategory from './pages/search/search_category'
+import searchKeyword from './pages/search/search_keyword'
 
 // user page and subpages
 import user from './pages/user/'
@@ -80,8 +81,11 @@ const searchRoutes = [{
   path: 'prompts',
   component: searchPrompts
 }, {
-  path: 'results/:keyword',
-  component: searchResults
+  path: 'search-category/:id',
+  component: searchCategory
+}, {
+  path: 'search-keyword/:keyword',
+  component: searchKeyword
 }]
 
 // app routes

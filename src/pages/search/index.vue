@@ -47,7 +47,7 @@
     },
     methods: {
       search(keyword) {
-        router.replace(`/search/results/${this.keyword}`)
+        router.replace(`/search/search-keyword/${this.keyword}`)
         return false
       }
     }

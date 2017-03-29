@@ -23,7 +23,7 @@
 </style>
 <template>
   <container class="search-prompt-wrap">
-    <router-link class="search-prompt" v-for="category in categorys" :to="`/search/results/${category.id}`">
+    <router-link class="search-prompt" v-for="category in categorys" :to="`/search/search-category/${category.id}`">
       {{category.name}}
     </router-link>
   </container>
