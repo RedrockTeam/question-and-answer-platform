@@ -139,12 +139,14 @@
       this.$http.get(`/user/publish${id}`)
         .then((res) => {
           let categories = util.ls.get('info').categories
+
           this.problemList = res.body.map((item) => {
-            item.category = categories.filter(function(category) {
+            item.category = categories.filter((category) => {
               return item.category_id === category.id
             })[0]
             return item
           })
+
         })
         .catch(console.error)
     }
