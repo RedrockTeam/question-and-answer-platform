@@ -21,29 +21,48 @@
     components: {
       container,
     },
+    data() {
+      return {
+        problemList: [],
+        page: 1
+      }
+    },
+    methods: {
+      fetchData(keyword) {
+
+
+        // 是数字, 那么就是分类id;
+        if(/^\d+$/.test(keyword)) {
+          this.$http.get(`/q/category/${keyword}`)
+            .then((res) => {
+              this.problemList = res.body.map((item, index) => {
+                item.index = index
+                return item
+              })
+            })
+            .catch(console.error)
+        } else {
+          keyword = encodeURIComponent(keyword)
+          this.$http.get(`/q/word/${keyword}`)
+            .then((res) => {
+              this.problemList = res.body.data.map((item, index) => {
+                item.index = index
+                return item
+              })
+            })
+            .catch(console.error)
+        }
+      }
+    },
     mixins: [problemContainer],
     created() {
       let keyword = this.$route.params.keyword
-      if(!isNaN(parseInt(keyword))) {
-        this.$http.get(`/q/category/${keyword}`)
-          .then((res) => {
-            this.problemList = res.body.map((item, index) => {
-              item.index = index
-              return item
-            })
-          })
-          .catch(console.error)
-      } else {
-        keyword = encodeURIComponent(keyword)
-        this.$http.get(`/q/word/${keyword}`)
-          .then((res) => {
-            this.problemList = res.body.data.map((item, index) => {
-              item.index = index
-              return item
-            })
-          })
-          .catch(console.error)
-      }
+      this.fetchData(keyword)
+    },
+    beforeRouteUpdate(to, from, next) {
+      let keyword = to.params.keyword
+      this.fetchData(keyword)
+      next()
     }
   }
 </script>
