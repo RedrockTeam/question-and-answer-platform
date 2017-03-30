@@ -60,8 +60,10 @@
     },
     beforeRouteUpdate(to, from, next) {
       let keyword = to.params.keyword
-      this.fetchData(keyword)
-      next()
+      if(keyword) {
+        this.fetchData(keyword)
+        next()
+      }
     }
   }
 </script>

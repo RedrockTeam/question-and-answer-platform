@@ -16,7 +16,7 @@
 
   <section>
     <container class="search-form-wrap">
-      <form v-on:submit.prevent="search(this.keyword)">
+      <form v-on:submit.prevent="search">
         <div class="input-wrap">
           <input v-model="keyword" class="inputbox search-input" value=""/>
         </div>
@@ -46,8 +46,10 @@
       }
     },
     methods: {
-      search(keyword) {
-        router.replace(`/search/search-keyword/${this.keyword}`)
+      search() {
+        console.log(this.keyword)
+        if(this.keyword)
+          router.replace(`/search/search-keyword/${this.keyword}`)
         return false
       }
     }

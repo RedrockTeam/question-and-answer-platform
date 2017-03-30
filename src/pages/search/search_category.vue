@@ -60,8 +60,10 @@
     },
     beforeRouteUpdate(to, from, next) {
       let id = to.params.id
-      this.fetchData(id)
-      next()
+      if(id) {
+        this.fetchData(id)
+        next()
+      }
     }
   }
 </script>
