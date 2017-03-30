@@ -24,6 +24,8 @@
     data() {
       return {
         problemList: [],
+        page: 1,
+        keyword: ''
       }
     },
     methods: {
@@ -43,25 +45,52 @@
           })
           .catch(console.error)
       },
+
       fetchData(keyword) {
-        this.$http.get(`/q/word/${keyword}`)
+        return this.$http.get(`/q/word/${keyword}?page=${this.page}`)
           .then((res) => {
-            this.problemList = res.body.data.map((item, index) => {
+            return res.body.data.map((item, index) => {
               item.index = index
               return item
             })
           })
-          .catch(console.error)
+      },
+      scroll(event) {
+        let viewportHeight = window.innerHeight
+        let scrollY = window.pageYOffset
+        let documentHeight = document.documentElement.offsetHeight
+        if(viewportHeight + scrollY === documentHeight && this.busy === false) {
+          this.page++
+          this.fetchData(this.keyword)
+            .then((problems) => {
+              this.problemList = this.problemList.concat(problems)
+              this.busy = false
+            })
+        }
       }
     },
     created() {
-      let keyword = this.$route.params.keyword
-      this.fetchData(keyword)
+      this.keyword = this.$route.params.keyword
+      this.fetchData(this.keyword)
+        .then((problems) => {
+          this.problemList = problems
+        })
+        .catch(console.error)
+
+      window.addEventListener('scroll', this.scroll)
+    },
+    destroyed() {
+      window.removeEventListener('scroll', this.scroll)
     },
     beforeRouteUpdate(to, from, next) {
       let keyword = to.params.keyword
       if(keyword) {
+        this.page = 1
         this.fetchData(keyword)
+          .then((problems) => {
+            this.problemList = problems
+          })
+          .catch(console.error)
         next()
       }
     }
