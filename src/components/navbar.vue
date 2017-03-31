@@ -74,16 +74,22 @@
       }
     },
     created() {
-      let myUserInfo = util.ls.get('myUserInfo')
-      if(myUserInfo) {
-        this.userid = myUserInfo.id
-      }
+      this.myUserInfo = util.ls.get('myUserInfo')
       this.$http.get('/user')
-        .catch(console.error)
         .then((res) => {
           this.myUserInfo = res.body
           util.ls.set('myUserInfo', res.body)
         })
+        .catch(console.error)
     },
+    beforeRouteUpdate(from, to, next) {
+      console.log(from)
+    },
+    beforeRouteEnter(a, b, next) {
+      console.log(a)
+    },
+    beforeRouteLeave(a, b, next) {
+      console.log(b)
+    }
   }
 </script>

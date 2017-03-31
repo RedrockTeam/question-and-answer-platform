@@ -241,6 +241,11 @@
       this.$http.get(`/post/${this.id}`)
         .then((res) => {
           this.problem = res.body
+          if(this.problem.category === null) {
+            this.problem.category = {
+              name: '其他'
+            }
+          }
         })
         .catch(console.error)
 

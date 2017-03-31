@@ -242,12 +242,6 @@
         })
         .catch(console.error)
 
-      this.$http.get('/user')
-        .catch(console.error)
-        .then((res) => {
-          util.ls.set('myUserInfo', res.body)
-        })
-
       this.$http.get('/info')
         .then((res) => {
           this.info = res.body
