@@ -61,6 +61,7 @@
   }
 
   .answer-image-add {
+    position: relative;
     display: inline-block;
     width: 200px;
     height: 200px;
@@ -74,6 +75,14 @@
       color: #95e3ef;
       font-weight: 100;
       line-height: 200px;
+    }
+    #image {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
     }
   }
 }
@@ -102,10 +111,8 @@
           <i class="iconfont answer-delete-img" v-on:click="deleteImage(index)">&#xe619;</i>
         </div>
         <div class="answer-image-add" v-show="image_url.length <= 2">
-          <label for="image">
-            <i class="iconfont">&#xe619;</i>
-            <input type="file" id="image" accept="image/gif, image/jpeg, image/png" v-show="false" name="image" v-on:change="imageChange">
-          </label>
+          <i type="file" class="iconfont">&#xe619;</i>
+          <input type="file" id="image"  name="image" v-on:change="imageChange">
         </div>
       </div>
       <btn v-on:click.native="publish">发布</btn>
