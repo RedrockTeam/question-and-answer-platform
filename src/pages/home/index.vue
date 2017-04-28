@@ -212,7 +212,7 @@
         <router-link tag="li" activeClass="active" :to="`/home/new/${category_id}`" replace>最新</router-link>
         <router-link tag="li" activeClass="active" :to="`/home/hot/${category_id}`" replace>最热</router-link>
       </ul>
-      <router-view style="margin-bottom: 60px;"></router-view>
+      <router-view :categoriesMap="categoriesMap"  style="margin-bottom: 60px;"></router-view>
     </container>
     <navbar></navbar>
   </div>
@@ -253,7 +253,8 @@
         others_id: 0, // 其他类别 id 为0
         technology_id: -2,
         employment_id: -2,
-        sharing_id: -2
+        sharing_id: -2,
+        categoriesMap: {}
       }
     },
     methods: {
@@ -285,6 +286,7 @@
             if(categoriesMap[item.name]) {
               let category_id = categoriesMap[item.name] + '_id'
               this[category_id] = item.id
+              this.categoriesMap[item.id] = item.name
             }
           })
         })

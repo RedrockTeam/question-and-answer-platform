@@ -4,7 +4,14 @@
     width: 100%;
     text-align: center;
     img {
-      height:  250px;
+      width: 100%;
+    }
+    &-desc {
+      position: relative;
+      top: -80px;
+      color: #81bfcf;
+      font-size: 36px;
+      text-align: center;
     }
   }
 </style>
@@ -17,7 +24,8 @@
       </problem-item>
     </router-link>
     <div v-if="!problemList[0]" class="post-nothing">
-      <img :src="nothingSrc">
+      <img :src="nothing.img">
+      <p class="post-nothing-desc">{{ nothing.desc }}</p>
     </div>
   </div>
 </template>
@@ -30,6 +38,7 @@
     components: {
       problemItem,
     },
+    props: ['categoriesMap'],
     data(){
       return {
         type: '',
@@ -39,7 +48,10 @@
         fetchURL: '',
         page: 1,
         busy: false,
-        nothingSrc: '/home/static/noproblemincategory.png'
+        nothing: {
+          img: '/home/static/small_face.png',
+          desc: '来做第一个发布问题的人吧~'
+        }
       }
     },
     methods: {
@@ -90,54 +102,66 @@
               this.busy = false
             })
         }
+      },
+      ifNothing() {
+
+        if(this.problemList.length !== 0) {
+          return
+        }
+
+        if(this.id === '-2') {
+          this.nothing = {
+            img: '/home/static/cry_face.png',
+            desc: '没有该分类哦~'
+          }
+        }
+
+        this.nothing = this.id === '-1' ? {
+          img: '/home/static/smell_face.png',
+          desc: '来做第一个发布问题的人吧~'
+        } : {
+          img: '/home/static/cry_face.png',
+          desc: `${this.categoriesMap[this.id] || 该}分类下没有问题哦~`
+        }
+
       }
     },
     created() {
+      this.categoriesMap['0'] = '其他'
+
       this.type = this.$route.params.type
       this.id = this.$route.params.id
       this.fetchProblemList()
         .then((problems) => {
           this.problemList = problems
-          if(this.problemList.length === 0 && this.id === '-1') {
-            this.nothingSrc = '/home/static/noproblem.png'
-          }
+          this.ifNothing()
         })
+        .catch(console.error)
 
       window.addEventListener('scroll', this.scroll)
     },
     destroyed() {
       window.removeEventListener('scroll', this.scroll)
     },
-    beforeRouteUpdate(to, from , next) {
-      this.id = to.params.id
-      this.type = to.params.type
-      this.fetchProblemList()
-        .then((problems) => {
-          this.problemList = problems
-        })
-      next(true)
-    },
     beforeRouteUpdate(to, from, next) {
       this.id = to.params.id
       this.type = to.params.type
-      console.log(this.id)
-      console.log(this.type)
+
       if(this.id === '-2') {
-        this.nothingSrc = '/home/static/nocategory.png'
+        this.nothing = {
+          img: '/home/static/cry_face.png',
+          desc: '没有该分类哦~'
+        }
         return next(true)
       }
       this.page = 1
       this.fetchProblemList()
         .then((problemList) => {
           this.problemList = problemList
-          console.log(this.problemList)
-          if(this.id !== '-1' && this.problemList.length === 0) {
-            this.nothingSrc = '/home/static/noproblemincategory.png'
-          } else if(this.id === '-1' && this.problemList.length === 0){
-            this.nothingSrc = '/home/static/noproblem.png'
-          }
 
+          this.ifNothing()
         })
+        .catch(console.error)
       next(true)
     }
   }
