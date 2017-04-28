@@ -116,6 +116,14 @@
           }
         }
 
+
+        if(this.categoriesMap[this.id] === '分享') {
+          return this.nothing =  {
+            img: '/home/static/cry_face.png',
+            desc: '暂无分享哦~'
+          }
+        }
+
         this.nothing = this.id === '-1' ? {
           img: '/home/static/smell_face.png',
           desc: '来做第一个发布问题的人吧~'
