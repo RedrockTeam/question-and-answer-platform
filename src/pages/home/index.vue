@@ -96,12 +96,28 @@
   margin-bottom: 60px;
   width: 100%;
   .category-item {
+    position: relative;
     margin-top: 20px;
     margin-left: 55px;
     margin-right: 55px;
     width: 115px;
-    height: 155px;
+    height: 158px;
     background-size: 100% 100%;
+    div {
+      display: none;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 101px;
+      height: 97px;
+      border-radius: 50%;
+      border: 3px solid #73dce8;
+    }
+  }
+  .category-router-active {
+    div {
+      display: block;
+    }
   }
   .category-sharing {
     background-image: url('../../assets/images/category_sharing.png');
@@ -147,32 +163,50 @@
           tag="li"
           class="category-item category-sharing"
           :to="`/home/${type}/${sharing_id}`"
-        ></router-link>
+          activeClass="category-router-active"
+        >
+          <div></div>
+        </router-link>
         <router-link
           tag="li"
           class="category-item category-life"
           :to="`/home/${type}/${life_id}`"
-        ></router-link>
+          activeClass="category-router-active"
+        >
+          <div></div>
+        </router-link>
         <router-link
           tag="li"
           class="category-item category-learning"
           :to="`/home/${type}/${learing_id}`"
-        ></router-link>
+          activeClass="category-router-active"
+        >
+          <div></div>
+        </router-link>
         <router-link
           tag="li"
           class="category-item category-technology"
           :to="`/home/${type}/${technology_id}`"
-        ></router-link>
+          activeClass="category-router-active"
+        >
+          <div></div>
+        </router-link>
         <router-link
           tag="li"
           class="category-item category-employment"
           :to="`/home/${type}/${employment_id}`"
-        ></router-link>
+          activeClass="category-router-active"
+        >
+          <div></div>
+        </router-link>
         <router-link
           tag="li"
           class="category-item category-others"
           :to="`/home/${type}/${others_id}`"
-        ></router-link>
+          activeClass="category-router-active"
+        >
+          <div></div>
+        </router-link>
       </ul>
       <ul class="post-container">
         <router-link tag="li" activeClass="active" :to="`/home/new/${category_id}`" replace>最新</router-link>

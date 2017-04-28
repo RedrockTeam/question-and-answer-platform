@@ -39,7 +39,7 @@
         fetchURL: '',
         page: 1,
         busy: false,
-        nothingSrc: '/home/static/noproblem.png'
+        nothingSrc: '/home/static/noproblemincategory.png'
       }
     },
     methods: {
@@ -98,6 +98,9 @@
       this.fetchProblemList()
         .then((problems) => {
           this.problemList = problems
+          if(this.problemList.length === 0 && this.id === '-1') {
+            this.nothingSrc = '/home/static/noproblem.png'
+          }
         })
 
       window.addEventListener('scroll', this.scroll)
@@ -117,6 +120,8 @@
     beforeRouteUpdate(to, from, next) {
       this.id = to.params.id
       this.type = to.params.type
+      console.log(this.id)
+      console.log(this.type)
       if(this.id === '-2') {
         this.nothingSrc = '/home/static/nocategory.png'
         return next(true)
@@ -125,7 +130,10 @@
       this.fetchProblemList()
         .then((problemList) => {
           this.problemList = problemList
-          if(this.id !== '-2' && !this.problemList[0]) {
+          console.log(this.problemList)
+          if(this.id !== '-1' && this.problemList.length === 0) {
+            this.nothingSrc = '/home/static/noproblemincategory.png'
+          } else if(this.id === '-1' && this.problemList.length === 0){
             this.nothingSrc = '/home/static/noproblem.png'
           }
 
