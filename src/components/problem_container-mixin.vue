@@ -1,6 +1,6 @@
 <template>
   <div class="problem_container-mixin">
-    <router-link v-for="problem in problemList" :to="`/detail/${problem.id}`">
+    <router-link v-for="problem in problemList" :key="problem.id" :to="`/detail/${problem.id}`">
       <problem-item
         v-on:favorite="favorite"
         :problem="problem">

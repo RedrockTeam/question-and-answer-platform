@@ -18,7 +18,10 @@
     <container class="search-form-wrap">
       <form v-on:submit.prevent="search">
         <div class="input-wrap">
-          <input v-model="keyword" class="inputbox search-input" value=""/>
+          <input
+            v-model="keyword"
+            class="inputbox search-input"
+            value=""/>
         </div>
       </form>
     </container>

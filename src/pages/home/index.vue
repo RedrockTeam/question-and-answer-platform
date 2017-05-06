@@ -264,6 +264,7 @@
       }
     },
     created() {
+      console.log('home_index created')
       this.type = this.$route.params['type']
       this.category_id = this.$route.params['id']
 

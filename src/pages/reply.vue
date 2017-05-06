@@ -75,9 +75,12 @@
 <div>
   <container class="answer-editor">
     <form class="answer-form">
-      <textarea v-model="content" class="textareabox answer-content"></textarea>
+      <textarea
+        v-model="content"
+        class="textareabox answer-content"
+      ></textarea>
       <div class="answer-images-wrap">
-        <div v-for="(image, index) in previewImages" class="answer-image">
+        <div v-for="(image, index) in previewImages" :key="index" class="answer-image">
           <img :src="image">
           <i class="iconfont answer-delete-img" v-on:click="deleteImage(index)">&#xe619;</i>
         </div>
@@ -97,7 +100,6 @@
 <script>
   import router from '../router'
   import btn from '../components/btn'
-  import inputbox from '../components/inputbox'
   import textareabox from '../components/textareabox'
   import container from '../components/container'
 
@@ -107,7 +109,6 @@
       container,
       btn,
       textareabox,
-      inputbox
     },
     data() {
       return {

@@ -78,6 +78,7 @@
     <div class="chat-messages-wrap">
       <div
         v-for="message in messages"
+        :key="message.from_id"
         class="chat-message"
         :class="{'chat-message_to': message.from_id == myUserInfo.id}">
         <img
@@ -99,7 +100,6 @@
 </div>
 </template>
 <script>
-  import inputbox from '../../components/inputbox'
   import btn from '../../components/btn'
   import bgContainer from '../../components/bg-container.vue'
   import container from '../../components/container'
@@ -109,7 +109,6 @@
     'name': 'zoe-chat',
     'components': {
       btn,
-      inputbox,
       bgContainer,
       container
     },

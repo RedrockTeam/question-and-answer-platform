@@ -213,6 +213,29 @@
       list,
       btn
     },
+    methods: {
+      load() {
+        let id = ~~this.$route.params.id
+        this.myUserInfo = util.ls.get('myUserInfo')
+        if(id !== this.myUserInfo.id) {
+          this.self = false
+
+          this.$http.get(`/user/${id}`)
+            .then((res) => {
+              this.userInfo = res.body
+            })
+            .catch(console.error)
+        } else {
+          this.self = true
+          this.userInfo = this.myUserInfo
+          this.$http.get('/msg/unRead')
+            .then((res) => {
+              this.unread = res.body
+            })
+            .catch(console.error)
+        }
+      }
+    },
     beforeRouteLeave(to, from , next) {
       let path = to.path
       if(/collection/.test(path) &&
@@ -229,26 +252,13 @@
       }
       next(true)
     },
+    activated() {
+      console.log('activated')
+      this.load()
+    },
     created() {
-      let id = ~~this.$route.params.id
-      this.myUserInfo = util.ls.get('myUserInfo')
-
-
-      this.$http.get('/msg/unRead')
-        .then((res) => {
-          this.unread = res.body
-        })
-        .catch(console.error)
-
-      if(id !== this.myUserInfo.id) {
-        this.self = false
-      }
-
-      this.$http.get(`/user/${id}`)
-        .then((res) => {
-          this.userInfo = res.body
-        })
-        .catch(console.error)
+      console.log('created')
+      this.load()
     },
     beforeRouteUpdate(to, from, next) {
       if(~~to.params.id === this.myUserInfo.id) {
@@ -259,6 +269,7 @@
           .catch(console.error)
         this.self = true
       }
+      console.log(this.self)
       next(true)
     }
   }

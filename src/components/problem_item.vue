@@ -111,7 +111,7 @@
       {{problem.content}}
     </p>
     <div v-if="problem.image_url && problem.image_url[0]" class="problem-list-pics">
-      <img v-for="url in problem.image_url" :src="url">
+      <img v-for="url in problem.image_url" :key="url" :src="url">
     </div>
     <div class="problem-list-time-comments">
       <span class="problem-list-time">{{problem.updated_at}}</span>

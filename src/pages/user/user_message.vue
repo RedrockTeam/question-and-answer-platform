@@ -50,7 +50,12 @@
 <template>
   <container>
     <bg-container class="message-wrap">
-      <router-link v-if="messages[0]" v-for="message in messages" :to="`/user/${myUserInfo.id}/chat/${message.user.id}`" class="message-list" href="##">
+      <router-link
+        v-if="messages[0]"
+        v-for="message in messages"
+        :key="message.id"
+
+       :to="`/user/${myUserInfo.id}/chat/${message.user.id}`" class="message-list" href="##">
         <img class="message-header" :src="message.user.headimgurl" alt="user-header"/>
         <div class="message">
           <h3 class="message-from">{{message.user.nickname}}<span class="message-time">{{message.lastMsg.updated_at}}</span></h3>

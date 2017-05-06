@@ -17,7 +17,7 @@
 </style>
 <template>
   <div>
-    <router-link v-for="problem in problemList" v-if="problemList[0]" :to="`/detail/${problem.id}`">
+    <router-link v-for="problem in problemList" :key="problem.id" v-if="problemList[0]" :to="`/detail/${problem.id}`">
       <problem-item
         v-on:favorite="favorite"
         :problem="problem">

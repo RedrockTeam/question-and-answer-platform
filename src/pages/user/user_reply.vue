@@ -36,6 +36,7 @@
   <container class="user-publish-container">
       <bg-container
         v-for="(reply, index) in replyList"
+        :key="reply.id"
         class="user-reply-container">
         <list class="user-reply-list">
           <router-link :to="`/detail/${reply.post.id}`">

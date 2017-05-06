@@ -1,18 +1,5 @@
 <style lang="less">
-.inputbox {
-  display: block;
-  padding: 28px;
-  width: 100%;
-  box-sizing: border-box;
-  border: none;
-  border-radius: 10px;
-  font-size: 26px;
-  color: #000;
-  background-color: #90e6ee;
-  &:focus {
-    outline: none;
-  }
-}
+
 </style>
 
 <template>

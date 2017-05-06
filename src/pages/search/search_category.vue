@@ -2,7 +2,9 @@
   <container>
     <router-link
       v-for="(problem, index) in problemList"
-      :to="`/detail/${problem.id}`">
+      :to="`/detail/${problem.id}`
+      :key="problem.id"
+      ">
       <problem-item
         v-on:favorite="favorite"
         :problem="problem">

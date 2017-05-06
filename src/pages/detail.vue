@@ -162,7 +162,7 @@
         {{problem.content}}
       </p>
       <p v-if="problem.image_url && problem.image_url[0]" class="detail-image">
-        <img v-for="imgurl in problem.image_url" :src="imgurl">
+        <img v-for="imgurl in problem.image_url" :key="imgurl" :src="imgurl">
       </p>
       <div class="detail-browse-reply">
         <span class="detail-browse">浏览{{problem.views}}次</span>
@@ -177,7 +177,10 @@
 
     <bg-container class="replies-wrap">
       <list-wrap>
-        <list v-for="(reply, index) in replies" class="reply-list">
+        <list
+          v-for="(reply, index) in replies"
+          :key="reply.id"
+          class="reply-list">
           <div class="reply-info-wrap">
             <router-link :to="`/user/${reply.user&&reply.user.id}`">
               <img class="reply-header" :src="reply.user&&reply.user.headimgurl">

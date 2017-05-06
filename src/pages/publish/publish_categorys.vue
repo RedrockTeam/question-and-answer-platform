@@ -36,6 +36,7 @@
        <list-wrap>
         <router-link
           v-for="category in categorys"
+          :key="category.id"
           :to="`/publish/editor/${category.id}`">
           <list>
             <p class="left">{{category.name}}</p>

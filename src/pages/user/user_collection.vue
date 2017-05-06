@@ -9,6 +9,7 @@
   <container class="zoe-collection-container">
     <router-link
       v-for="(problem, index) in problemList"
+      :key="problem.id"
       :to="`/detail/${problem.id}`">
       <problem-item
         v-on:favorite="favorite"
