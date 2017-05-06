@@ -1,10 +1,4 @@
 <style lang="less">
-.right {
-  float: right;
-}
-.left {
-  float: left;
-}
 .user {
   margin: 0 auto;
   width: 710px;

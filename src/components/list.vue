@@ -9,6 +9,12 @@
     display: block;
     overflow: hidden;
   }
+  .left {
+    float: left;
+  }
+  .right {
+    float: right;
+  }
 }
 </style>
 
