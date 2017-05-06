@@ -212,7 +212,9 @@
         <router-link tag="li" activeClass="active" :to="`/home/new/${category_id}`" replace>最新</router-link>
         <router-link tag="li" activeClass="active" :to="`/home/hot/${category_id}`" replace>最热</router-link>
       </ul>
-      <router-view :categoriesMap="categoriesMap"  style="margin-bottom: 60px;"></router-view>
+      <keep-alive>
+        <router-view :categoriesMap="categoriesMap"  style="margin-bottom: 60px;"></router-view>
+      </keep-alive>
     </container>
     <navbar></navbar>
   </div>

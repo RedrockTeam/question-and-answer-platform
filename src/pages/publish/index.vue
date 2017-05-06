@@ -3,7 +3,9 @@
 
 <template>
   <div class="publish">
-    <router-view></router-view>
+    <keep-alive>
+        <router-view></router-view>
+    </keep-alive>
     <navbar></navbar>
   </div>
 </template>

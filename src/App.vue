@@ -1,7 +1,9 @@
 <template>
   <div>
     <div id="container" style="z-index: 10;">
-      <router-view></router-view>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </div>
     <navbar></navbar>
   </div>

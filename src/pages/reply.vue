@@ -159,7 +159,7 @@
       imageChange(e) {
         let file = e.target.files[0]
         let size = file.size
-        if(size > 3000000) {
+        if(size > 5000000) {
           return alert('图片太大, 不能上传')
         }
         let data = new FormData()
