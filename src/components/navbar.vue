@@ -34,7 +34,7 @@
 <template>
   <div>
     <ul class="nav-wrap">
-        <router-link tag="li" to="/home"  activeClass="active" class="nav-list">
+        <router-link tag="li" :to="nav.home"  activeClass="active" class="nav-list">
           <p>
             <i class="iconfont nav-icon">&#xe60a;</i>
           </p>
@@ -46,7 +46,7 @@
           </p>
           <span href="##" class="nav-name">发布</span>
         </router-link>
-        <router-link tag="li" to="/search" activeClass="active" class="nav-list">
+        <router-link tag="li" :to="nav.search" activeClass="active" class="nav-list">
           <p>
             <i class="iconfont nav-icon">&#xe674;</i>
           </p>
@@ -67,6 +67,7 @@
 
   export default {
     name: 'navbar',
+    props: ['nav'],
     data() {
       return {
         show: true,
@@ -82,14 +83,5 @@
         })
         .catch(console.error)
     },
-    beforeRouteUpdate(from, to, next) {
-      console.log(from)
-    },
-    beforeRouteEnter(a, b, next) {
-      console.log(a)
-    },
-    beforeRouteLeave(a, b, next) {
-      console.log(b)
-    }
   }
 </script>

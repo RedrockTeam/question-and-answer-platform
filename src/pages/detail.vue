@@ -199,7 +199,6 @@
       </list-wrap>
     </bg-container>
   </container>
-  <navbar></navbar>
 </div>
 </template>
 
@@ -210,7 +209,6 @@
   import listWrap from '../components/list_wrap'
   import type from '../components/type'
   import list from '../components/list'
-  import navbar from '../components/navbar'
 
   export default {
     name: 'detail',
@@ -220,8 +218,7 @@
       container,
       bgContainer,
       listWrap,
-      type,
-      navbar
+      type
     },
     data() {
       return {

@@ -91,7 +91,6 @@
       <btn v-on:click.native="reply">发布</btn>
     </form>
   </container>
-  <navbar></navbar>
 </div>
 </template>
 
@@ -101,7 +100,6 @@
   import inputbox from '../components/inputbox'
   import textareabox from '../components/textareabox'
   import container from '../components/container'
-  import navbar from '../components/navbar'
 
   export default {
     name: 'reply',
@@ -109,8 +107,7 @@
       container,
       btn,
       textareabox,
-      inputbox,
-      navbar
+      inputbox
     },
     data() {
       return {

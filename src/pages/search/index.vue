@@ -23,7 +23,6 @@
       </form>
     </container>
     <router-view style="margin-bottom: 50px;"></router-view>
-    <navbar></navbar>
   </section>
 </template>
 
@@ -31,14 +30,12 @@
   import container from '../../components/container'
   import problemItem from '../../components/problem_item'
   import router from '../../router'
-  import navbar from '../../components/navbar'
 
   export default {
     'name': 'search',
     'components': {
       container,
-      problemItem,
-      navbar
+      problemItem
     },
     data() {
       return {

@@ -49,7 +49,7 @@
         page: 1,
         busy: false,
         nothing: {
-          img: '/home/static/small_face.png',
+          img: '/home/static/smell_face.png',
           desc: '来做第一个发布问题的人吧~'
         }
       }

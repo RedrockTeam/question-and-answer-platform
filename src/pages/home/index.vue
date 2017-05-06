@@ -216,7 +216,6 @@
         <router-view :categoriesMap="categoriesMap"  style="margin-bottom: 60px;"></router-view>
       </keep-alive>
     </container>
-    <navbar></navbar>
   </div>
 </template>
 
@@ -224,7 +223,6 @@
 <script>
   import container from '../../components/container'
   import btn from '../../components/btn'
-  import navbar from '../../components/navbar'
   import util from '../../util'
 
   const categoriesMap = {
@@ -239,8 +237,7 @@
     name: 'home',
     components: {
       container,
-      btn,
-      navbar
+      btn
     },
     data() {
       return {
