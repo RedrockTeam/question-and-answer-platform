@@ -75,10 +75,16 @@
         let college = this.college === '' ? this.myUserInfo.college : this.college
         let sex = this.myUserInfo.sex
         let headimgurl = this.myUserInfo.headimgurl
+
         this.$http.post('/user', {nickname, school, college, sex, headimgurl})
           .catch(console.error)
           .then((res) => {
             if(res.status === 200) {
+              this.myUserInfo.nickname = nickname
+              this.myUserInfo.school =  school
+              this.myUserInfo.college = college
+
+              util.ls.set('myUserInfo', this.myUserInfo)
               router.push(`/user/${this.myUserInfo.id}`)
             }
           })
