@@ -47,7 +47,7 @@
 <template>
   <div>
     <div id="container" style="z-index: 10;">
-      <keep-alive>
+      <keep-alive exclude="detail">
         <router-view></router-view>
       </keep-alive>
     </div>
