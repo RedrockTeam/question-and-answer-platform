@@ -247,11 +247,9 @@
       next(true)
     },
     activated() {
-      console.log('activated')
       this.load()
     },
     created() {
-      console.log('created')
       this.load()
     },
     beforeRouteUpdate(to, from, next) {
@@ -263,7 +261,6 @@
           .catch(console.error)
         this.self = true
       }
-      console.log(this.self)
       next(true)
     }
   }

@@ -47,7 +47,6 @@
     },
     methods: {
       search() {
-        console.log(this.keyword)
         if(this.keyword)
           router.replace(`/search/search-keyword/${this.keyword}`)
         return false
