@@ -2,9 +2,9 @@
   <container>
     <router-link
       v-for="(problem, index) in problemList"
-      :to="`/detail/${problem.id}`
       :key="problem.id"
-      ">
+      :to="`/detail/${problem.id}`"
+      >
       <problem-item
         v-on:favorite="favorite"
         :problem="problem">
@@ -65,6 +65,7 @@
           this.page++
           this.fetchData(this.id)
             .then((problems) => {
+              console.log(problems)
               this.problemList = this.problemList.concat(problems)
               this.busy = false
             })
@@ -73,8 +74,10 @@
     },
     created() {
       this.id = this.$route.params.id
+      console.log(this.id)
       this.fetchData(this.id)
         .then((problems) => {
+          console.log(problems)
           this.problemList = this.problemList.concat(problems)
         })
         .catch(console.error)
