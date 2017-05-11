@@ -109,7 +109,16 @@
     },
     methods: {
       discard(id) {
-        return false
+        this.$http.post(`/post/${id}?_method=delete`)
+          .then((res) => {
+            let resId = res.body.id
+            if(resId === id) {
+              this.problemList = this.problemList.filter(item => item.id !== id)
+            } else {
+              alert('服务器错误, 请稍候再试')
+            }
+          })
+        console.log(id)
       },
       favorite(index, id) {
         this.$http.get(`/favorite/${id}`)
